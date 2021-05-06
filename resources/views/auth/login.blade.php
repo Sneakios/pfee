@@ -67,6 +67,7 @@ top: 40px; left: 40px;">
                             </div>
                         </div>
                     </form>
+                    <div style="border:1px solid #eee;width:100%;position: static;margin-top:10px"></div>
                     <p class="text-center birth">Do not have an account ?
                     </p>
                     <div class="modal fade" id="register-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
@@ -114,14 +115,8 @@ top: 40px; left: 40px;">
                                             </div>
                 
                 
-                                            <div class="form-row">
-                                                <div class="form-group col-md-6">
+                                            <div class="form-group">
                                                     <input id="password" type="password" class="form-control" name="password" required autocomplete="new-password" placeholder="password">
-                                                </div>
-                
-                                                <div class="form-group col-md-6">
-                                                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" placeholder="confirm password">
-                                                </div>
                                             </div>
                 
                 

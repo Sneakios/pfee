@@ -88,6 +88,75 @@ margin-top: 2px;
   font-size: 18px;
   border: none;}
 
+  .profile {
+  margin: 20px 0;
+}
+
+/* Profile sidebar */
+.profile-sidebar {
+  padding: 0px 0 10px 0;
+  background: #fff;
+  position: static;
+  
+}
+
+
+
+.profile-userpic{
+  float: center;
+  margin: 0 auto;
+  width: 100%;
+  height: 100%;
+  -webkit-border-radius: 50% !important;
+  -moz-border-radius: 50% !important;
+  border-radius: 50% !important;
+}
+
+.profile-usertitle {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.profile-usertitle-name {
+  color: #5a7391;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 7px;
+}
+
+.profile-usertitle-job {
+  text-transform: uppercase;
+  color: #5b9bd1;
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.profile-userbuttons {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.profile-userbuttons .btn {
+  text-transform: uppercase;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 6px 15px;
+  margin-right: 5px;
+}
+
+.profile-userbuttons .btn:last-child {
+  margin-right: 0px;
+}
+    
+
+/* Profile Content */
+.profile-content {
+  padding: 20px;
+  background: #fff;
+  min-height: 460px;
+} 
+
 </style>
  
 </head>
@@ -112,7 +181,7 @@ margin-top: 2px;
 
   <!-- ======= Header ======= -->
   <header id="header" class="fixed-top d-flex align-items-center">
-    <div class="container d-flex align-items-center justify-content-between">
+    <div class="container d-flex align-items-center justify-content-between" style="border-bottom:1px solid #eee">
 
       <div class="logo">
         <h1><a href="{{route('welcome')}}">Help<span>Me</span></a></h1>
@@ -153,7 +222,7 @@ margin-top: 2px;
 
 --}}
 <div class="dropdown">
-  <button class="dropbtn"> <img src="{{asset('assets/amine.jpg')}}"style="height:30px;width:30px;border-radius: 40px;">  {{ Auth::user()->name }}  </button>
+  <button class="dropbtn"> <img src="{{asset('assets/'.Auth::user()->avatar)}}"style="height:30px;width:30px;border-radius: 40px;">  {{ Auth::user()->name }}  </button>
   <div class="dropdown-content">
     <a class="dropdown-item" href="" style="padding-right: 50px"><img src="{{asset('assets/profile.png')}}"style="height:20px;width:20px;"> Profile</a>
 
