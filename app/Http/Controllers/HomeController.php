@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Auth;
+
+
 class HomeController extends Controller
 {
     /**
@@ -35,8 +36,7 @@ class HomeController extends Controller
         $avatar=$request->file('picture');
         $filename=time().'.'.$avatar->getClientOriginalExtension();
         $request->file('picture')->move(public_path('assets/avatars'), $filename);
-
-        User::find($n)->update(['avatar' =>$filename]);
+       User::find($n)->update(['avatar' =>$filename]);
         }
 
        return redirect('home');

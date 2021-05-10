@@ -104,9 +104,9 @@ margin-top: 2px;
 
 .profile-userpic{
   float: center;
-  margin: 0 auto;
-  width: 100%;
-  height: 100%;
+  margin-left: 13%;
+  width: 80%;
+  height: 80%;
   -webkit-border-radius: 50% !important;
   -moz-border-radius: 50% !important;
   border-radius: 50% !important;
@@ -115,6 +115,7 @@ margin-top: 2px;
 .profile-usertitle {
   text-align: center;
   margin-top: 20px;
+  margin-left: 0%
 }
 
 .profile-usertitle-name {
@@ -122,6 +123,7 @@ margin-top: 2px;
   font-size: 16px;
   font-weight: 600;
   margin-bottom: 7px;
+  margin-left: 7%
 }
 
 .profile-usertitle-job {
@@ -130,11 +132,12 @@ margin-top: 2px;
   font-size: 12px;
   font-weight: 600;
   margin-bottom: 15px;
+  margin-left: 7%
 }
 
 .profile-userbuttons {
   text-align: center;
-  margin-top: 10px;
+  margin-top: 0px;
 }
 
 .profile-userbuttons .btn {
@@ -164,6 +167,7 @@ margin-top: 2px;
 <body>
 
   <!-- ======= Top Bar ======= -->
+  
   <section id="topbar" class="fixed-top d-flex align-items-center">
     <div class="container d-flex justify-content-center justify-content-md-between">
       <div class="contact-info d-flex align-items-center">

@@ -9,7 +9,7 @@
 					<img src="{{asset('assets/avatars/'.Auth::user()->avatar)}}" class="img-responsive profile-userpic" alt="">
 				
 				<!-- END SIDEBAR USERPIC -->
-				<div class="profile-userbuttons">
+				<div class="profile-userbuttons" >
 					<form method="POST" action="{{ route('change_avatar') }}" enctype="multipart/form-data">
 						@csrf
 						<div style="width: 250px;">
