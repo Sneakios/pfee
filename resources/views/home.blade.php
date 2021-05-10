@@ -6,9 +6,18 @@
 		<div class="col-md-3">
 			<div class="profile-sidebar" >
 				<!-- SIDEBAR USERPIC -->
-					<img src="{{asset('assets/'.Auth::user()->avatar)}}" class="img-responsive profile-userpic" alt="">
+					<img src="{{asset('assets/avatars/'.Auth::user()->avatar)}}" class="img-responsive profile-userpic" alt="">
 				
 				<!-- END SIDEBAR USERPIC -->
+				<div class="profile-userbuttons">
+					<form method="POST" action="{{ route('change_avatar') }}" enctype="multipart/form-data">
+						@csrf
+						<div style="width: 250px;">
+							<input type="file" name="picture" class="btn" style="margin-left: 80px;color: white;margin-top: 10px;">
+							<button type="submit" class="btn btn-primary" style="margin-left: 25px;width: 120px;border-radius: 30px;">Change Image</button>
+						</div>
+					</form>
+				</div>
 				<!-- SIDEBAR USER TITLE -->
 				<div class="profile-usertitle">
 					<div class="profile-usertitle-name">
@@ -20,10 +29,7 @@
 				</div>
 				<!-- END SIDEBAR USER TITLE -->
 				<!-- SIDEBAR BUTTONS -->
-				<div class="profile-userbuttons">
-					<button type="button" class="btn btn-success btn-sm">Follow</button>
-					<button type="button" class="btn btn-danger btn-sm">Message</button>
-				</div>
+				
 				<!-- END SIDEBAR BUTTONS -->
 				<!-- SIDEBAR MENU -->
 				

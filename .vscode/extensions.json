@@ -1,0 +1,8 @@
+{
+    "recommendations": [
+        "onecentlin.laravel-blade",
+        "onecentlin.laravel5-snippets",
+        "bmewburn.vscode-intelephense-client",
+        "felixfbecker.php-intellisense"
+    ]
+}

@@ -222,9 +222,9 @@ margin-top: 2px;
 
 --}}
 <div class="dropdown">
-  <button class="dropbtn"> <img src="{{asset('assets/'.Auth::user()->avatar)}}"style="height:30px;width:30px;border-radius: 40px;">  {{ Auth::user()->name }}  </button>
+  <button class="dropbtn"> <img src="{{asset('assets/avatars/'.Auth::user()->avatar)}}"style="height:30px;width:30px;border-radius: 40px;">  {{ Auth::user()->name }}  </button>
   <div class="dropdown-content">
-    <a class="dropdown-item" href="" style="padding-right: 50px"><img src="{{asset('assets/profile.png')}}"style="height:20px;width:20px;"> Profile</a>
+    <a class="dropdown-item" href="{{ route('home') }}" style="padding-right: 50px"><img src="{{asset('assets/profile.png')}}"style="height:20px;width:20px;"> Profile</a>
 
     <a class="dropdown-item" style="padding-right: 50px" href="{{ route('logout') }}" onclick="event.preventDefault();
     document.getElementById('logout-form').submit();"><img src="{{asset('assets/logout.png')}}"style="height:20px;width:20px;">LogOut</a>
