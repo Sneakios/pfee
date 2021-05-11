@@ -85,7 +85,7 @@ class RegisterController extends Controller
             'adresse'=> $data['adresse'],
             'ville'=> $data['ville'],
             'type'=> $data['type'],
-            'avatar'=> 'avatars/default.jpg',
+            'avatar'=> 'default.jpg',
             'mobile'=> $data['mobile'],
             'date_naiss'=>$daten,
             'password' => Hash::make($data['password']),

@@ -200,7 +200,6 @@ margin-top: 2px;
             <li><a class="nav-link scrollto" href="#about">About</a></li>
             <li><a class="nav-link scrollto" href="#services">Services</a></li>
             <li><a class="nav-link scrollto" href="#testimonials">Team</a></li>
-
             <li><a class="nav-link scrollto " href="#contact">Contact Us</a></li>
            
             @endif
@@ -209,35 +208,45 @@ margin-top: 2px;
 
                       @endif
             @else
+ 
+            @if ('/' ==  request()->path())   
+                    
+            <li><a class="nav-link scrollto" href="#about">About</a></li>
+            <li><a class="nav-link scrollto" href="#services">Services</a></li>
+            <li><a class="nav-link scrollto" href="#testimonials">Team</a></li>
+            <li><a class="nav-link scrollto " href="#contact">Contact Us</a></li>  
+            <li><a class="nav-link scrollto " >    </a></li>        
+            @endif                            
+          
+            @if (('home' ==  request()->path()) && (Auth::user()->type=='employeur'))                       
+            <li><a class="nav-link scrollto" href="#about">About</a></li>
+            <li><a class="nav-link scrollto" href="#services">Services</a></li>
+            <li><a class="nav-link scrollto" href="#testimonials">Team</a></li>
+            <li><a class="nav-link scrollto " href="#contact">Contact Us</a></li>  
+            <li><a class="nav-link scrollto " >    </a></li>        
+            @endif 
 
-                <li>
-                  
-               {{--   <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                      {{ Auth::user()->name }}
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                     <li>
-                      <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                      document.getElementById('logout-form').submit();"><img src="{{asset('assets/logout.png')}}"style="height:20px;width:20px;">Logout</a>
-                     </li>  
-                  </ul>
-                  </div>
-
---}}
-<div class="dropdown">
-  <button class="dropbtn"> <img src="{{asset('assets/avatars/'.Auth::user()->avatar)}}"style="height:30px;width:30px;border-radius: 40px;">  {{ Auth::user()->name }}  </button>
-  <div class="dropdown-content">
-    <a class="dropdown-item" href="{{ route('home') }}" style="padding-right: 50px"><img src="{{asset('assets/profile.png')}}"style="height:20px;width:20px;"> Profile</a>
-
-    <a class="dropdown-item" style="padding-right: 50px" href="{{ route('logout') }}" onclick="event.preventDefault();
-    document.getElementById('logout-form').submit();"><img src="{{asset('assets/logout.png')}}"style="height:20px;width:20px;">LogOut</a>
-  </div>
-</div>
-                  
-                
-               </li>
-
+            @if (('home' ==  request()->path()) && (Auth::user()->type=='client'))                       
+            <li><a class="nav-link scrollto" href="#about">About</a></li>
+            <li><a class="nav-link scrollto" href="#services">Services</a></li>
+            <li><a class="nav-link scrollto" href="#testimonials">Team</a></li>
+            <li><a class="nav-link scrollto " href="#contact">Contact Us</a></li>  
+            <li><a class="nav-link scrollto " >    </a></li>        
+            @endif 
+          
+          
+          
+          
+            <li>           
+             <div class="dropdown" style="">
+              <button class="dropbtn"> <img src="{{asset('assets/avatars/'.Auth::user()->avatar)}}"style="height:30px;width:30px;border-radius: 40px;">  {{ Auth::user()->name }}  </button>
+              <div class="dropdown-content">
+                <a class="dropdown-item" href="{{ route('home') }}" style="padding-right: 50px"><img src="{{asset('assets/profile.png')}}"style="height:20px;width:20px;"> Profile</a>
+                <a class="dropdown-item" style="padding-right: 50px" href="{{ route('logout') }}" onclick="event.preventDefault();
+                document.getElementById('logout-form').submit();"><img src="{{asset('assets/logout.png')}}"style="height:20px;width:20px;">LogOut</a>
+              </div>
+            </div>                                             
+              </li>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                     @csrf
                 </form>
