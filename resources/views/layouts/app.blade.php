@@ -39,8 +39,7 @@
   <link href="{{asset('assets/css/style.css')}}" rel="stylesheet">
   
   <style>
-  
-
+    
 </style>
  
 </head>
@@ -79,7 +78,7 @@
             @guest
             @if ('/' ==  request()->path())
             <li><a class="nav-link scrollto" href="#about">About</a></li>
-            <li><a class="nav-link scrollto" href="#testimonials">Team</a></li>
+            <li><a class="nav-link scrollto" href="#services">Service</a></li>
             <li><a class="nav-link scrollto " href="#contact">Contact Us</a></li>
            
             @endif
@@ -92,7 +91,7 @@
             @if ('/' ==  request()->path())   
                     
             <li><a class="nav-link scrollto" href="#about">About</a></li>
-            <li><a class="nav-link scrollto" href="#testimonials">Team</a></li>
+            <li><a class="nav-link scrollto" href="#services">Services</a></li>
             <li><a class="nav-link scrollto " href="#contact">Contact Us</a></li>  
             <li><a class="nav-link scrollto " >    </a></li>        
             @endif                            
@@ -105,12 +104,7 @@
             <li><a class="nav-link scrollto " >    </a></li>        
             @endif 
 
-            @if (('home' ==  request()->path()) && (Auth::user()->type=='client'))                       
-            <li><a class="nav-link scrollto" href="#about">About</a></li>
-            <li><a class="nav-link scrollto" href="#testimonials">Team</a></li>
-            <li><a class="nav-link scrollto " href="#contact">Contact Us</a></li>  
-            <li><a class="nav-link scrollto " >    </a></li>        
-            @endif 
+          
           
           
           
