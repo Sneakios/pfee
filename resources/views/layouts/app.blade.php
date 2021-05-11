@@ -98,7 +98,7 @@
           
             @if (('home' ==  request()->path()) && (Auth::user()->type=='employeur'))  
             <router-link to="/Edit-Profile">Edit Profile</router-link>   
-            <router-link to="/Profile-Employeur">Profile Info</router-link> 
+            <router-link to="/Profile-Worker">Profile Info</router-link> 
             <router-link to="/">Example</router-link> 
 
             <li><a class="nav-link scrollto " >    </a></li>        
