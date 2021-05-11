@@ -39,126 +39,7 @@
   <link href="{{asset('assets/css/style.css')}}" rel="stylesheet">
   
   <style>
-    .r{
-        font-size: medium;
-    }
-
-    .cna{
-        font-size: large;
-        color: #007bff;
-        font-weight: bold;
-    }
-
-.reg{
-
-border: none;
-border-radius: 6px;
-font-size: 17px;
-line-height: 48px;
-padding: 0 16px;
-cursor: pointer;
-display: inline-block;
-text-decoration: none;
-white-space: nowrap;
-font-family: inherit;
-background-color: #42b72a;
-color: #fff;
-content: '';
-display: inline-block;
-width: 45%;
-vertical-align: middle;
-}
-
-.birth {
-color: #606770;
-font-family: SFProText-Medium, Helvetica, Arial, sans-serif;
-font-size: 15px;
-font-weight: normal;
-line-height: 20px;
-margin-bottom: 0;
-margin-top: 2px;
-}
-
-.lgn{display: inline;width: 130px;
-  background-color: #01b1d7;
-  color: white;
-  border-radius: 25px;
-  padding: 8px 16px;
-  font-family: 'Source Sans Pro', sans-serif;
-  font-size: 18px;
-  border: none;}
-
-  .profile {
-  margin: 20px 0;
-}
-
-/* Profile sidebar */
-.profile-sidebar {
-  padding: 0px 0 10px 0;
-  background: #fff;
-  position: static;
   
-}
-
-
-
-.profile-userpic{
-  float: center;
-  margin-left: 13%;
-  width: 80%;
-  height: 80%;
-  -webkit-border-radius: 50% !important;
-  -moz-border-radius: 50% !important;
-  border-radius: 50% !important;
-}
-
-.profile-usertitle {
-  text-align: center;
-  margin-top: 20px;
-  margin-left: 0%
-}
-
-.profile-usertitle-name {
-  color: #5a7391;
-  font-size: 16px;
-  font-weight: 600;
-  margin-bottom: 7px;
-  margin-left: 7%
-}
-
-.profile-usertitle-job {
-  text-transform: uppercase;
-  color: #5b9bd1;
-  font-size: 12px;
-  font-weight: 600;
-  margin-bottom: 15px;
-  margin-left: 7%
-}
-
-.profile-userbuttons {
-  text-align: center;
-  margin-top: 0px;
-}
-
-.profile-userbuttons .btn {
-  text-transform: uppercase;
-  font-size: 11px;
-  font-weight: 600;
-  padding: 6px 15px;
-  margin-right: 5px;
-}
-
-.profile-userbuttons .btn:last-child {
-  margin-right: 0px;
-}
-    
-
-/* Profile Content */
-.profile-content {
-  padding: 20px;
-  background: #fff;
-  min-height: 460px;
-} 
 
 </style>
  
@@ -198,7 +79,6 @@ margin-top: 2px;
             @guest
             @if ('/' ==  request()->path())
             <li><a class="nav-link scrollto" href="#about">About</a></li>
-            <li><a class="nav-link scrollto" href="#services">Services</a></li>
             <li><a class="nav-link scrollto" href="#testimonials">Team</a></li>
             <li><a class="nav-link scrollto " href="#contact">Contact Us</a></li>
            
@@ -212,7 +92,6 @@ margin-top: 2px;
             @if ('/' ==  request()->path())   
                     
             <li><a class="nav-link scrollto" href="#about">About</a></li>
-            <li><a class="nav-link scrollto" href="#services">Services</a></li>
             <li><a class="nav-link scrollto" href="#testimonials">Team</a></li>
             <li><a class="nav-link scrollto " href="#contact">Contact Us</a></li>  
             <li><a class="nav-link scrollto " >    </a></li>        
@@ -228,7 +107,6 @@ margin-top: 2px;
 
             @if (('home' ==  request()->path()) && (Auth::user()->type=='client'))                       
             <li><a class="nav-link scrollto" href="#about">About</a></li>
-            <li><a class="nav-link scrollto" href="#services">Services</a></li>
             <li><a class="nav-link scrollto" href="#testimonials">Team</a></li>
             <li><a class="nav-link scrollto " href="#contact">Contact Us</a></li>  
             <li><a class="nav-link scrollto " >    </a></li>        
@@ -288,19 +166,19 @@ margin-top: 2px;
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->
-  <script src="{{asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-  <script src="{{asset('assets/vendor/glightbox/js/glightbox.min.js')}}"></script>
-  <script src="{{asset('assets/vendor/isotope-layout/isotope.pkgd.min.js')}}"></script>
-  <script src="{{asset('assets/vendor/php-email-form/validate.js')}}"></script>
-  <script src="{{asset('assets/vendor/purecounter/purecounter.js')}}"></script>
-  <script src="{{asset('assets/vendor/swiper/swiper-bundle.min.js')}}"></script>
-  <script src="{{asset('assets/js/jquery.min.js')}}"></script>
-  <script src="{{asset('assets/js/jquery.slim.min.js')}}"></script>
-  <script src="{{asset('assets/js/bootstrap.bundle.min.js')}}"></script>
-  <script src="{{asset('js/app.js')}}" defer ></script>
-  <script src="{{asset('assets/js/main.js')}}"></script>
+
 
 </div>
 </body>
-
+<script src="{{asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+<script src="{{asset('assets/vendor/glightbox/js/glightbox.min.js')}}"></script>
+<script src="{{asset('assets/vendor/isotope-layout/isotope.pkgd.min.js')}}"></script>
+<script src="{{asset('assets/vendor/php-email-form/validate.js')}}"></script>
+<script src="{{asset('assets/vendor/purecounter/purecounter.js')}}"></script>
+<script src="{{asset('assets/vendor/swiper/swiper-bundle.min.js')}}"></script>
+<script src="{{asset('assets/js/jquery.min.js')}}"></script>
+<script src="{{asset('assets/js/jquery.slim.min.js')}}"></script>
+<script src="{{asset('assets/js/bootstrap.bundle.min.js')}}"></script>
+<script src="{{asset('js/app.js')}}" defer ></script>
+<script src="{{asset('assets/js/main.js')}}"></script>
 </html>
