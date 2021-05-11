@@ -165,7 +165,7 @@ margin-top: 2px;
 </head>
 
 <body>
-
+<div id="app">
   <!-- ======= Top Bar ======= -->
   
   <section id="topbar" class="fixed-top d-flex align-items-center">
@@ -218,11 +218,11 @@ margin-top: 2px;
             <li><a class="nav-link scrollto " >    </a></li>        
             @endif                            
           
-            @if (('home' ==  request()->path()) && (Auth::user()->type=='employeur'))                       
-            <li><a class="nav-link scrollto" href="#about">About</a></li>
-            <li><a class="nav-link scrollto" href="#services">Services</a></li>
-            <li><a class="nav-link scrollto" href="#testimonials">Team</a></li>
-            <li><a class="nav-link scrollto " href="#contact">Contact Us</a></li>  
+            @if (('home' ==  request()->path()) && (Auth::user()->type=='employeur'))  
+            <router-link to="/Edit-Profile">Edit Profile</router-link>   
+            <router-link to="/Profile-Employeur">Profile Info</router-link> 
+            <router-link to="/">Example</router-link> 
+
             <li><a class="nav-link scrollto " >    </a></li>        
             @endif 
 
@@ -300,7 +300,7 @@ margin-top: 2px;
   <script src="{{asset('js/app.js')}}" defer ></script>
   <script src="{{asset('assets/js/main.js')}}"></script>
 
-
+</div>
 </body>
 
 </html>
