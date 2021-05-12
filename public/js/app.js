@@ -2023,11 +2023,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   mounted: function mounted() {
     console.log('Component mounted.');
@@ -37907,16 +37902,25 @@ var staticRenderFns = [
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "form-row" }, [
-                  _c("div", { staticClass: "form-group col-md-4" }, [
+                  _c("div", { staticClass: "form-group col-md-2" }, [
+                    _c(
+                      "label",
+                      {
+                        staticClass: "form-control birth",
+                        staticStyle: { border: "0px" }
+                      },
+                      [_vm._v("Specialty :")]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group col-md-10" }, [
                     _c(
                       "select",
                       {
                         staticClass: "form-control birth",
-                        attrs: { id: "ville", name: "ville" }
+                        attrs: { id: "specialty", name: "specialty" }
                       },
                       [
-                        _c("option", [_vm._v("Ville ..")]),
-                        _vm._v(" "),
                         _c("option", { attrs: { value: "Ariana" } }, [
                           _vm._v("Ariana")
                         ]),
@@ -38010,52 +38014,21 @@ var staticRenderFns = [
                         ])
                       ]
                     )
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-group col-md-4" }, [
-                    _c(
-                      "select",
-                      {
-                        staticClass: "form-control birth",
-                        attrs: { id: "genre", name: "genre" }
-                      },
-                      [
-                        _c("option", [_vm._v("Genre ..")]),
-                        _vm._v(" "),
-                        _c("option", { attrs: { value: "homme" } }, [
-                          _vm._v("Homme")
-                        ]),
-                        _vm._v(" "),
-                        _c("option", { attrs: { value: "femme" } }, [
-                          _vm._v("Femme")
-                        ])
-                      ]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-group col-md-4" }, [
-                    _c(
-                      "select",
-                      {
-                        staticClass: "form-control birth",
-                        attrs: { id: "type", name: "type" }
-                      },
-                      [
-                        _c("option", [_vm._v("Type ..")]),
-                        _vm._v(" "),
-                        _c("option", { attrs: { value: "client" } }, [
-                          _vm._v("Client")
-                        ]),
-                        _vm._v(" "),
-                        _c("option", { attrs: { value: "employeur" } }, [
-                          _vm._v("Employeur")
-                        ])
-                      ]
-                    )
                   ])
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "form-row" }),
+                _c("div", { staticClass: "form-row" }, [
+                  _c("div", { staticClass: "form-group col-md-12" }, [
+                    _c("textarea", {
+                      staticClass: "form-control",
+                      attrs: {
+                        id: "description",
+                        name: "description",
+                        placeholder: "description !!"
+                      }
+                    })
+                  ])
+                ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "form-group row mb-0" }, [
                   _c("div", { staticClass: "col-md-6 offset-md-5" }, [

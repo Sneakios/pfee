@@ -17,6 +17,7 @@ class CreateWorkersTable extends Migration
             $table->increments('id');
             $table->unsignedBigInteger('id_worker');
             $table->String('specialty')->nullable();
+            $table->text('description')->nullable();
             $table->integer('followers')->default(0);
             $table->integer('rate')->default(0);
             $table->timestamps();

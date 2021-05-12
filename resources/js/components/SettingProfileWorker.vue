@@ -41,10 +41,15 @@
                 
                 
                 
-                                            <div class="form-row">
-                                                <div class="form-group col-md-4">
-                                                    <select id="ville" class="form-control birth" name="ville">
-                                                        <option>Ville ..</option>
+                                              <div class="form-row">
+                                                    <div class="form-group col-md-2">   
+                                                     <label class="form-control birth" style="border:0px">Specialty :</label>
+                                                    </div>
+
+                                                <div class="form-group col-md-10">
+                                                
+                                                    <select id="specialty" class="form-control birth" name="specialty">
+                                                        
                                                         <option value="Ariana">Ariana</option>
                                                         <option value="Beja">Beja</option>
                                                         <option value="Ben Arous">Ben Arous</option>
@@ -71,30 +76,20 @@
                 
                                                     </select>
                                                 </div>
-                                                <div class="form-group col-md-4">
-                                                    <select id="genre" class="form-control birth" name="genre">
-                                                        <option>Genre ..</option>
-                                                        <option value="homme">Homme</option>
-                                                        <option value="femme">Femme</option>
-                                                    </select>
-                                                </div>
-                                                <div class="form-group col-md-4">
-                
-                                                    <select id="type" class="form-control birth" name="type">
-                                                        <option>Type ..</option>
-                                                        <option value="client">Client</option>
-                                                        <option value="employeur">Employeur</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                
-                
-                
-                                            <div class="form-row">
-                                             
                                                
-                                               
+                                                
                                             </div>
+                                        
+                                        <div class="form-row">
+                                        <div class="form-group col-md-12">
+                                        <textarea id="description" name="description"  class="form-control" placeholder="description !!">
+                                        </textarea>
+                                        </div>
+                                    
+                                        </div>
+                
+                
+                
                 
                                             <div class="form-group row mb-0">
                                                 <div class="col-md-6 offset-md-5">
