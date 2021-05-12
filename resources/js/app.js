@@ -9,6 +9,8 @@ import SettingProfileWorker from './components/SettingProfileWorker.vue';
 import ProfileWorker from './components/ProfileWorker.vue';
 import Exmaple from './components/Exmaple.vue';
 
+
+Vue.component('complete-profile-worker', require('./components/CompleteProfileWorker.vue').default);
 Vue.use(VueRouter);
 
 
