@@ -22,49 +22,38 @@
                         
                                                 <div class="form-row">
                                                     <div class="form-group col-md-12">
-                                                        <select id="ville" class="form-control birth" name="ville">
-                                                            <option>Ville ..</option>
-                                                            <option value="Ariana">Ariana</option>
-                                                            <option value="Beja">Beja</option>
-                                                            <option value="Ben Arous">Ben Arous</option>
-                                                            <option value="Bizerte">Bizerte</option>
-                                                            <option value="Gabes">Gabes</option>
-                                                            <option value="Gafsa">Gafsa</option>
-                                                            <option value="Jendouba">Jandouba</option>
-                                                            <option value="Kairouan">Kairouan</option>
-                                                            <option value="Kasserine">Kasserine</option>
-                                                            <option value="Kebili">Kebili</option>
-                                                            <option value="Le Kef">Le Kef</option>
-                                                            <option value="Mahdia">Mahdia</option>
-                                                            <option value="La Lanouba">La Manouba</option>
-                                                            <option value="Mednine">Mednine</option>
-                                                            <option value="Monastir">Monastir</option>
-                                                            <option value="Sfax">Sfax</option>
-                                                            <option value="Sidi Bouzid">Sidi Bouzid</option>
-                                                            <option value="Seliana">Seliana</option>
-                                                            <option value="Sousse">Sousse</option>
-                                                            <option value="Tataouine">Tataouine</option>
-                                                            <option value="Tozeur">Tozeur</option>
-                                                            <option value="Tunis">Tunis</option>
-                                                            <option value="Zaghouan">Zaghouan</option>
+                                                        <select id="ville" class="form-control birth" v-model="skills">
+
+                                                            <option value="Baby sitting">Baby Sitting</option>
+                                                            <option value="Builder">Building</option>
+                                                            <option value="Beauty and well being">Beauty and well being</option>
+                                                            <option value="Chouffeur">Chouffeur</option>
+                                                            <option value="Delovery">Delovery</option>
+                                                            <option value="Painting">Painting</option>
+                                                            <option value="Carpenting">Carpenting</option>
+                                                            <option value="Animal care">Animal care</option>
+                                                            <option value="Electronic repair">Electronic repair</option>
+                                                            <option value="Kebili">Housework and cleaning</option>
+                                                      
+                                                            
 
                                                         </select>
                                                     </div>                        
                                                 </div>
                                                 <div class="form-group">
                                                     <div class="form-group col-md-12">
-                                                    <textarea id="description" name="description"  class="form-control" placeholder="description !!">
+                                                    <textarea id="description" name="description"  class="form-control" placeholder="description !!" v-model="description">
                                                     </textarea>
                                                     </div>
                                                 
                                                     </div>
                                                       <div class="form-group row mb-0">
-                                                <div class="col-md-6 offset-md-4">
-                                                    <button type="submit" class="btn btn-primary">
-                                                       Save Settings
-                                                    </button>
+                                                     <div class="col-md-6 offset-md-4">
+                                                        <button type="submit" class="btn btn-primary">
+                                                        Save Settings
+                                                        </button>
+                                                    </div>
                                                 </div>
-                                            </div>
                                             </form>                 
                                         </div>
                                     </div>
@@ -73,7 +62,7 @@
                         </div>
                         <div class="col-md-8 offset-md-4" >
                         <button type="button" style="border-radius: 5px;margin:5px;font-size:15px;background-color:red;border: 2px red solid;color:white;font-size:13px;font-weight:600;width:100px"  data-toggle="modal" data-target="#specialty-modal">
-                         <svg  style="margin-bottom:3px;" height="16" viewBox="0 0 16 16" version="1.1" width="16" aria-hidden="true"><path style="fill:white" fill-rule="evenodd" d="M11.013 1.427a1.75 1.75 0 012.474 0l1.086 1.086a1.75 1.75 0 010 2.474l-8.61 8.61c-.21.21-.47.364-.756.445l-3.251.93a.75.75 0 01-.927-.928l.929-3.25a1.75 1.75 0 01.445-.758l8.61-8.61zm1.414 1.06a.25.25 0 00-.354 0L10.811 3.75l1.439 1.44 1.263-1.263a.25.25 0 000-.354l-1.086-1.086zM11.189 6.25L9.75 4.81l-6.286 6.287a.25.25 0 00-.064.108l-.558 1.953 1.953-.558a.249.249 0 00.108-.064l6.286-6.286z"></path></svg>   Complete    </button>
+                         <svg  style="margin-bottom:3px;" height="16" viewBox="0 0 16 16" version="1.1" width="16" aria-hidden="true"><path style="fill:white" fill-rule="evenodd" d="M11.013 1.427a1.75 1.75 0 012.474 0l1.086 1.086a1.75 1.75 0 010 2.474l-8.61 8.61c-.21.21-.47.364-.756.445l-3.251.93a.75.75 0 01-.927-.928l.929-3.25a1.75 1.75 0 01.445-.758l8.61-8.61zm1.414 1.06a.25.25 0 00-.354 0L10.811 3.75l1.439 1.44 1.263-1.263a.25.25 0 000-.354l-1.086-1.086zM11.189 6.25L9.75 4.81l-6.286 6.287a.25.25 0 00-.064.108l-.558 1.953 1.953-.558a.249.249 0 00.108-.064l6.286-6.286z"></path></svg>  Complete    </button>
                     </div>
     </div>
     
@@ -81,8 +70,18 @@
 
 <script>
     export default {
-        mounted() {
-            console.log('Component mounted.')
+      
+           
+             data(){
+        return {
+         
+           skills:'Chouffeur',
+            description:'',
+
+
+
         }
+    }
+        
     }
 </script>

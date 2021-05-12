@@ -26,27 +26,15 @@
                                              <div class="form-group col-md-6">
                                                 <input type="text" class="form-control" id="adresse" placeholder="adresse" name="adresse" required>
                                             </div>
-                
-
-
-                                                <div class="form-group col-md-6">
-                                                    <input id="mobile" type="tel" class="form-control" name="mobile"  required autocomplete="mobile" autofocus placeholder="mobile">
-                
+                                             <div class="form-group col-md-6">
+                                                    <input id="mobile" type="tel" class="form-control" name="mobile"  required autocomplete="mobile" autofocus placeholder="mobile">    
                                                 </div>
                                             </div>
                 
-                
-                                         
-                
-                
-                
-                
-                                              <div class="form-row">
-                                                    <div class="form-group col-md-2">   
-                                                     <label class="form-control birth" style="border:0px">Specialty :</label>
-                                                    </div>
+                                                <div class="form-row">
+                                                  
 
-                                                <div class="form-group col-md-10">
+                                                <div class="form-group col-md-12">
                                                 
                                                     <select id="specialty" class="form-control birth" name="specialty">
                                                         
@@ -88,10 +76,7 @@
                                     
                                         </div>
                 
-                
-                
-                
-                                            <div class="form-group row mb-0">
+                                          <div class="form-group row mb-0">
                                                 <div class="col-md-6 offset-md-5">
                                                     <button type="submit" class="btn btn-primary">
                                                         Save Profile
@@ -99,11 +84,11 @@
                                                 </div>
                                             </div>
                                         </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
 </template>
 
 <script>

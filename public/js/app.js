@@ -1915,20 +1915,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  mounted: function mounted() {
-    console.log('Component mounted.');
+  data: function data() {
+    return {
+      skills: 'Chouffeur',
+      description: ''
+    };
   }
 });
 
@@ -2015,21 +2007,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -37906,7 +37883,152 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _vm._m(0),
+    _c(
+      "div",
+      {
+        staticClass: "modal fade",
+        attrs: {
+          id: "specialty-modal",
+          tabindex: "-1",
+          role: "dialog",
+          "aria-labelledby": "exampleModalLabel",
+          "aria-hidden": "true"
+        }
+      },
+      [
+        _c(
+          "div",
+          { staticClass: "modal-dialog", attrs: { role: "document" } },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _vm._m(0),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-body" }, [
+                _c("div", { staticClass: "login-form" }, [
+                  _c("form", { attrs: { method: "POST" } }, [
+                    _c("h2", { staticClass: "text-center cna" }, [
+                      _vm._v("Choose Specialty")
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-row" }, [
+                      _c("div", { staticClass: "form-group col-md-12" }, [
+                        _c(
+                          "select",
+                          {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.skills,
+                                expression: "skills"
+                              }
+                            ],
+                            staticClass: "form-control birth",
+                            attrs: { id: "ville" },
+                            on: {
+                              change: function($event) {
+                                var $$selectedVal = Array.prototype.filter
+                                  .call($event.target.options, function(o) {
+                                    return o.selected
+                                  })
+                                  .map(function(o) {
+                                    var val = "_value" in o ? o._value : o.value
+                                    return val
+                                  })
+                                _vm.skills = $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              }
+                            }
+                          },
+                          [
+                            _c("option", { attrs: { value: "Baby sitting" } }, [
+                              _vm._v("Baby Sitting")
+                            ]),
+                            _vm._v(" "),
+                            _c("option", { attrs: { value: "Builder" } }, [
+                              _vm._v("Building")
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "option",
+                              { attrs: { value: "Beauty and well being" } },
+                              [_vm._v("Beauty and well being")]
+                            ),
+                            _vm._v(" "),
+                            _c("option", { attrs: { value: "Chouffeur" } }, [
+                              _vm._v("Chouffeur")
+                            ]),
+                            _vm._v(" "),
+                            _c("option", { attrs: { value: "Delovery" } }, [
+                              _vm._v("Delovery")
+                            ]),
+                            _vm._v(" "),
+                            _c("option", { attrs: { value: "Painting" } }, [
+                              _vm._v("Painting")
+                            ]),
+                            _vm._v(" "),
+                            _c("option", { attrs: { value: "Carpenting" } }, [
+                              _vm._v("Carpenting")
+                            ]),
+                            _vm._v(" "),
+                            _c("option", { attrs: { value: "Animal care" } }, [
+                              _vm._v("Animal care")
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "option",
+                              { attrs: { value: "Electronic repair" } },
+                              [_vm._v("Electronic repair")]
+                            ),
+                            _vm._v(" "),
+                            _c("option", { attrs: { value: "Kebili" } }, [
+                              _vm._v("Housework and cleaning")
+                            ])
+                          ]
+                        )
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("div", { staticClass: "form-group col-md-12" }, [
+                        _c("textarea", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.description,
+                              expression: "description"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            id: "description",
+                            name: "description",
+                            placeholder: "description !!"
+                          },
+                          domProps: { value: _vm.description },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.description = $event.target.value
+                            }
+                          }
+                        })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _vm._m(1)
+                  ])
+                ])
+              ])
+            ])
+          ]
+        )
+      ]
+    ),
     _vm._v(" "),
     _c("div", { staticClass: "col-md-8 offset-md-4" }, [
       _c(
@@ -37952,7 +38074,7 @@ var render = function() {
               })
             ]
           ),
-          _vm._v("   Complete    ")
+          _vm._v("  Complete    ")
         ]
       )
     ])
@@ -37963,198 +38085,40 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "modal fade",
-        attrs: {
-          id: "specialty-modal",
-          tabindex: "-1",
-          role: "dialog",
-          "aria-labelledby": "exampleModalLabel",
-          "aria-hidden": "true"
-        }
-      },
-      [
+    return _c("div", { staticClass: "modal-header" }, [
+      _c("h2", { staticClass: "text-center r" }, [_vm._v("Complete Profile")]),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-label": "Close"
+          }
+        },
+        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group row mb-0" }, [
+      _c("div", { staticClass: "col-md-6 offset-md-4" }, [
         _c(
-          "div",
-          { staticClass: "modal-dialog", attrs: { role: "document" } },
+          "button",
+          { staticClass: "btn btn-primary", attrs: { type: "submit" } },
           [
-            _c("div", { staticClass: "modal-content" }, [
-              _c("div", { staticClass: "modal-header" }, [
-                _c("h2", { staticClass: "text-center r" }, [
-                  _vm._v("Complete Profile")
-                ]),
-                _vm._v(" "),
-                _c(
-                  "button",
-                  {
-                    staticClass: "close",
-                    attrs: {
-                      type: "button",
-                      "data-dismiss": "modal",
-                      "aria-label": "Close"
-                    }
-                  },
-                  [
-                    _c("span", { attrs: { "aria-hidden": "true" } }, [
-                      _vm._v("×")
-                    ])
-                  ]
-                )
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "modal-body" }, [
-                _c("div", { staticClass: "login-form" }, [
-                  _c("form", { attrs: { method: "POST" } }, [
-                    _c("h2", { staticClass: "text-center cna" }, [
-                      _vm._v("Choose Specialty")
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "form-row" }, [
-                      _c("div", { staticClass: "form-group col-md-12" }, [
-                        _c(
-                          "select",
-                          {
-                            staticClass: "form-control birth",
-                            attrs: { id: "ville", name: "ville" }
-                          },
-                          [
-                            _c("option", [_vm._v("Ville ..")]),
-                            _vm._v(" "),
-                            _c("option", { attrs: { value: "Ariana" } }, [
-                              _vm._v("Ariana")
-                            ]),
-                            _vm._v(" "),
-                            _c("option", { attrs: { value: "Beja" } }, [
-                              _vm._v("Beja")
-                            ]),
-                            _vm._v(" "),
-                            _c("option", { attrs: { value: "Ben Arous" } }, [
-                              _vm._v("Ben Arous")
-                            ]),
-                            _vm._v(" "),
-                            _c("option", { attrs: { value: "Bizerte" } }, [
-                              _vm._v("Bizerte")
-                            ]),
-                            _vm._v(" "),
-                            _c("option", { attrs: { value: "Gabes" } }, [
-                              _vm._v("Gabes")
-                            ]),
-                            _vm._v(" "),
-                            _c("option", { attrs: { value: "Gafsa" } }, [
-                              _vm._v("Gafsa")
-                            ]),
-                            _vm._v(" "),
-                            _c("option", { attrs: { value: "Jendouba" } }, [
-                              _vm._v("Jandouba")
-                            ]),
-                            _vm._v(" "),
-                            _c("option", { attrs: { value: "Kairouan" } }, [
-                              _vm._v("Kairouan")
-                            ]),
-                            _vm._v(" "),
-                            _c("option", { attrs: { value: "Kasserine" } }, [
-                              _vm._v("Kasserine")
-                            ]),
-                            _vm._v(" "),
-                            _c("option", { attrs: { value: "Kebili" } }, [
-                              _vm._v("Kebili")
-                            ]),
-                            _vm._v(" "),
-                            _c("option", { attrs: { value: "Le Kef" } }, [
-                              _vm._v("Le Kef")
-                            ]),
-                            _vm._v(" "),
-                            _c("option", { attrs: { value: "Mahdia" } }, [
-                              _vm._v("Mahdia")
-                            ]),
-                            _vm._v(" "),
-                            _c("option", { attrs: { value: "La Lanouba" } }, [
-                              _vm._v("La Manouba")
-                            ]),
-                            _vm._v(" "),
-                            _c("option", { attrs: { value: "Mednine" } }, [
-                              _vm._v("Mednine")
-                            ]),
-                            _vm._v(" "),
-                            _c("option", { attrs: { value: "Monastir" } }, [
-                              _vm._v("Monastir")
-                            ]),
-                            _vm._v(" "),
-                            _c("option", { attrs: { value: "Sfax" } }, [
-                              _vm._v("Sfax")
-                            ]),
-                            _vm._v(" "),
-                            _c("option", { attrs: { value: "Sidi Bouzid" } }, [
-                              _vm._v("Sidi Bouzid")
-                            ]),
-                            _vm._v(" "),
-                            _c("option", { attrs: { value: "Seliana" } }, [
-                              _vm._v("Seliana")
-                            ]),
-                            _vm._v(" "),
-                            _c("option", { attrs: { value: "Sousse" } }, [
-                              _vm._v("Sousse")
-                            ]),
-                            _vm._v(" "),
-                            _c("option", { attrs: { value: "Tataouine" } }, [
-                              _vm._v("Tataouine")
-                            ]),
-                            _vm._v(" "),
-                            _c("option", { attrs: { value: "Tozeur" } }, [
-                              _vm._v("Tozeur")
-                            ]),
-                            _vm._v(" "),
-                            _c("option", { attrs: { value: "Tunis" } }, [
-                              _vm._v("Tunis")
-                            ]),
-                            _vm._v(" "),
-                            _c("option", { attrs: { value: "Zaghouan" } }, [
-                              _vm._v("Zaghouan")
-                            ])
-                          ]
-                        )
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "form-group" }, [
-                      _c("div", { staticClass: "form-group col-md-12" }, [
-                        _c("textarea", {
-                          staticClass: "form-control",
-                          attrs: {
-                            id: "description",
-                            name: "description",
-                            placeholder: "description !!"
-                          }
-                        })
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "form-group row mb-0" }, [
-                      _c("div", { staticClass: "col-md-6 offset-md-4" }, [
-                        _c(
-                          "button",
-                          {
-                            staticClass: "btn btn-primary",
-                            attrs: { type: "submit" }
-                          },
-                          [
-                            _vm._v(
-                              "\n                                                   Save Settings\n                                                "
-                            )
-                          ]
-                        )
-                      ])
-                    ])
-                  ])
-                ])
-              ])
-            ])
+            _vm._v(
+              "\n                                                    Save Settings\n                                                    "
+            )
           ]
         )
-      ]
-    )
+      ])
+    ])
   }
 ]
 render._withStripped = true
@@ -38349,18 +38313,7 @@ var staticRenderFns = [
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "form-row" }, [
-                  _c("div", { staticClass: "form-group col-md-2" }, [
-                    _c(
-                      "label",
-                      {
-                        staticClass: "form-control birth",
-                        staticStyle: { border: "0px" }
-                      },
-                      [_vm._v("Specialty :")]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-group col-md-10" }, [
+                  _c("div", { staticClass: "form-group col-md-12" }, [
                     _c(
                       "select",
                       {
