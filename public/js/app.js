@@ -1926,7 +1926,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   mounted: function mounted() {
     console.log('Component mounted.');
@@ -37921,7 +37920,7 @@ var render = function() {
             border: "2px red solid",
             color: "white",
             "font-weight": "600",
-            width: "143px"
+            width: "100px"
           },
           attrs: {
             type: "button",
@@ -37953,7 +37952,7 @@ var render = function() {
               })
             ]
           ),
-          _vm._v("   Complete Profile\n                    ")
+          _vm._v("   Complete    ")
         ]
       )
     ])

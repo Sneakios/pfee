@@ -38,13 +38,12 @@
 		</div>
 		<div class="col-md-9">
             <div class="profile-content">
-				<div >
-				</div>
-				<div class="form-row" style="border:1px #FA8072	 solid;margin:5px;background-color:#FFA07A	;">
-					<div  role="alert" class="form-group col-md-8">
-					   <p style="font-size:13px;margin:5px"><span style="font-weight: bold"> ProTip!</span> Updating your profile with your specialty, location, and a profile picture helps other <b>HelpMe</b> users get to know you.</p>
+				
+				<div class="form-row" style="border:1px #FA8072	 solid;margin:5px;background-color:#FFA07A;">
+					<div  role="alert" class="form-group col-md-9">
+					   <p style="font-size:13px;margin:5px"><span style="font-weight: bold"> Alert!</span> Complete your profile with your specialty and description helps other <b>HelpMe</b> users get to find you.</p>
 					</div>
-					  <div  class="form-group col-md-4">
+					  <div  class="form-group col-md-3">
 						<complete-profile-worker></complete-profile-worker>
   
 					  </div>
