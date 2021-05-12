@@ -92,5 +92,6 @@ class RegisterController extends Controller
             'date_naiss'=>$daten,
             'password' => Hash::make($data['password']),
         ]);
+      
     }
 }

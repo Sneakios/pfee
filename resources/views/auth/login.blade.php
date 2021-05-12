@@ -176,8 +176,8 @@ top: 40px; left: 40px;">
                 
                                                     <select id="type" class="form-control birth" name="type">
                                                         <option>Type ..</option>
-                                                        <option value="client">Client</option>
-                                                        <option value="employeur">Employeur</option>
+                                                        <option value="customer">Customer</option>
+                                                        <option value="worker">Worker</option>
                                                     </select>
                                                 </div>
                                             </div>

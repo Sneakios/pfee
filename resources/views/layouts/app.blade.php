@@ -37,7 +37,7 @@
   <link href="{{asset('assets/vendor/swiper/swiper-bundle.min.css')}}" rel="stylesheet">
   <!-- Template Main CSS File -->
   <link href="{{asset('assets/css/style.css')}}" rel="stylesheet">
-  
+  <link href="{{asset('css/style.css')}}" rel="stylesheet">
   <style>
     
 </style>
@@ -96,8 +96,7 @@
             <li><a class="nav-link scrollto " >    </a></li>        
             @endif                            
           
-            @if (('home' ==  request()->path()) && (Auth::user()->type=='employeur'))  
-            <router-link to="/Edit-Profile">Edit Profile</router-link>   
+            @if (('home' ==  request()->path()) && (Auth::user()->type=='worker'))             
             <router-link to="/Profile-Worker">Profile Info</router-link> 
             <router-link to="/">Example</router-link> 
 
@@ -113,9 +112,9 @@
              <div class="dropdown" style="">
               <button class="dropbtn"> <img src="{{asset('assets/avatars/'.Auth::user()->avatar)}}"style="height:30px;width:30px;border-radius: 40px;">  {{ Auth::user()->name }}  </button>
               <div class="dropdown-content">
-                <a class="dropdown-item" href="{{ route('home') }}" style="padding-right: 50px"><img src="{{asset('assets/profile.png')}}"style="height:20px;width:20px;"> Profile</a>
+                <a class="dropdown-item" href="{{ route('home') }}" style="padding-right: 50px"><img src="{{asset('assets/profile.png')}}"style="height:20px;width:20px;">    Profile</a>
                 <a class="dropdown-item" style="padding-right: 50px" href="{{ route('logout') }}" onclick="event.preventDefault();
-                document.getElementById('logout-form').submit();"><img src="{{asset('assets/logout.png')}}"style="height:20px;width:20px;">LogOut</a>
+                document.getElementById('logout-form').submit();"><img src="{{asset('assets/logout.png')}}"style="height:20px;width:20px;">   LogOut</a>
               </div>
             </div>                                             
               </li>
