@@ -1911,8 +1911,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -1931,12 +1929,18 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (response) {
         if (response.data.status == 'error') {
           _this.errors = response.data.errors;
+          Toast.fire({
+            icon: 'error',
+            title: 'Missing informations'
+          });
         } else if (response.data.status == 'success') {
           Toast.fire({
             icon: 'success',
             title: 'Saved in successfully'
           });
           _this.errors = [];
+          _this.skills = 'Skills';
+          _this.description = '';
         }
       });
     }
@@ -2156,7 +2160,7 @@ var Toast = sweetalert2__WEBPACK_IMPORTED_MODULE_3___default().mixin({
   toast: true,
   position: 'top-end',
   showConfirmButton: false,
-  timer: 3000,
+  timer: 5000,
   timerProgressBar: true,
   didOpen: function didOpen(toast) {
     toast.addEventListener('mouseenter', (sweetalert2__WEBPACK_IMPORTED_MODULE_3___default().stopTimer));
@@ -41741,18 +41745,7 @@ var render = function() {
                                 _vm._v("Housework and cleaning")
                               ])
                             ]
-                          ),
-                          _vm._v(" "),
-                          _vm.errors.skills
-                            ? _c(
-                                "span",
-                                {
-                                  staticClass:
-                                    "bg-danger text-white p-1 rounded"
-                                },
-                                [_vm._v(_vm._s(_vm.errors.skills[0]))]
-                              )
-                            : _vm._e()
+                          )
                         ]
                       )
                     ]),
@@ -41786,17 +41779,7 @@ var render = function() {
                               _vm.description = $event.target.value
                             }
                           }
-                        }),
-                        _vm._v(" "),
-                        _vm.errors.description
-                          ? _c(
-                              "span",
-                              {
-                                staticClass: "bg-danger text-white p-1 rounded"
-                              },
-                              [_vm._v(_vm._s(_vm.errors.description[0]))]
-                            )
-                          : _vm._e()
+                        })
                       ])
                     ])
                   ]),

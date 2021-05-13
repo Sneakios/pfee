@@ -37,14 +37,12 @@
                                                             <option value="Electronic repair">Electronic repair</option>
                                                             <option value="Kebili">Housework and cleaning</option>
                                                         </select>
-                                                        <span v-if="errors.skills" class="bg-danger text-white p-1 rounded">{{errors.skills[0]}}</span>
                                                     </div>                        
                                                 </div>
                                                 <div class="form-group">
                                                     <div class="form-group col-md-12">
                                                     <textarea id="description" name="description"  :class="['form-control',errors.description?'is-invalid':'']" placeholder="description !!" v-model="description">
                                                     </textarea>
-                                                   <span v-if="errors.description" class="bg-danger text-white p-1 rounded">{{errors.description[0]}}</span>
 
                                                     </div>
                                                 
@@ -84,7 +82,11 @@
         .then((response)=>{
                if(response.data.status=='error')
                  {
-                   this.errors=response.data.errors
+                   this.errors=response.data.errors;
+                    Toast.fire({
+                          icon: 'error',
+                          title: 'Missing informations'
+                      })
                  }else if(response.data.status=='success'){
                    Toast.fire({
                           icon: 'success',
@@ -92,6 +94,8 @@
                       })
  
                      this.errors=[];
+                     this.skills='Skills';
+                     this.description='';
                  }
                  })}
         }}
