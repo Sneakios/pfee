@@ -35,9 +35,8 @@ class WorkerController extends Controller
             $worker->rate= 0;  
             $worker->save();
 
-            return response()->json([
-                'message' => 'New User created'
-            ]);
+            return response()->json(['status'=>'success']);
+
        
   
     }

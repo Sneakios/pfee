@@ -156,6 +156,7 @@
 </div>
 <script src="{{ mix('js/app.js') }}" defer></script>
 </body>
+
 <script src="{{asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 <script src="{{asset('assets/vendor/glightbox/js/glightbox.min.js')}}"></script>
 <script src="{{asset('assets/vendor/isotope-layout/isotope.pkgd.min.js')}}"></script>

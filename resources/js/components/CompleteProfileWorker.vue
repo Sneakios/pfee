@@ -85,11 +85,15 @@
                if(response.data.status=='error')
                  {
                    this.errors=response.data.errors
+                 }else if(response.data.status=='success'){
+                   Toast.fire({
+                          icon: 'success',
+                          title: 'Saved in successfully'
+                      })
+ 
+                     this.errors=[];
                  }
-
-
-                    })
-                            }
-                        }}
+                 })}
+        }}
                     
 </script>
