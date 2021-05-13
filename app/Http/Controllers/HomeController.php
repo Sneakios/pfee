@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Worker;
 
 
 class HomeController extends Controller
@@ -24,8 +25,16 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()
+    
     {
-        return view('home');
+        $countWorker=-1;
+        if(Auth::user()->type=='worker'){
+        $countWorker = Worker::where('id_worker','=',Auth::user()->getAuthIdentifier())->count();
+        
+    }
+   
+        return view('home',['count'=>$countWorker]);
+        
     }
 
 

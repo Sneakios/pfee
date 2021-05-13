@@ -38,16 +38,17 @@
 		</div>
 		<div class="col-md-9">
             <div class="profile-content">
-				
-				<div class="form-row" style="border:1px #ffcccb	 solid;margin:5px;background-color:#ffcccb;">
+				@if(Auth::user()->type=='worker' && $count==0)				
+				 <div class="form-row" style="border:1px #ffcccb	 solid;margin:5px;background-color:#ffcccb;">
 					<div  role="alert" class="form-group col-md-9">
 					   <p style="font-size:13px;margin:5px"><span style="font-weight: bold"> Alert!</span> Complete your profile with your skills and description to give customers the info they need about you.</p>
 					</div>
 					  <div  class="form-group col-md-3">
-						<complete-profile-worker></complete-profile-worker>
-  
+						<complete-profile-worker></complete-profile-worker> 
 					  </div>
-				  </div>
+				  </div>			
+			@endif
+			
 				<div class="form-row" style="border:1px #bef5cb solid;margin:5px;background-color:#dcffe4;">
 				  <div  role="alert" class="form-group col-md-10">
 					 <p style="font-size:13px;margin:5px"><span style="font-weight: bold"> ProTip!</span> Updating your profile with your skills, location, and a profile picture helps other <b>HelpMe</b> users get to know you.</p>
