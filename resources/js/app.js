@@ -17,14 +17,15 @@ Vue.use(VueRouter);
 
 
 const routes =[
-    {path:'/',component:Exmaple},
+    {path:'/home/',component:Exmaple},
 
     {path:'/Edit-Profile-Worker',component:SettingProfileWorker},
     {path:'/Profile-Worker',component:ProfileWorker},
 
 ];
 
-const router=new VueRouter({routes});
+const router=new VueRouter({routes,mode:'history'
+});
 const app = new Vue({
     el: '#app',
     router:router

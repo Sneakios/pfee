@@ -9,7 +9,7 @@
   <title>MyBiz Bootstrap Template - Index</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
-
+  <meta name="csrf-token" content="{{csrf_token()}}">
   <!-- Favicons -->
   <link href="assets/img/favicon.png" rel="icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
@@ -98,16 +98,11 @@
           
             @if (('home' ==  request()->path()) && (Auth::user()->type=='worker'))             
             <router-link to="/Profile-Worker">Profile Info</router-link> 
-            <router-link to="/">Example</router-link> 
+            <router-link to="/home/">Example</router-link> 
 
             <li><a class="nav-link scrollto " >    </a></li>        
             @endif 
-
-          
-          
-          
-          
-          
+     
             <li>           
              <div class="dropdown" style="">
               <button class="dropbtn"> <img src="{{asset('assets/avatars/'.Auth::user()->avatar)}}"style="height:30px;width:30px;border-radius: 40px;">  {{ Auth::user()->name }}  </button>
@@ -122,10 +117,7 @@
                     @csrf
                 </form>
             @endguest
-
-
-
-        </ul>
+       </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
 
@@ -162,6 +154,7 @@
 
 
 </div>
+<script src="{{ mix('js/app.js') }}" defer></script>
 </body>
 <script src="{{asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 <script src="{{asset('assets/vendor/glightbox/js/glightbox.min.js')}}"></script>
@@ -172,6 +165,6 @@
 <script src="{{asset('assets/js/jquery.min.js')}}"></script>
 <script src="{{asset('assets/js/jquery.slim.min.js')}}"></script>
 <script src="{{asset('assets/js/bootstrap.bundle.min.js')}}"></script>
-<script src="{{asset('js/app.js')}}" defer ></script>
+
 <script src="{{asset('assets/js/main.js')}}"></script>
 </html>

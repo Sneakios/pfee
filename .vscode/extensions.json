@@ -1,9 +1,15 @@
 {
     "recommendations": [
-        "onecentlin.laravel-blade",
-        "onecentlin.laravel5-snippets",
+        "jcbuisson.vue",
+        "liuji-jim.vue",
+        "znck.vue",
+        "hollowtree.vue-snippets",
+        "sdras.vue-vscode-snippets",
+        "mariorodeghiero.vue-theme",
+        "octref.vetur",
         "bmewburn.vscode-intelephense-client",
         "felixfbecker.php-intellisense",
-        "octref.vetur"
+        "bearliu1991.vuet",
+        "vuetifyjs.vuetify-vscode"
     ]
 }

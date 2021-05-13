@@ -1913,14 +1913,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
       skills: 'Chouffeur',
       description: ''
     };
+  },
+  methods: {
+    addWorkerInfo: function addWorkerInfo() {
+      axios.post('/addWorkerInfo', {
+        skills: this.skills,
+        description: this.description
+      }).then(function (response) {
+        $('#success').html(response.data.message);
+      });
+    }
   }
 });
 
@@ -2132,7 +2140,7 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js"
 vue__WEBPACK_IMPORTED_MODULE_3__.default.component('complete-profile-worker', __webpack_require__(/*! ./components/CompleteProfileWorker.vue */ "./resources/js/components/CompleteProfileWorker.vue").default);
 vue__WEBPACK_IMPORTED_MODULE_3__.default.use(vue_router__WEBPACK_IMPORTED_MODULE_4__.default);
 var routes = [{
-  path: '/',
+  path: '/home/',
   component: _components_Exmaple_vue__WEBPACK_IMPORTED_MODULE_2__.default
 }, {
   path: '/Edit-Profile-Worker',
@@ -2142,7 +2150,8 @@ var routes = [{
   component: _components_ProfileWorker_vue__WEBPACK_IMPORTED_MODULE_1__.default
 }];
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_4__.default({
-  routes: routes
+  routes: routes,
+  mode: 'history'
 });
 var app = new vue__WEBPACK_IMPORTED_MODULE_3__.default({
   el: '#app',
@@ -37905,123 +37914,139 @@ var render = function() {
               _vm._v(" "),
               _c("div", { staticClass: "modal-body" }, [
                 _c("div", { staticClass: "login-form" }, [
-                  _c("form", { attrs: { method: "POST" } }, [
-                    _c("h2", { staticClass: "text-center cna" }, [
-                      _vm._v("Choose Specialty")
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "form-row" }, [
-                      _c("div", { staticClass: "form-group col-md-12" }, [
-                        _c(
-                          "select",
-                          {
+                  _c(
+                    "form",
+                    {
+                      on: {
+                        submit: function($event) {
+                          $event.preventDefault()
+                          return _vm.addWorkerInfo($event)
+                        }
+                      }
+                    },
+                    [
+                      _c("h2", { staticClass: "text-center cna" }, [
+                        _vm._v("Choose Specialty")
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "form-row" }, [
+                        _c("div", { staticClass: "form-group col-md-12" }, [
+                          _c(
+                            "select",
+                            {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.skills,
+                                  expression: "skills"
+                                }
+                              ],
+                              staticClass: "form-control birth",
+                              attrs: { id: "ville" },
+                              on: {
+                                change: function($event) {
+                                  var $$selectedVal = Array.prototype.filter
+                                    .call($event.target.options, function(o) {
+                                      return o.selected
+                                    })
+                                    .map(function(o) {
+                                      var val =
+                                        "_value" in o ? o._value : o.value
+                                      return val
+                                    })
+                                  _vm.skills = $event.target.multiple
+                                    ? $$selectedVal
+                                    : $$selectedVal[0]
+                                }
+                              }
+                            },
+                            [
+                              _c(
+                                "option",
+                                { attrs: { value: "Baby sitting" } },
+                                [_vm._v("Baby Sitting")]
+                              ),
+                              _vm._v(" "),
+                              _c("option", { attrs: { value: "Builder" } }, [
+                                _vm._v("Building")
+                              ]),
+                              _vm._v(" "),
+                              _c(
+                                "option",
+                                { attrs: { value: "Beauty and well being" } },
+                                [_vm._v("Beauty and well being")]
+                              ),
+                              _vm._v(" "),
+                              _c("option", { attrs: { value: "Chouffeur" } }, [
+                                _vm._v("Chouffeur")
+                              ]),
+                              _vm._v(" "),
+                              _c("option", { attrs: { value: "Delovery" } }, [
+                                _vm._v("Delovery")
+                              ]),
+                              _vm._v(" "),
+                              _c("option", { attrs: { value: "Painting" } }, [
+                                _vm._v("Painting")
+                              ]),
+                              _vm._v(" "),
+                              _c("option", { attrs: { value: "Carpenting" } }, [
+                                _vm._v("Carpenting")
+                              ]),
+                              _vm._v(" "),
+                              _c(
+                                "option",
+                                { attrs: { value: "Animal care" } },
+                                [_vm._v("Animal care")]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "option",
+                                { attrs: { value: "Electronic repair" } },
+                                [_vm._v("Electronic repair")]
+                              ),
+                              _vm._v(" "),
+                              _c("option", { attrs: { value: "Kebili" } }, [
+                                _vm._v("Housework and cleaning")
+                              ])
+                            ]
+                          )
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("div", { staticClass: "form-group col-md-12" }, [
+                          _c("textarea", {
                             directives: [
                               {
                                 name: "model",
                                 rawName: "v-model",
-                                value: _vm.skills,
-                                expression: "skills"
+                                value: _vm.description,
+                                expression: "description"
                               }
                             ],
-                            staticClass: "form-control birth",
-                            attrs: { id: "ville" },
+                            staticClass: "form-control",
+                            attrs: {
+                              id: "description",
+                              name: "description",
+                              placeholder: "description !!"
+                            },
+                            domProps: { value: _vm.description },
                             on: {
-                              change: function($event) {
-                                var $$selectedVal = Array.prototype.filter
-                                  .call($event.target.options, function(o) {
-                                    return o.selected
-                                  })
-                                  .map(function(o) {
-                                    var val = "_value" in o ? o._value : o.value
-                                    return val
-                                  })
-                                _vm.skills = $event.target.multiple
-                                  ? $$selectedVal
-                                  : $$selectedVal[0]
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.description = $event.target.value
                               }
                             }
-                          },
-                          [
-                            _c("option", { attrs: { value: "Baby sitting" } }, [
-                              _vm._v("Baby Sitting")
-                            ]),
-                            _vm._v(" "),
-                            _c("option", { attrs: { value: "Builder" } }, [
-                              _vm._v("Building")
-                            ]),
-                            _vm._v(" "),
-                            _c(
-                              "option",
-                              { attrs: { value: "Beauty and well being" } },
-                              [_vm._v("Beauty and well being")]
-                            ),
-                            _vm._v(" "),
-                            _c("option", { attrs: { value: "Chouffeur" } }, [
-                              _vm._v("Chouffeur")
-                            ]),
-                            _vm._v(" "),
-                            _c("option", { attrs: { value: "Delovery" } }, [
-                              _vm._v("Delovery")
-                            ]),
-                            _vm._v(" "),
-                            _c("option", { attrs: { value: "Painting" } }, [
-                              _vm._v("Painting")
-                            ]),
-                            _vm._v(" "),
-                            _c("option", { attrs: { value: "Carpenting" } }, [
-                              _vm._v("Carpenting")
-                            ]),
-                            _vm._v(" "),
-                            _c("option", { attrs: { value: "Animal care" } }, [
-                              _vm._v("Animal care")
-                            ]),
-                            _vm._v(" "),
-                            _c(
-                              "option",
-                              { attrs: { value: "Electronic repair" } },
-                              [_vm._v("Electronic repair")]
-                            ),
-                            _vm._v(" "),
-                            _c("option", { attrs: { value: "Kebili" } }, [
-                              _vm._v("Housework and cleaning")
-                            ])
-                          ]
-                        )
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "form-group" }, [
-                      _c("div", { staticClass: "form-group col-md-12" }, [
-                        _c("textarea", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.description,
-                              expression: "description"
-                            }
-                          ],
-                          staticClass: "form-control",
-                          attrs: {
-                            id: "description",
-                            name: "description",
-                            placeholder: "description !!"
-                          },
-                          domProps: { value: _vm.description },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.description = $event.target.value
-                            }
-                          }
-                        })
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _vm._m(1)
-                  ])
+                          })
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _vm._m(1)
+                    ]
+                  )
                 ])
               ])
             ])
@@ -38108,15 +38133,10 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "form-group row mb-0" }, [
       _c("div", { staticClass: "col-md-6 offset-md-4" }, [
-        _c(
-          "button",
-          { staticClass: "btn btn-primary", attrs: { type: "submit" } },
-          [
-            _vm._v(
-              "\n                                                    Save Settings\n                                                    "
-            )
-          ]
-        )
+        _c("input", {
+          staticClass: "btn btn-primary",
+          attrs: { type: "submit", value: "Save Settings" }
+        })
       ])
     ])
   }

@@ -17,7 +17,7 @@
 
                                         <div class="login-form">
 
-                                            <form method="POST" >
+                                            <form @submit.prevent="addWorkerInfo">
                                                 <h2 class="text-center cna">Choose Specialty</h2>
                         
                                                 <div class="form-row">
@@ -49,9 +49,7 @@
                                                     </div>
                                                       <div class="form-group row mb-0">
                                                      <div class="col-md-6 offset-md-4">
-                                                        <button type="submit" class="btn btn-primary">
-                                                        Save Settings
-                                                        </button>
+                                                        <input type="submit" class="btn btn-primary" value="Save Settings">
                                                     </div>
                                                 </div>
                                             </form>                 
@@ -81,7 +79,14 @@
 
 
         }
-    }
-        
-    }
+    },
+
+    methods:{
+        addWorkerInfo(){
+        axios.post('/addWorkerInfo',{skills:this.skills,description:this.description}).then((response)=>{
+                $('#success').html(response.data.message)
+    })
+            }
+        }}
+    
 </script>
