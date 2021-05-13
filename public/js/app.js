@@ -1910,13 +1910,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      skills: 'Chouffeur',
+      skills: '',
       description: ''
     };
   },
@@ -37926,7 +37923,7 @@ var render = function() {
                     },
                     [
                       _c("h2", { staticClass: "text-center cna" }, [
-                        _vm._v("Choose Specialty")
+                        _vm._v("Your Skills")
                       ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "form-row" }, [
@@ -38099,7 +38096,7 @@ var render = function() {
               })
             ]
           ),
-          _vm._v("  Complete    ")
+          _vm._v("Complete")
         ]
       )
     ])
