@@ -39,15 +39,15 @@
   <link href="{{asset('assets/css/style.css')}}" rel="stylesheet">
   <link href="{{asset('css/style.css')}}" rel="stylesheet">
   <style>
-    
+
 </style>
- 
+
 </head>
 
 <body>
 <div id="app">
   <!-- ======= Top Bar ======= -->
-  
+
   <section id="topbar" class="fixed-top d-flex align-items-center">
     <div class="container d-flex justify-content-center justify-content-md-between">
       <div class="contact-info d-flex align-items-center">
@@ -80,30 +80,30 @@
             <li><a class="nav-link scrollto" href="#about">About</a></li>
             <li><a class="nav-link scrollto" href="#services">Service</a></li>
             <li><a class="nav-link scrollto " href="#contact">Contact Us</a></li>
-           
+
             @endif
             @if ('login' !=  request()->path())
                       <li><a class="nav-link scrollto" href="{{ route('login') }}" ><button  class="lgn">Log in</button></a></li>
 
                       @endif
             @else
- 
-            @if ('/' ==  request()->path())   
-                    
+
+            @if ('/' ==  request()->path())
+
             <li><a class="nav-link scrollto" href="#about">About</a></li>
             <li><a class="nav-link scrollto" href="#services">Services</a></li>
-            <li><a class="nav-link scrollto " href="#contact">Contact Us</a></li>  
-            <li><a class="nav-link scrollto " >    </a></li>        
-            @endif                            
-          
-            @if (('home' ==  request()->path()) && (Auth::user()->type=='worker'))             
-            <router-link to="/Profile-Worker">Profile Info</router-link> 
-            <router-link to="/home/">Example</router-link> 
+            <li><a class="nav-link scrollto " href="#contact">Contact Us</a></li>
+            <li><a class="nav-link scrollto " >    </a></li>
+            @endif
 
-            <li><a class="nav-link scrollto " >    </a></li>        
-            @endif 
-     
-            <li>           
+            @if (('home' ==  request()->path()) && (Auth::user()->type=='worker'))
+            <router-link to="/Profile-Worker">Profile Info</router-link>
+            <router-link to="/home/">Example</router-link>
+
+            <li><a class="nav-link scrollto " >    </a></li>
+            @endif
+
+            <li>
              <div class="dropdown" style="">
               <button class="dropbtn"> <img src="{{asset('assets/avatars/'.Auth::user()->avatar)}}"style="height:30px;width:30px;border-radius: 40px;">  {{ Auth::user()->name }}  </button>
               <div class="dropdown-content" style="border-radius:20px; ">
@@ -111,7 +111,7 @@
                 <a class="dropdown-item" style="padding-right: 50px" href="{{ route('logout') }}" onclick="event.preventDefault();
                 document.getElementById('logout-form').submit();"><img src="{{asset('assets/logout.png')}}"style="height:20px;width:20px;">   LogOut</a>
               </div>
-            </div>                                             
+            </div>
               </li>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                     @csrf

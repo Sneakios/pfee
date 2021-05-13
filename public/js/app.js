@@ -1910,20 +1910,28 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      skills: '',
-      description: ''
+      skills: 'Skills',
+      description: '',
+      errors: []
     };
   },
   methods: {
     addWorkerInfo: function addWorkerInfo() {
+      var _this = this;
+
       axios.post('/addWorkerInfo', {
         skills: this.skills,
         description: this.description
       }).then(function (response) {
-        $('#success').html(response.data.message);
+        if (response.data.status == 'error') {
+          _this.errors = response.data.errors;
+        }
       });
     }
   }
@@ -37889,12 +37897,61 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
+    _c("div", { staticClass: "col-md-4 offset-md-4" }, [
+      _c(
+        "button",
+        {
+          staticStyle: {
+            "border-radius": "5px",
+            margin: "12px",
+            "font-size": "13px",
+            "background-color": "red",
+            border: "2px red solid",
+            color: "white",
+            "font-weight": "600",
+            width: "100px"
+          },
+          attrs: {
+            type: "button",
+            "data-toggle": "modal",
+            "data-target": "#exampleModal"
+          }
+        },
+        [
+          _c(
+            "svg",
+            {
+              staticStyle: { "margin-bottom": "3px" },
+              attrs: {
+                height: "16",
+                viewBox: "0 0 16 16",
+                version: "1.1",
+                width: "16",
+                "aria-hidden": "true"
+              }
+            },
+            [
+              _c("path", {
+                staticStyle: { fill: "white" },
+                attrs: {
+                  "fill-rule": "evenodd",
+                  d:
+                    "M11.013 1.427a1.75 1.75 0 012.474 0l1.086 1.086a1.75 1.75 0 010 2.474l-8.61 8.61c-.21.21-.47.364-.756.445l-3.251.93a.75.75 0 01-.927-.928l.929-3.25a1.75 1.75 0 01.445-.758l8.61-8.61zm1.414 1.06a.25.25 0 00-.354 0L10.811 3.75l1.439 1.44 1.263-1.263a.25.25 0 000-.354l-1.086-1.086zM11.189 6.25L9.75 4.81l-6.286 6.287a.25.25 0 00-.064.108l-.558 1.953 1.953-.558a.249.249 0 00.108-.064l6.286-6.286z"
+                }
+              })
+            ]
+          ),
+          _vm._v("\n  Complete!\n")
+        ]
+      )
+    ]),
+    _vm._v(" "),
     _c(
       "div",
       {
         staticClass: "modal fade",
         attrs: {
-          id: "specialty-modal",
+          id: "exampleModal",
           tabindex: "-1",
           role: "dialog",
           "aria-labelledby": "exampleModalLabel",
@@ -37909,25 +37966,26 @@ var render = function() {
             _c("div", { staticClass: "modal-content" }, [
               _vm._m(0),
               _vm._v(" "),
-              _c("div", { staticClass: "modal-body" }, [
-                _c("div", { staticClass: "login-form" }, [
-                  _c(
-                    "form",
-                    {
-                      on: {
-                        submit: function($event) {
-                          $event.preventDefault()
-                          return _vm.addWorkerInfo($event)
-                        }
-                      }
-                    },
-                    [
-                      _c("h2", { staticClass: "text-center cna" }, [
-                        _vm._v("Your Skills")
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "form-row" }, [
-                        _c("div", { staticClass: "form-group col-md-12" }, [
+              _c(
+                "form",
+                {
+                  on: {
+                    submit: function($event) {
+                      $event.preventDefault()
+                      return _vm.addWorkerInfo($event)
+                    }
+                  }
+                },
+                [
+                  _c("div", { staticClass: "modal-body" }, [
+                    _c("div", { staticClass: "form-row" }, [
+                      _c(
+                        "div",
+                        {
+                          staticClass: "form-group col-md-12",
+                          staticStyle: { width: "94%", "margin-left": "14px" }
+                        },
+                        [
                           _c(
                             "select",
                             {
@@ -37939,7 +37997,10 @@ var render = function() {
                                   expression: "skills"
                                 }
                               ],
-                              staticClass: "form-control birth",
+                              class: [
+                                "form-select",
+                                _vm.errors.skills ? "is-invalid" : ""
+                              ],
                               attrs: { id: "ville" },
                               on: {
                                 change: function($event) {
@@ -37959,6 +38020,10 @@ var render = function() {
                               }
                             },
                             [
+                              _c("option", { attrs: { value: "Skills" } }, [
+                                _vm._v("Skills")
+                              ]),
+                              _vm._v(" "),
                               _c(
                                 "option",
                                 { attrs: { value: "Baby sitting" } },
@@ -38007,99 +38072,74 @@ var render = function() {
                                 _vm._v("Housework and cleaning")
                               ])
                             ]
-                          )
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "form-group" }, [
-                        _c("div", { staticClass: "form-group col-md-12" }, [
-                          _c("textarea", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.description,
-                                expression: "description"
-                              }
-                            ],
-                            staticClass: "form-control",
-                            attrs: {
-                              id: "description",
-                              name: "description",
-                              placeholder: "description !!"
-                            },
-                            domProps: { value: _vm.description },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.description = $event.target.value
-                              }
+                          ),
+                          _vm._v(" "),
+                          _vm.errors.skills
+                            ? _c(
+                                "span",
+                                {
+                                  staticClass:
+                                    "bg-danger text-white p-1 rounded"
+                                },
+                                [_vm._v(_vm._s(_vm.errors.skills[0]))]
+                              )
+                            : _vm._e()
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("div", { staticClass: "form-group col-md-12" }, [
+                        _c("textarea", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.description,
+                              expression: "description"
                             }
-                          })
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _vm._m(1)
-                    ]
-                  )
-                ])
-              ])
+                          ],
+                          class: [
+                            "form-control",
+                            _vm.errors.description ? "is-invalid" : ""
+                          ],
+                          attrs: {
+                            id: "description",
+                            name: "description",
+                            placeholder: "description !!"
+                          },
+                          domProps: { value: _vm.description },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.description = $event.target.value
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        _vm.errors.description
+                          ? _c(
+                              "span",
+                              {
+                                staticClass: "bg-danger text-white p-1 rounded"
+                              },
+                              [_vm._v(_vm._s(_vm.errors.description[0]))]
+                            )
+                          : _vm._e()
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _vm._m(1)
+                ]
+              )
             ])
           ]
         )
       ]
-    ),
-    _vm._v(" "),
-    _c("div", { staticClass: "col-md-8 offset-md-4" }, [
-      _c(
-        "button",
-        {
-          staticStyle: {
-            "border-radius": "5px",
-            margin: "5px",
-            "font-size": "13px",
-            "background-color": "red",
-            border: "2px red solid",
-            color: "white",
-            "font-weight": "600",
-            width: "100px"
-          },
-          attrs: {
-            type: "button",
-            "data-toggle": "modal",
-            "data-target": "#specialty-modal"
-          }
-        },
-        [
-          _c(
-            "svg",
-            {
-              staticStyle: { "margin-bottom": "3px" },
-              attrs: {
-                height: "16",
-                viewBox: "0 0 16 16",
-                version: "1.1",
-                width: "16",
-                "aria-hidden": "true"
-              }
-            },
-            [
-              _c("path", {
-                staticStyle: { fill: "white" },
-                attrs: {
-                  "fill-rule": "evenodd",
-                  d:
-                    "M11.013 1.427a1.75 1.75 0 012.474 0l1.086 1.086a1.75 1.75 0 010 2.474l-8.61 8.61c-.21.21-.47.364-.756.445l-3.251.93a.75.75 0 01-.927-.928l.929-3.25a1.75 1.75 0 01.445-.758l8.61-8.61zm1.414 1.06a.25.25 0 00-.354 0L10.811 3.75l1.439 1.44 1.263-1.263a.25.25 0 000-.354l-1.086-1.086zM11.189 6.25L9.75 4.81l-6.286 6.287a.25.25 0 00-.064.108l-.558 1.953 1.953-.558a.249.249 0 00.108-.064l6.286-6.286z"
-                }
-              })
-            ]
-          ),
-          _vm._v("Complete")
-        ]
-      )
-    ])
+    )
   ])
 }
 var staticRenderFns = [
@@ -38108,7 +38148,11 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "modal-header" }, [
-      _c("h2", { staticClass: "text-center r" }, [_vm._v("Complete Profile")]),
+      _c(
+        "h5",
+        { staticClass: "modal-title", attrs: { id: "exampleModalLabel" } },
+        [_vm._v("Profile Settings")]
+      ),
       _vm._v(" "),
       _c(
         "button",
@@ -38128,13 +38172,20 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group row mb-0" }, [
-      _c("div", { staticClass: "col-md-6 offset-md-4" }, [
-        _c("input", {
-          staticClass: "btn btn-primary",
-          attrs: { type: "submit", value: "Save Settings" }
-        })
-      ])
+    return _c("div", { staticClass: "modal-footer" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-danger",
+          attrs: { type: "button", "data-dismiss": "modal" }
+        },
+        [_vm._v("Close")]
+      ),
+      _vm._v(" "),
+      _c("input", {
+        staticClass: "btn btn-success",
+        attrs: { type: "submit", value: "Save Changes" }
+      })
     ])
   }
 ]

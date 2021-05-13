@@ -43,7 +43,7 @@
 					<div  role="alert" class="form-group col-md-9">
 					   <p style="font-size:13px;margin:5px"><span style="font-weight: bold"> Alert!</span> Complete your profile with your skills and description to give customers the info they need about you.</p>
 					</div>
-					  <div  class="form-group col-md-3">
+					  <div  class="form-group col-md-2">
 						<complete-profile-worker></complete-profile-worker> 
 					  </div>
 				  </div>			

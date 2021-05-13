@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Worker;
+use Illuminate\Support\Facades\Validator;
 
 class WorkerController extends Controller
 {
@@ -15,6 +16,16 @@ class WorkerController extends Controller
 
     public function AddWorkerInfo(Request $request)
     {
+
+      $validator = Validator::make($request->all(),[
+        'skills'=>'required|min:7',
+        'description'=>'required|min:20'
+
+      ]);
+
+      if($validator->fails()){
+          return response()->json(['status'=>'error','errors'=>$validator->errors()]);
+      }
         $worker =new Worker;
            
            $worker->id_worker = Auth::user()->getAuthIdentifier();
