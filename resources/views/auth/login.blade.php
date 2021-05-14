@@ -138,7 +138,7 @@ top: 40px; left: 40px;">
                                             <div class="form-row">
                                                 <div class="form-group col-md-4">
                                                     <select id="ville" class="form-control birth" name="ville">
-                                                        <option>Ville ..</option>
+                                                        <option>City ..</option>
                                                         <option value="Ariana">Ariana</option>
                                                         <option value="Beja">Beja</option>
                                                         <option value="Ben Arous">Ben Arous</option>
@@ -168,8 +168,8 @@ top: 40px; left: 40px;">
                                                 <div class="form-group col-md-4">
                                                     <select id="genre" class="form-control birth" name="genre">
                                                         <option>Genre ..</option>
-                                                        <option value="homme">Homme</option>
-                                                        <option value="femme">Femme</option>
+                                                        <option value="male">male</option>
+                                                        <option value="female">Female</option>
                                                     </select>
                                                 </div>
                                                 <div class="form-group col-md-4">
@@ -195,7 +195,7 @@ top: 40px; left: 40px;">
                                                 </div>
                                                 <div class="form-group col-md-4">
                                                     <select id="moin" class="form-control birth" name="moin">
-                                                        <option >Moins ..</option>
+                                                        <option >Mois ..</option>
                                                         <option value="01">Janvier</option>
                                                         <option value="02">Fevrier</option>
                                                         <option value="03">Mars</option>

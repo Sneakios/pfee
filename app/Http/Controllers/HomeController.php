@@ -32,9 +32,9 @@ class HomeController extends Controller
         if(Auth::user()->type=='worker'){
         $countWorker = Worker::where('id_worker','=',Auth::user()->getAuthIdentifier())->count();
         
-        $settings=Setting::find(1);
     }
-   
+    $settings=Setting::find(1);
+
         return view('home',['count'=>$countWorker,'settings'=>$settings]);
         
     }
