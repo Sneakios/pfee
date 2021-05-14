@@ -1956,12 +1956,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
       skills: "Skills",
       description: "",
-      errors: []
+      errors: [],
+      button: false
     };
   },
   methods: {
@@ -1986,6 +1988,7 @@ __webpack_require__.r(__webpack_exports__);
           _this.errors = [];
           _this.skills = "Skills";
           _this.description = "";
+          _this.button = true;
         }
       });
     }
@@ -42067,9 +42070,11 @@ var render = function() {
                                 [_vm._v("Electronic repair")]
                               ),
                               _vm._v(" "),
-                              _c("option", { attrs: { value: "Kebili" } }, [
-                                _vm._v("Housework and cleaning")
-                              ])
+                              _c(
+                                "option",
+                                { attrs: { value: "Housework and cleaning" } },
+                                [_vm._v("Housework and cleaning")]
+                              )
                             ]
                           )
                         ]
@@ -42110,7 +42115,25 @@ var render = function() {
                     ])
                   ]),
                   _vm._v(" "),
-                  _vm._m(1)
+                  _c("div", { staticClass: "modal-footer" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-danger",
+                        attrs: { type: "button", "data-dismiss": "modal" }
+                      },
+                      [_vm._v("\n              Close\n            ")]
+                    ),
+                    _vm._v(" "),
+                    _c("input", {
+                      staticClass: "btn btn-success",
+                      attrs: {
+                        type: "submit",
+                        value: "Save Changes",
+                        disabled: _vm.button
+                      }
+                    })
+                  ])
                 ]
               )
             ])
@@ -42144,26 +42167,6 @@ var staticRenderFns = [
         },
         [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
       )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-footer" }, [
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-danger",
-          attrs: { type: "button", "data-dismiss": "modal" }
-        },
-        [_vm._v("\n              Close\n            ")]
-      ),
-      _vm._v(" "),
-      _c("input", {
-        staticClass: "btn btn-success",
-        attrs: { type: "submit", value: "Save Changes" }
-      })
     ])
   }
 ]

@@ -18,8 +18,8 @@ class WorkerController extends Controller
     {
 
       $validator = Validator::make($request->all(),[
-        'skills'=>'required|min:7',
-        'description'=>'required|min:20'
+        'skills'=>'required|min:7|max:50',
+        'description'=>'required|min:20',
 
       ]);
 

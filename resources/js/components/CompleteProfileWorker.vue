@@ -72,7 +72,7 @@
                     <option value="Carpenting">Carpenting</option>
                     <option value="Animal care">Animal care</option>
                     <option value="Electronic repair">Electronic repair</option>
-                    <option value="Kebili">Housework and cleaning</option>
+                    <option value="Housework and cleaning">Housework and cleaning</option>
                   </select>
                 </div>
               </div>
@@ -100,6 +100,7 @@
                 type="submit"
                 class="btn btn-success"
                 value="Save Changes"
+                :disabled="button"
               />
             </div>
           </form>
@@ -115,7 +116,8 @@ export default {
     return {
       skills: "Skills",
       description: "",
-      errors: []
+      errors: [],
+      button:false,
     };
   },
 
@@ -142,6 +144,7 @@ export default {
             this.errors = [];
             this.skills = "Skills";
             this.description = "";
+            this.button=true;
           }
         });
     }
