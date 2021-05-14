@@ -34,9 +34,9 @@
                                                 <div class="form-row">
                                                   
 
-                                                <div class="form-group col-md-12">
+                                                <div class="form-group col-md-6">
                                                 
-                                                    <select id="specialty" class="form-control birth" name="specialty">
+                                                    <select id="specialty" class="form-select birth">
                                                         
                                                         <option value="Ariana">Ariana</option>
                                                         <option value="Beja">Beja</option>
@@ -64,7 +64,22 @@
                 
                                                     </select>
                                                 </div>
-                                               
+                                                 <div class="form-group col-md-6">
+                                                        <select id="ville" class="form-select birth" v-model="skills">
+                                                            <option value="Skills">Skills</option>
+
+                                                            <option value="Baby sitting">Baby Sitting</option>
+                                                            <option value="Builder">Building</option>
+                                                            <option value="Beauty and well being">Beauty and well being</option>
+                                                            <option value="Chouffeur">Chouffeur</option>
+                                                            <option value="Delovery">Delovery</option>
+                                                            <option value="Painting">Painting</option>
+                                                            <option value="Carpenting">Carpenting</option>
+                                                            <option value="Animal care">Animal care</option>
+                                                            <option value="Electronic repair">Electronic repair</option>
+                                                            <option value="Kebili">Housework and cleaning</option>
+                                                        </select>
+                                                    </div>  
                                                 
                                             </div>
                                         
@@ -79,7 +94,7 @@
                                           <div class="form-group row mb-0">
                                                 <div class="col-md-6 offset-md-5">
                                                     <button type="submit" class="btn btn-primary">
-                                                        Save Profile
+                                                        Save Changes
                                                     </button>
                                                 </div>
                                             </div>

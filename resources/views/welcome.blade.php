@@ -15,7 +15,7 @@
           <div class="carousel-item active" style="background-image: url(assets/img/slide/slide-1.jpg);height: 91vh;">
             <div class="carousel-container">
               <div class="carousel-content">
-                <h2 class="animate__animated animate__fadeInDown">Welcome to <span>MyBiz</span></h2>
+                <h2 class="animate__animated animate__fadeInDown">Welcome to <span>{{$settings->name}}</span></h2>
                 <p class="animate__animated animate__fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
                 <a href="#about" class="btn-get-started scrollto animate__animated animate__fadeInUp">Read More</a>
               </div>
@@ -184,19 +184,19 @@
             <div class="col-lg-4 info">
               <i class="ri-map-pin-line"></i>
               <h4>Location:</h4>
-              <p>A108 Adam Street<br>New York, NY 535022</p>
+              <p>{{$settings->location}}</p>
             </div>
 
             <div class="col-lg-4 info mt-4 mt-lg-0">
               <i class="ri-mail-line"></i>
               <h4>Email:</h4>
-              <p>info@example.com<br>contact@example.com</p>
+              <p>{{$settings->email2}}<br>{{$settings->email1}}</p>
             </div>
 
             <div class="col-lg-4 info mt-4 mt-lg-0">
               <i class="ri-phone-line"></i>
               <h4>Call:</h4>
-              <p>+1 5589 55488 51<br>+1 5589 22475 14</p>
+              <p>{{$settings->mobile1}}<br>{{$settings->mobile2}}</p>
             </div>
           </div>
         </div>

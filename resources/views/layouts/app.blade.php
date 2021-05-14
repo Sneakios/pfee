@@ -51,8 +51,8 @@
   <section id="topbar" class="fixed-top d-flex align-items-center">
     <div class="container d-flex justify-content-center justify-content-md-between">
       <div class="contact-info d-flex align-items-center">
-        <i class="bi bi-envelope d-flex align-items-center"><a href="mailto:contact@example.com">contact@example.com</a></i>
-        <i class="bi bi-phone d-flex align-items-center ms-4"><span>+1 5589 55488 55</span></i>
+        <i class="bi bi-envelope d-flex align-items-center"><a href="mailto:contact@example.com">{{$settings->email1}}</a></i>
+        <i class="bi bi-phone d-flex align-items-center ms-4"><span>{{$settings->mobile1}}</span></i>
       </div>
       <div class="social-links d-none d-md-flex">
         <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
@@ -97,7 +97,7 @@
             @endif
 
             @if (('home' ==  request()->path()) && (Auth::user()->type=='worker'))
-            <router-link to="/Profile-Worker">Profile Info</router-link>
+            <router-link to="/home/Profile-Worker">Profile</router-link>
             <router-link to="/home/">Example</router-link>
 
             <li><a class="nav-link scrollto " >    </a></li>
@@ -107,7 +107,7 @@
              <div class="dropdown" style="">
               <button class="dropbtn"> <img src="{{asset('assets/avatars/'.Auth::user()->avatar)}}"style="height:30px;width:30px;border-radius: 40px;">  {{ Auth::user()->name }}  </button>
               <div class="dropdown-content" style="border-radius:20px; ">
-                <a class="dropdown-item" href="{{ route('home') }}" style="padding-right: 50px"><img src="{{asset('assets/profile.png')}}"style="height:20px;width:20px;">    Profile</a>
+                <a class="dropdown-item" href="{{ route('home') }}" style="padding-right: 50px"><img src="{{asset('assets/profile.png')}}"style="height:20px;width:20px;">    Home</a>
                 <a class="dropdown-item" style="padding-right: 50px" href="{{ route('logout') }}" onclick="event.preventDefault();
                 document.getElementById('logout-form').submit();"><img src="{{asset('assets/logout.png')}}"style="height:20px;width:20px;">   LogOut</a>
               </div>

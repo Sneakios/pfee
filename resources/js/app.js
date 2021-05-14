@@ -34,8 +34,8 @@ Vue.use(VueRouter);
 const routes =[
     {path:'/home/',component:Exmaple},
 
-    {path:'/Edit-Profile-Worker',component:SettingProfileWorker},
-    {path:'/Profile-Worker',component:ProfileWorker},
+    {path:'/home/Edit-Profile-Worker',component:SettingProfileWorker},
+    {path:'/home/Profile-Worker',component:ProfileWorker},
 
 ];
 
