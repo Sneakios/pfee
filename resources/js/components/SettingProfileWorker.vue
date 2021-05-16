@@ -145,10 +145,7 @@ export default {
             this.errors=[];
            
           }
-        });
-       
-           
-      
+        });     
     },
 
 

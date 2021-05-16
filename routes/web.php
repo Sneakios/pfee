@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\WorkerController;
+use App\Http\Controllers\PostController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -28,6 +29,8 @@ Route::post('/change_avatar', [HomeController::class,'Change_avatar'])->name('ch
 Route::post('/addWorkerInfo', [WorkerController::class,'AddWorkerInfo']);
 Route::get('/showWorkerSettings', [WorkerController::class,'ShowWorkerSettings']);
 Route::put('/changeWorkerSettings', [WorkerController::class,'ChangeWorkerSettings']);
-
+//Posts Routes//
+Route::post('/savePost', [PostController::class,'SavePost']);
+Route::get('/getPosts', [PostController::class,'GetPosts']);
 
 

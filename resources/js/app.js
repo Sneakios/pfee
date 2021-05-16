@@ -7,7 +7,6 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import SettingProfileWorker from './components/SettingProfileWorker.vue';
 import SettingProfileCustomer from './components/SettingProfileCustomer.vue';
-
 import ProfileWorker from './components/ProfileWorker.vue';
 import Exmaple from './components/Exmaple.vue';
 import Swal from 'sweetalert2';
@@ -26,7 +25,7 @@ const Toast = Swal.mixin({
   }) 
   window.Toast=Toast;
 
-
+Vue.component('add-post', require('./components/AddPost.vue').default);
 Vue.component('complete-profile-worker', require('./components/CompleteProfileWorker.vue').default);
 Vue.use(VueRouter);
 
