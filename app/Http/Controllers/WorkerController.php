@@ -34,10 +34,48 @@ class WorkerController extends Controller
             $worker->followers= 0;
             $worker->rate= 0;  
             $worker->save();
-
             return response()->json(['status'=>'success']);
-
-       
-  
     }
+
+   public function ShowWorkerSettings(){
+    $worker=User::find(Auth::user()->getAuthIdentifier());
+    $workerInfo=Worker::where('id_worker',Auth::user()->getAuthIdentifier())->get();
+    return response()->json(['workerInfo'=>$workerInfo,'worker'=>$worker]);
+   }
+
+   public function ChangeWorkerSettings (Request $request)
+   {
+
+    $validator = Validator::make($request->all(),[
+      
+      'description'=>'required|min:20',
+      'firstname'=>'required|min:3',
+      'lastname'=>'required|min:3',
+      'adresse'=>'required|min:10',
+      'mobile'=>'required|min:8|numeric',
+      
+    ]);
+
+    if($validator->fails()){
+        return response()->json(['status'=>'error','errors'=>$validator->errors()]);
+    }
+
+
+  
+    $name=$request->firstname." ".$request->lastname;
+  User::find(Auth::user()->getAuthIdentifier())->update(
+    ['name'=>$name,
+    'adresse'=>$request->adresse,
+    'mobile'=>$request->mobile,
+    'ville'=>$request->ville],  
+  );
+  Worker::where('id_worker',Auth::user()->getAuthIdentifier())->update(
+    ['specialty'=>$request->skills,
+    'description'=>$request->description],    
+  );
+  return response()->json(['status'=>'success']);
+   }
+
+
+
 }

@@ -6,65 +6,31 @@
           <div class="card-header">Setting</div>
 
           <div class="card-body">
-            <form method="POST">
+            <form @submit.prevent="changeWorkerSettings">
               <h2 class="text-center cna">Profile Settings</h2>
 
               <div class="form-row">
                 <div class="form-group col-md-6">
-                  <input
-                    id="firstname"
-                    type="text"
-                    class="form-control"
-                    name="firstname"
-                    required
-                    autocomplete="firstname"
-                    autofocus
-                    placeholder="firstname"
-                  />
+                  <input id="firstname" type="text" :class="['form-control',errors.firstname ?'is-invalid' :'']"  required autocomplete="firstname" autofocus  v-model="firstname"/>
                 </div>
 
                 <div class="form-group col-md-6">
-                  <input
-                    id="lastname"
-                    type="text"
-                    class="form-control"
-                    name="lastname"
-                    required
-                    autocomplete="lastname"
-                    autofocus
-                    placeholder="lastname"
-                  />
+                  <input id="lastname" type="text" :class="['form-control',errors.lastname ? 'is-invalid' : '']"  required autocomplete="lastname" autofocus  v-model="lastname"/>
                 </div>
               </div>
 
               <div class="form-row">
                 <div class="form-group col-md-6">
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="adresse"
-                    placeholder="adresse"
-                    name="adresse"
-                    required
-                  />
+                  <input type="text" :class="['form-control',errors.adresse ? 'is-invalid' : '']"  id="adresse"   required v-model="adresse"/>
                 </div>
                 <div class="form-group col-md-6">
-                  <input
-                    id="mobile"
-                    type="tel"
-                    class="form-control"
-                    name="mobile"
-                    required
-                    autocomplete="mobile"
-                    autofocus
-                    placeholder="mobile"
-                  />
+                  <input id="mobile" type="tel" :class="['form-control',errors.mobile ? 'is-invalid' : '']"  required autocomplete="mobile" autofocus  v-model="mobile"/>
                 </div>
               </div>
 
               <div class="form-row">
                 <div class="form-group col-md-6">
-                  <select id="specialty" class="form-select birth">
+                  <select id="specialty" class="form-select birth" v-model="ville">
                     <option value="Ariana">Ariana</option>
                     <option value="Beja">Beja</option>
                     <option value="Ben Arous">Ben Arous</option>
@@ -92,13 +58,9 @@
                 </div>
                 <div class="form-group col-md-6">
                   <select id="ville" class="form-select birth" v-model="skills">
-                    <option value="Skills">Skills</option>
-
                     <option value="Baby sitting">Baby Sitting</option>
                     <option value="Builder">Building</option>
-                    <option value="Beauty and well being"
-                      >Beauty and well being</option
-                    >
+                    <option value="Beauty and well being">Beauty and well being</option>
                     <option value="Chouffeur">Chouffeur</option>
                     <option value="Delovery">Delovery</option>
                     <option value="Painting">Painting</option>
@@ -112,21 +74,14 @@
 
               <div class="form-row">
                 <div class="form-group col-md-12">
-                  <textarea
-                    id="description"
-                    name="description"
-                    class="form-control"
-                    placeholder="description !!"
-                  >
+                  <textarea id="description"  :class="['form-control',errors.description ? 'is-invalid' : '']" v-model="description">
                   </textarea>
                 </div>
               </div>
 
               <div class="form-group row mb-0">
                 <div class="col-md-6 offset-md-5">
-                  <button type="submit" class="btn btn-primary">
-                    Save Changes
-                  </button>
+                  <input type="submit" class="btn btn-primary" value="Save Changes" />
                 </div>
               </div>
             </form>
@@ -139,8 +94,67 @@
 
 <script>
 export default {
-  mounted() {
-    console.log("Component mounted.");
+   data() {
+    return {
+      name:[],
+      adresse: "",
+      mobile: "",
+      ville: "",
+      skills: "",
+      description: "",     
+      lastname:"",
+      firstname:"",
+      errors:[],     
+
+    };
+  },
+  methods:{
+    ShowSettings(){
+      axios.get('/showWorkerSettings').then(response=>{
+          this.name=response.data.worker.name.split(" "); 
+          this.adresse=response.data.worker.adresse;
+          this.mobile=response.data.worker.mobile;
+          this.ville=response.data.worker.ville;
+          this.skills=response.data.workerInfo[0].specialty;
+          this.description=response.data.workerInfo[0].description;
+          this.firstname=this.name[0];
+          this.lastname=this.name[1];
+      })
+    },
+    changeWorkerSettings(){   
+      axios.put('/changeWorkerSettings',{
+        lastname:this.lastname,
+        firstname:this.firstname,      
+        adresse:this.adresse,
+        mobile:this.mobile,
+        ville:this.ville,
+        skills:this.skills,
+        description:this.description
+      }).then(response=>{
+          if (response.data.status == "error") {
+            this.errors = response.data.errors;
+            Toast.fire({
+              icon: "error",
+              title: "False informations !!"
+            });
+          } else if (response.data.status == "success") {
+            Toast.fire({
+              icon: "success",
+              title: "Saved in successfully"
+            });
+            this.errors=[];
+           
+          }
+        });
+       
+           
+      
+    },
+
+
+  },
+  created(){
+    this.ShowSettings()
   }
 };
 </script>

@@ -24,5 +24,10 @@ Route::get('/', [Controller::class,'welcome'])->name('welcome');
 Route::get('/home', [HomeController::class,'index'])->name('home');
 
 Route::post('/change_avatar', [HomeController::class,'Change_avatar'])->name('change_avatar');
+//Worker Routes//
 Route::post('/addWorkerInfo', [WorkerController::class,'AddWorkerInfo']);
+Route::get('/showWorkerSettings', [WorkerController::class,'ShowWorkerSettings']);
+Route::put('/changeWorkerSettings', [WorkerController::class,'ChangeWorkerSettings']);
+
+
 

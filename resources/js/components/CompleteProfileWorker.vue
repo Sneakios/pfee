@@ -99,7 +99,7 @@
               <input
                 type="submit"
                 class="btn btn-success"
-                value="Save Changes"
+                value="Save"
                 :disabled="button"
               />
             </div>
