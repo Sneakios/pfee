@@ -1899,10 +1899,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      body: '',
+      body: "",
       errors: []
     };
   },
@@ -1910,7 +1916,7 @@ __webpack_require__.r(__webpack_exports__);
     savePost: function savePost() {
       var _this = this;
 
-      axios.post('/savePost', {
+      axios.post("/savePost", {
         title: this.title,
         body: this.body
       }).then(function (response) {
@@ -1926,7 +1932,7 @@ __webpack_require__.r(__webpack_exports__);
             title: "Post saved in successfully"
           });
           _this.errors = [];
-          _this.body = '';
+          _this.body = "";
         }
       });
     }
@@ -2177,29 +2183,36 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
       errors: [],
       post: {
-        id: '',
-        body: '',
-        user: '',
-        cmntsNbr: '',
-        date: '',
-        avatar: ''
+        id: "",
+        body: "",
+        user: "",
+        cmntsNbr: "",
+        date: "",
+        avatar: ""
       },
       comments: {
-        avatar: '',
-        body: '',
-        user: '',
-        date: ''
+        avatar: "",
+        body: "",
+        user: "",
+        date: ""
       },
       comment: {
-        user: '',
-        body: '',
-        date: '',
-        avatar: ''
+        user: "",
+        body: "",
+        date: "",
+        avatar: ""
       }
     };
   },
@@ -2207,14 +2220,14 @@ __webpack_require__.r(__webpack_exports__);
     getPostDetails: function getPostDetails() {
       var _this = this;
 
-      axios.get('/getPostDetails/' + this.$route.params.id).then(function (response) {
+      axios.get("/getPostDetails/" + this.$route.params.id).then(function (response) {
         _this.post = response.data.post;
       });
     },
     addComment: function addComment() {
       var _this2 = this;
 
-      axios.post('/addComment/' + this.$route.params.id, {
+      axios.post("/addComment/" + this.$route.params.id, {
         body: this.comment.body
       }).then(function (response) {
         if (response.data.status == "error") {
@@ -2229,16 +2242,18 @@ __webpack_require__.r(__webpack_exports__);
             title: "Comments added  successfully"
           });
           _this2.errors = [];
-          _this2.comment.body = '';
+          _this2.comment.body = "";
 
           _this2.comments.push(response.data.cmnt);
+
+          _this2.post.cmntsNbr++;
         }
       });
     },
     getComments: function getComments() {
       var _this3 = this;
 
-      axios.get('/getComments/' + this.$route.params.id).then(function (response) {
+      axios.get("/getComments/" + this.$route.params.id).then(function (response) {
         _this3.comments = response.data.comments;
       });
     }
@@ -2305,16 +2320,41 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
       posts: {
-        id: '',
-        body: '',
-        user: '',
-        cmntsNbr: '',
-        date: '',
-        avatar: ''
+        id: "",
+        body: "",
+        user: "",
+        cmntsNbr: "",
+        date: "",
+        avatar: ""
       }
     };
   },
@@ -2322,7 +2362,7 @@ __webpack_require__.r(__webpack_exports__);
     getPosts: function getPosts() {
       var _this = this;
 
-      axios.get('/getPosts').then(function (response) {
+      axios.get("/getPosts").then(function (response) {
         _this.posts = response.data.data;
       });
     },
@@ -2532,6 +2572,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -2548,7 +2601,7 @@ __webpack_require__.r(__webpack_exports__);
     ShowSettings: function ShowSettings() {
       var _this = this;
 
-      axios.get('/showCustomerSettings').then(function (response) {
+      axios.get("/showCustomerSettings").then(function (response) {
         _this.name = response.data.customer.name.split(" ");
         _this.adresse = response.data.customer.adresse;
         _this.mobile = response.data.customer.mobile;
@@ -2560,7 +2613,7 @@ __webpack_require__.r(__webpack_exports__);
     changeCustomerSettings: function changeCustomerSettings() {
       var _this2 = this;
 
-      axios.put('/changeCustomerSettings', {
+      axios.put("/changeCustomerSettings", {
         lastname: this.lastname,
         firstname: this.firstname,
         adresse: this.adresse,
@@ -2695,6 +2748,62 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -2713,7 +2822,7 @@ __webpack_require__.r(__webpack_exports__);
     ShowSettings: function ShowSettings() {
       var _this = this;
 
-      axios.get('/showWorkerSettings').then(function (response) {
+      axios.get("/showWorkerSettings").then(function (response) {
         _this.name = response.data.worker.name.split(" ");
         _this.adresse = response.data.worker.adresse;
         _this.mobile = response.data.worker.mobile;
@@ -2727,7 +2836,7 @@ __webpack_require__.r(__webpack_exports__);
     changeWorkerSettings: function changeWorkerSettings() {
       var _this2 = this;
 
-      axios.put('/changeWorkerSettings', {
+      axios.put("/changeWorkerSettings", {
         lastname: this.lastname,
         firstname: this.firstname,
         adresse: this.adresse,
@@ -43623,7 +43732,7 @@ var render = function() {
                             },
                             [
                               _vm._v(
-                                "\n                  " + _vm._s(_vm.post.user)
+                                "\n                " + _vm._s(_vm.post.user)
                               )
                             ]
                           ),
@@ -43643,7 +43752,7 @@ var render = function() {
               ),
               _vm._v(" "),
               _c("b", [
-                _vm._v("\n          " + _vm._s(_vm.post.body) + "\n        ")
+                _vm._v("\n        " + _vm._s(_vm.post.body) + "\n      ")
               ]),
               _vm._v(" "),
               _c(
@@ -43726,10 +43835,10 @@ var render = function() {
             _vm._v(" "),
             _c("div", { staticClass: "media-body" }, [
               _c("strong", { staticClass: "text-primary" }, [
-                _vm._v(" " + _vm._s(comment.user))
+                _vm._v(" " + _vm._s(comment.user))
               ]),
               _c("br"),
-              _vm._v("\n            " + _vm._s(comment.body) + " "),
+              _vm._v("\n        " + _vm._s(comment.body) + " "),
               _c("br"),
               _vm._v(" "),
               _c("span", [
@@ -43770,147 +43879,144 @@ var render = function() {
   return _c("div", { staticClass: "container" }, [
     _c("div", { staticClass: "row justify-content-center" }, [
       _c("div", { staticClass: "col-md-12" }, [
-        _c("div", { staticClass: "card" }, [
-          _c("div", { staticClass: "card-header form-row" }, [
-            _c("div", { staticClass: "form-group col-md-9" }),
-            _c(
-              "div",
-              { staticClass: "form-group col-md-3" },
-              [_c("add-post")],
-              1
-            )
-          ]),
+        _c("div", { staticClass: "form-row" }, [
+          _c("div", { staticClass: "form-group col-md-9" }),
           _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "card-body" },
-            _vm._l(_vm.posts, function(post) {
-              return _c(
-                "div",
-                {
-                  key: post.id,
-                  staticClass: "media simple-post",
-                  staticStyle: { margin: "10px" }
-                },
-                [
-                  _c(
-                    "div",
-                    {
-                      staticClass: "media-body",
-                      staticStyle: { "margin-left": "1px" }
-                    },
-                    [
-                      _c(
-                        "div",
-                        {
-                          staticClass: "form-row",
-                          staticStyle: {
-                            width: "290px",
-                            height: "60px",
-                            border: "1px solid white"
-                          }
-                        },
-                        [
-                          _c(
-                            "div",
-                            {
-                              staticClass: "form-group col-md-2",
+          _c("div", { staticClass: "form-group col-md-3" }, [_c("add-post")], 1)
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "card-body" },
+          _vm._l(_vm.posts, function(post) {
+            return _c(
+              "div",
+              {
+                key: post.id,
+                staticClass: "media simple-post",
+                staticStyle: { margin: "10px" }
+              },
+              [
+                _c(
+                  "div",
+                  {
+                    staticClass: "media-body",
+                    staticStyle: { "margin-left": "1px" }
+                  },
+                  [
+                    _c(
+                      "div",
+                      {
+                        staticClass: "form-row",
+                        staticStyle: {
+                          width: "290px",
+                          height: "60px",
+                          border: "1px solid white"
+                        }
+                      },
+                      [
+                        _c(
+                          "div",
+                          {
+                            staticClass: "form-group col-md-2",
+                            staticStyle: {
+                              "margin-left": "1px",
+                              border: "1px solid white"
+                            }
+                          },
+                          [
+                            _c("img", {
                               staticStyle: {
-                                "margin-left": "1px",
-                                border: "1px solid white"
+                                height: "45px",
+                                width: "45px",
+                                "border-radius": "40px",
+                                border: "px solid #0080ff"
+                              },
+                              attrs: {
+                                src:
+                                  "http://127.0.0.1:8000/assets/avatars/" +
+                                  post.avatar
                               }
-                            },
-                            [
-                              _c("img", {
-                                staticStyle: {
-                                  height: "45px",
-                                  width: "45px",
-                                  "border-radius": "40px",
-                                  border: "px solid #0080ff"
-                                },
-                                attrs: {
-                                  src:
-                                    "http://127.0.0.1:8000/assets/avatars/" +
-                                    post.avatar
-                                }
-                              })
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "div",
-                            {
-                              staticClass:
-                                "form-group col-md-4;border:1px solid white"
-                            },
-                            [
-                              _c("div", { staticClass: "form-group" }, [
-                                _c("div", [
-                                  _c(
-                                    "strong",
-                                    {
-                                      staticClass: "text-primary",
-                                      staticStyle: { "margin-left": "1px" }
-                                    },
-                                    [_vm._v(" " + _vm._s(post.user))]
-                                  ),
-                                  _c("br")
-                                ]),
-                                _vm._v(" "),
+                            })
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            staticClass:
+                              "form-group col-md-4;border:1px solid white"
+                          },
+                          [
+                            _c("div", { staticClass: "form-group" }, [
+                              _c("div", [
                                 _c(
-                                  "div",
-                                  { staticStyle: { "margin-left": "5px" } },
+                                  "strong",
+                                  {
+                                    staticClass: "text-primary",
+                                    staticStyle: { "margin-left": "1px" }
+                                  },
                                   [
-                                    _c("span", [
-                                      _c("i", {
-                                        staticClass: "fa fa-calendar"
-                                      }),
-                                      _vm._v(" " + _vm._s(post.date))
-                                    ])
+                                    _vm._v(
+                                      "\n                        " +
+                                        _vm._s(post.user)
+                                    )
                                   ]
-                                )
-                              ])
-                            ]
-                          )
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c("b", [
-                        _vm._v(
-                          "\n                        " +
-                            _vm._s(post.body) +
-                            "\n                       "
+                                ),
+                                _c("br")
+                              ]),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                { staticStyle: { "margin-left": "5px" } },
+                                [
+                                  _c("span", [
+                                    _c("i", { staticClass: "fa fa-calendar" }),
+                                    _vm._v(" " + _vm._s(post.date))
+                                  ])
+                                ]
+                              )
+                            ])
+                          ]
                         )
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "ul",
-                        {
-                          staticClass:
-                            "list-inline list-unstyled d-flex post-info"
-                        },
-                        [
-                          _c(
-                            "router-link",
-                            { attrs: { to: "/home/PostDetails/" + post.id } },
-                            [
-                              _c("span", [
-                                _c("i", { staticClass: "fa fa-comment" }),
-                                _vm._v(" " + _vm._s(post.cmntsNbr))
-                              ])
-                            ]
-                          )
-                        ],
-                        1
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("b", [
+                      _vm._v(
+                        "\n                " +
+                          _vm._s(post.body) +
+                          "\n              "
                       )
-                    ]
-                  )
-                ]
-              )
-            }),
-            0
-          )
-        ])
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "ul",
+                      {
+                        staticClass:
+                          "list-inline list-unstyled d-flex post-info"
+                      },
+                      [
+                        _c(
+                          "router-link",
+                          { attrs: { to: "/home/PostDetails/" + post.id } },
+                          [
+                            _c("span", [
+                              _c("i", { staticClass: "fa fa-comment" }),
+                              _vm._v(" " + _vm._s(post.cmntsNbr))
+                            ])
+                          ]
+                        )
+                      ],
+                      1
+                    )
+                  ]
+                )
+              ]
+            )
+          }),
+          0
+        )
       ])
     ])
   ])

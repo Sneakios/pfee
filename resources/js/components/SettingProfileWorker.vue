@@ -11,26 +11,69 @@
 
               <div class="form-row">
                 <div class="form-group col-md-6">
-                  <input id="firstname" type="text" :class="['form-control',errors.firstname ?'is-invalid' :'']"  required autocomplete="firstname" autofocus  v-model="firstname"/>
+                  <input
+                    id="firstname"
+                    type="text"
+                    :class="[
+                      'form-control',
+                      errors.firstname ? 'is-invalid' : ''
+                    ]"
+                    required
+                    autocomplete="firstname"
+                    autofocus
+                    v-model="firstname"
+                  />
                 </div>
 
                 <div class="form-group col-md-6">
-                  <input id="lastname" type="text" :class="['form-control',errors.lastname ? 'is-invalid' : '']"  required autocomplete="lastname" autofocus  v-model="lastname"/>
+                  <input
+                    id="lastname"
+                    type="text"
+                    :class="[
+                      'form-control',
+                      errors.lastname ? 'is-invalid' : ''
+                    ]"
+                    required
+                    autocomplete="lastname"
+                    autofocus
+                    v-model="lastname"
+                  />
                 </div>
               </div>
 
               <div class="form-row">
                 <div class="form-group col-md-6">
-                  <input type="text" :class="['form-control',errors.adresse ? 'is-invalid' : '']"  id="adresse"   required v-model="adresse"/>
+                  <input
+                    type="text"
+                    :class="[
+                      'form-control',
+                      errors.adresse ? 'is-invalid' : ''
+                    ]"
+                    id="adresse"
+                    required
+                    v-model="adresse"
+                  />
                 </div>
                 <div class="form-group col-md-6">
-                  <input id="mobile" type="tel" :class="['form-control',errors.mobile ? 'is-invalid' : '']"  required autocomplete="mobile" autofocus  v-model="mobile"/>
+                  <input
+                    id="mobile"
+                    type="tel"
+                    :class="['form-control', errors.mobile ? 'is-invalid' : '']"
+                    required
+                    autocomplete="mobile"
+                    autofocus
+                    v-model="mobile"
+                  />
                 </div>
               </div>
 
               <div class="form-row">
                 <div class="form-group col-md-6">
-                  <select id="specialty" class="form-select birth" v-model="ville">
+                  <select
+                    id="specialty"
+                    class="form-select birth"
+                    v-model="ville"
+                  >
                     <option value="Ariana">Ariana</option>
                     <option value="Beja">Beja</option>
                     <option value="Ben Arous">Ben Arous</option>
@@ -60,7 +103,9 @@
                   <select id="ville" class="form-select birth" v-model="skills">
                     <option value="Baby sitting">Baby Sitting</option>
                     <option value="Builder">Building</option>
-                    <option value="Beauty and well being">Beauty and well being</option>
+                    <option value="Beauty and well being"
+                      >Beauty and well being</option
+                    >
                     <option value="Chouffeur">Chouffeur</option>
                     <option value="Delovery">Delovery</option>
                     <option value="Painting">Painting</option>
@@ -74,14 +119,25 @@
 
               <div class="form-row">
                 <div class="form-group col-md-12">
-                  <textarea id="description"  :class="['form-control',errors.description ? 'is-invalid' : '']" v-model="description">
+                  <textarea
+                    id="description"
+                    :class="[
+                      'form-control',
+                      errors.description ? 'is-invalid' : ''
+                    ]"
+                    v-model="description"
+                  >
                   </textarea>
                 </div>
               </div>
 
               <div class="form-group row mb-0">
                 <div class="col-md-6 offset-md-5">
-                  <input type="submit" class="btn btn-primary" value="Save Changes" />
+                  <input
+                    type="submit"
+                    class="btn btn-primary"
+                    value="Save Changes"
+                  />
                 </div>
               </div>
             </form>
@@ -94,43 +150,44 @@
 
 <script>
 export default {
-   data() {
+  data() {
     return {
-      name:[],
+      name: [],
       adresse: "",
       mobile: "",
       ville: "",
       skills: "",
-      description: "",     
-      lastname:"",
-      firstname:"",
-      errors:[],     
-
+      description: "",
+      lastname: "",
+      firstname: "",
+      errors: []
     };
   },
-  methods:{
-    ShowSettings(){
-      axios.get('/showWorkerSettings').then(response=>{
-          this.name=response.data.worker.name.split(" "); 
-          this.adresse=response.data.worker.adresse;
-          this.mobile=response.data.worker.mobile;
-          this.ville=response.data.worker.ville;
-          this.skills=response.data.workerInfo[0].specialty;
-          this.description=response.data.workerInfo[0].description;
-          this.firstname=this.name[0];
-          this.lastname=this.name[1];
-      })
+  methods: {
+    ShowSettings() {
+      axios.get("/showWorkerSettings").then(response => {
+        this.name = response.data.worker.name.split(" ");
+        this.adresse = response.data.worker.adresse;
+        this.mobile = response.data.worker.mobile;
+        this.ville = response.data.worker.ville;
+        this.skills = response.data.workerInfo[0].specialty;
+        this.description = response.data.workerInfo[0].description;
+        this.firstname = this.name[0];
+        this.lastname = this.name[1];
+      });
     },
-    changeWorkerSettings(){   
-      axios.put('/changeWorkerSettings',{
-        lastname:this.lastname,
-        firstname:this.firstname,      
-        adresse:this.adresse,
-        mobile:this.mobile,
-        ville:this.ville,
-        skills:this.skills,
-        description:this.description
-      }).then(response=>{
+    changeWorkerSettings() {
+      axios
+        .put("/changeWorkerSettings", {
+          lastname: this.lastname,
+          firstname: this.firstname,
+          adresse: this.adresse,
+          mobile: this.mobile,
+          ville: this.ville,
+          skills: this.skills,
+          description: this.description
+        })
+        .then(response => {
           if (response.data.status == "error") {
             this.errors = response.data.errors;
             Toast.fire({
@@ -142,16 +199,13 @@ export default {
               icon: "success",
               title: "Saved in successfully"
             });
-            this.errors=[];
-           
+            this.errors = [];
           }
-        });     
-    },
-
-
+        });
+    }
   },
-  created(){
-    this.ShowSettings()
+  created() {
+    this.ShowSettings();
   }
 };
 </script>

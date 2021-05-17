@@ -14,12 +14,16 @@
                   <input
                     id="firstname"
                     type="text"
-                    :class="['form-control',errors.firstname ?'is-invalid' :'']"
+                    :class="[
+                      'form-control',
+                      errors.firstname ? 'is-invalid' : ''
+                    ]"
                     name="firstname"
                     required
                     autocomplete="firstname"
                     autofocus
-                    placeholder="firstname" v-model="firstname"
+                    placeholder="firstname"
+                    v-model="firstname"
                   />
                 </div>
 
@@ -28,11 +32,15 @@
                     id="lastname"
                     type="text"
                     class="form-control"
-                   :class="['form-control',errors.lastname ?'is-invalid' :'']"
+                    :class="[
+                      'form-control',
+                      errors.lastname ? 'is-invalid' : ''
+                    ]"
                     required
                     autocomplete="lastname"
                     autofocus
-                    placeholder="lastname" v-model="lastname"
+                    placeholder="lastname"
+                    v-model="lastname"
                   />
                 </div>
               </div>
@@ -41,30 +49,39 @@
                 <div class="form-group col-md-6">
                   <input
                     type="text"
-                    :class="['form-control',errors.adresse ?'is-invalid' :'']"
+                    :class="[
+                      'form-control',
+                      errors.adresse ? 'is-invalid' : ''
+                    ]"
                     id="adresse"
                     placeholder="adresse"
                     name="adresse"
-                    required v-model="adresse"
+                    required
+                    v-model="adresse"
                   />
                 </div>
                 <div class="form-group col-md-6">
                   <input
                     id="mobile"
                     type="tel"
-                    :class="['form-control',errors.mobile ?'is-invalid' :'']"
+                    :class="['form-control', errors.mobile ? 'is-invalid' : '']"
                     name="mobile"
                     required
                     autocomplete="mobile"
                     autofocus
-                    placeholder="mobile" v-model="mobile"
+                    placeholder="mobile"
+                    v-model="mobile"
                   />
                 </div>
               </div>
 
               <div class="form-row">
                 <div class="form-group col-md-12">
-                  <select id="specialty" class="form-select birth" v-model="ville">
+                  <select
+                    id="specialty"
+                    class="form-select birth"
+                    v-model="ville"
+                  >
                     <option value="Ariana">Ariana</option>
                     <option value="Beja">Beja</option>
                     <option value="Ben Arous">Ben Arous</option>
@@ -90,12 +107,8 @@
                     <option value="Zaghouan">Zaghouan</option>
                   </select>
                 </div>
-                <div class="form-group col-md-6">
-               
-                </div>
+                <div class="form-group col-md-6"></div>
               </div>
-
-            
 
               <div class="form-group row mb-0">
                 <div class="col-md-6 offset-md-5">
@@ -114,37 +127,38 @@
 
 <script>
 export default {
-   data() {
+  data() {
     return {
-      name:[],
+      name: [],
       adresse: "",
       mobile: "",
-      ville: "",       
-      lastname:"",
-      firstname:"",
-      errors:[],     
-
+      ville: "",
+      lastname: "",
+      firstname: "",
+      errors: []
     };
   },
-  methods:{
-    ShowSettings(){
-      axios.get('/showCustomerSettings').then(response=>{
-          this.name=response.data.customer.name.split(" "); 
-          this.adresse=response.data.customer.adresse;
-          this.mobile=response.data.customer.mobile;
-          this.ville=response.data.customer.ville;      
-          this.firstname=this.name[0];
-          this.lastname=this.name[1];
-      })
+  methods: {
+    ShowSettings() {
+      axios.get("/showCustomerSettings").then(response => {
+        this.name = response.data.customer.name.split(" ");
+        this.adresse = response.data.customer.adresse;
+        this.mobile = response.data.customer.mobile;
+        this.ville = response.data.customer.ville;
+        this.firstname = this.name[0];
+        this.lastname = this.name[1];
+      });
     },
-    changeCustomerSettings(){   
-      axios.put('/changeCustomerSettings',{
-        lastname:this.lastname,
-        firstname:this.firstname,      
-        adresse:this.adresse,
-        mobile:this.mobile,
-        ville:this.ville,     
-      }).then(response=>{
+    changeCustomerSettings() {
+      axios
+        .put("/changeCustomerSettings", {
+          lastname: this.lastname,
+          firstname: this.firstname,
+          adresse: this.adresse,
+          mobile: this.mobile,
+          ville: this.ville
+        })
+        .then(response => {
           if (response.data.status == "error") {
             this.errors = response.data.errors;
             Toast.fire({
@@ -156,16 +170,13 @@ export default {
               icon: "success",
               title: "Saved in successfully"
             });
-            this.errors=[];
-           
+            this.errors = [];
           }
-        });     
-    },
-
-
+        });
+    }
   },
-  created(){
-    this.ShowSettings()
+  created() {
+    this.ShowSettings();
   }
 };
 </script>

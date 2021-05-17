@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
 use App\Models\Post;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
@@ -40,7 +41,7 @@ class PostController extends Controller
    
          $pp=Post::select("*")->orderByDesc("created_at")->get();
          foreach($pp as $p){  
-            $post=['id'=>$p->id,'body'=>$p->body,'user'=>User::where('id',$p->id_user)->value('name'),'cmntsNbr'=>'22','date'=>$p->created_at->diffForHumans(),'avatar'=>User::where('id',$p->id_user)->value('avatar')];        
+            $post=['id'=>$p->id,'body'=>$p->body,'user'=>User::where('id',$p->id_user)->value('name'),'cmntsNbr'=>Comment::where('post_id',$p->id)->count(),'date'=>$p->created_at->diffForHumans(),'avatar'=>User::where('id',$p->id_user)->value('avatar')];        
             array_push($posts,$post);
          }
           
@@ -49,7 +50,7 @@ class PostController extends Controller
 
    public function GetPostDetails($id){
        $p=Post::find($id);
-       $post=['id'=>$p->id,'body'=>$p->body,'user'=>User::where('id',$p->id_user)->value('name'),'cmntsNbr'=>'22','date'=>$p->created_at->diffForHumans(),'avatar'=>User::where('id',$p->id_user)->value('avatar')];        
+       $post=['id'=>$p->id,'body'=>$p->body,'user'=>User::where('id',$p->id_user)->value('name'),'cmntsNbr'=>Comment::where('post_id',$id)->count(),'date'=>$p->created_at->diffForHumans(),'avatar'=>User::where('id',$p->id_user)->value('avatar')];        
        return response()->json(['post'=>$post]);
 
 
