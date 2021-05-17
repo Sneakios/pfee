@@ -6,7 +6,7 @@
           <div class="card-header">Setting</div>
 
           <div class="card-body">
-            <form method="POST">
+            <form @submit.prevent="changeCustomerSettings">
               <h2 class="text-center cna">Profile Settings</h2>
 
               <div class="form-row">
@@ -14,12 +14,12 @@
                   <input
                     id="firstname"
                     type="text"
-                    class="form-control"
+                    :class="['form-control',errors.firstname ?'is-invalid' :'']"
                     name="firstname"
                     required
                     autocomplete="firstname"
                     autofocus
-                    placeholder="firstname"
+                    placeholder="firstname" v-model="firstname"
                   />
                 </div>
 
@@ -28,11 +28,11 @@
                     id="lastname"
                     type="text"
                     class="form-control"
-                    name="lastname"
+                   :class="['form-control',errors.lastname ?'is-invalid' :'']"
                     required
                     autocomplete="lastname"
                     autofocus
-                    placeholder="lastname"
+                    placeholder="lastname" v-model="lastname"
                   />
                 </div>
               </div>
@@ -41,30 +41,30 @@
                 <div class="form-group col-md-6">
                   <input
                     type="text"
-                    class="form-control"
+                    :class="['form-control',errors.adresse ?'is-invalid' :'']"
                     id="adresse"
                     placeholder="adresse"
                     name="adresse"
-                    required
+                    required v-model="adresse"
                   />
                 </div>
                 <div class="form-group col-md-6">
                   <input
                     id="mobile"
                     type="tel"
-                    class="form-control"
+                    :class="['form-control',errors.mobile ?'is-invalid' :'']"
                     name="mobile"
                     required
                     autocomplete="mobile"
                     autofocus
-                    placeholder="mobile"
+                    placeholder="mobile" v-model="mobile"
                   />
                 </div>
               </div>
 
               <div class="form-row">
-                <div class="form-group col-md-6">
-                  <select id="specialty" class="form-select birth">
+                <div class="form-group col-md-12">
+                  <select id="specialty" class="form-select birth" v-model="ville">
                     <option value="Ariana">Ariana</option>
                     <option value="Beja">Beja</option>
                     <option value="Ben Arous">Ben Arous</option>
@@ -91,36 +91,11 @@
                   </select>
                 </div>
                 <div class="form-group col-md-6">
-                  <select id="ville" class="form-select birth" v-model="skills">
-                    <option value="Skills">Skills</option>
-
-                    <option value="Baby sitting">Baby Sitting</option>
-                    <option value="Builder">Building</option>
-                    <option value="Beauty and well being"
-                      >Beauty and well being</option
-                    >
-                    <option value="Chouffeur">Chouffeur</option>
-                    <option value="Delovery">Delovery</option>
-                    <option value="Painting">Painting</option>
-                    <option value="Carpenting">Carpenting</option>
-                    <option value="Animal care">Animal care</option>
-                    <option value="Electronic repair">Electronic repair</option>
-                    <option value="Kebili">Housework and cleaning</option>
-                  </select>
+               
                 </div>
               </div>
 
-              <div class="form-row">
-                <div class="form-group col-md-12">
-                  <textarea
-                    id="description"
-                    name="description"
-                    class="form-control"
-                    placeholder="description !!"
-                  >
-                  </textarea>
-                </div>
-              </div>
+            
 
               <div class="form-group row mb-0">
                 <div class="col-md-6 offset-md-5">
@@ -139,8 +114,58 @@
 
 <script>
 export default {
-  mounted() {
-    console.log("Component mounted.");
+   data() {
+    return {
+      name:[],
+      adresse: "",
+      mobile: "",
+      ville: "",       
+      lastname:"",
+      firstname:"",
+      errors:[],     
+
+    };
+  },
+  methods:{
+    ShowSettings(){
+      axios.get('/showCustomerSettings').then(response=>{
+          this.name=response.data.customer.name.split(" "); 
+          this.adresse=response.data.customer.adresse;
+          this.mobile=response.data.customer.mobile;
+          this.ville=response.data.customer.ville;      
+          this.firstname=this.name[0];
+          this.lastname=this.name[1];
+      })
+    },
+    changeCustomerSettings(){   
+      axios.put('/changeCustomerSettings',{
+        lastname:this.lastname,
+        firstname:this.firstname,      
+        adresse:this.adresse,
+        mobile:this.mobile,
+        ville:this.ville,     
+      }).then(response=>{
+          if (response.data.status == "error") {
+            this.errors = response.data.errors;
+            Toast.fire({
+              icon: "error",
+              title: "False informations !!"
+            });
+          } else if (response.data.status == "success") {
+            Toast.fire({
+              icon: "success",
+              title: "Saved in successfully"
+            });
+            this.errors=[];
+           
+          }
+        });     
+    },
+
+
+  },
+  created(){
+    this.ShowSettings()
   }
 };
 </script>

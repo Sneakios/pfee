@@ -104,8 +104,8 @@
             @endif
 
             @if (('home' ==  request()->path()) && (Auth::user()->type=='customer'))
-            <router-link to="/home/Profile-Worker">Profile</router-link>
-            <router-link to="/home/">Example</router-link>
+            <router-link to="/home/Profile-Customer">Profile</router-link>
+            <router-link to="/home/">Posts</router-link>
 
             <li><a class="nav-link scrollto " >    </a></li>
             @endif

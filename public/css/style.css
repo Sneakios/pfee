@@ -110,9 +110,9 @@
   
   .profile-userpic{
   float: center;
-  margin-left: 13%;
-  width: 80%;
-  height: 80%;
+  margin-left: 10px;
+  width: 250%;
+  height: 250%;
   -webkit-border-radius: 50% !important;
   -moz-border-radius: 50% !important;
   border-radius: 50% !important;

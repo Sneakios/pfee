@@ -40,11 +40,10 @@ class PostController extends Controller
    
          $pp=Post::select("*")->orderByDesc("created_at")->get();
          foreach($pp as $p){  
-            $post=['body'=>$p->body,'user'=>User::where('id',$p->id_user)->value('name'),'cmntsNbr'=>'22','date'=>$p->created_at->diffForHumans()];        
+            $post=['body'=>$p->body,'user'=>User::where('id',$p->id_user)->value('name'),'cmntsNbr'=>'22','date'=>$p->created_at->diffForHumans(),'avatar'=>User::where('id',$p->id_user)->value('avatar')];        
             array_push($posts,$post);
          }
           
-
        return response()->json(['data'=>$posts]);
    }
 

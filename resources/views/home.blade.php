@@ -6,7 +6,7 @@
 		<div class="col-md-3">
 			<div class="profile-sidebar" >
 				<!-- SIDEBAR USERPIC -->
-					<img src="{{asset('assets/avatars/'.Auth::user()->avatar)}}" class="img-responsive profile-userpic" alt="">
+					<img src="{{asset('assets/avatars/'.Auth::user()->avatar)}}" class="img-responsive profile-userpic" style="height:250px;width:250px" alt="">
 				
 				<!-- END SIDEBAR USERPIC -->
 				<div class="profile-userbuttons" >
@@ -24,9 +24,12 @@
 						{{Auth::user()->name}}
 					</div>
 					<div class="profile-usertitle-job">
-						Developer
+						{{Auth::user()->type}}
+
 					</div>
+					
 				</div>
+				
 				<!-- END SIDEBAR USER TITLE -->
 				<!-- SIDEBAR BUTTONS -->
 				

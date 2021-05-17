@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\WorkerController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\CustomerController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -32,5 +33,7 @@ Route::put('/changeWorkerSettings', [WorkerController::class,'ChangeWorkerSettin
 //Posts Routes//
 Route::post('/savePost', [PostController::class,'SavePost']);
 Route::get('/getPosts', [PostController::class,'GetPosts']);
-
+//Customer Routes//
+Route::get('/showCustomerSettings', [CustomerController::class,'ShowCustomerSettings']);
+Route::put('/changeCustomerSettings', [CustomerController::class,'ChangeCustomerSettings']);
 

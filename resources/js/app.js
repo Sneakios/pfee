@@ -8,6 +8,8 @@ import VueRouter from 'vue-router';
 import SettingProfileWorker from './components/SettingProfileWorker.vue';
 import SettingProfileCustomer from './components/SettingProfileCustomer.vue';
 import ProfileWorker from './components/ProfileWorker.vue';
+import ProfileCustomer from './components/ProfileCustomer.vue';
+
 import Exmaple from './components/Exmaple.vue';
 import Swal from 'sweetalert2';
 window.Swal=Swal;
@@ -37,6 +39,7 @@ const routes =[
     {path:'/home/Edit-Profile-Customer',component:SettingProfileCustomer},
     {path:'/home/Edit-Profile-Provider',component:SettingProfileWorker},
     {path:'/home/Profile-Worker',component:ProfileWorker},
+    {path:'/home/Profile-Customer',component:ProfileCustomer},
 
 ];
 
