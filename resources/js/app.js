@@ -2,6 +2,7 @@
 require('./bootstrap');
 
 window.Vue = require('vue').default;
+Vue.component('pagination', require('laravel-vue-pagination'));
 
 import Vue from 'vue';
 import VueRouter from 'vue-router';
@@ -9,8 +10,8 @@ import SettingProfileWorker from './components/SettingProfileWorker.vue';
 import SettingProfileCustomer from './components/SettingProfileCustomer.vue';
 import ProfileWorker from './components/ProfileWorker.vue';
 import ProfileCustomer from './components/ProfileCustomer.vue';
-
-import Exmaple from './components/Exmaple.vue';
+import PostDetails from './components/PostDetails.vue';
+import Posts from './components/Posts.vue';
 import Swal from 'sweetalert2';
 window.Swal=Swal;
 
@@ -35,12 +36,12 @@ Vue.use(VueRouter);
 
 
 const routes =[
-    {path:'/home/',component:Exmaple},
+    {path:'/home/',component:Posts},
     {path:'/home/Edit-Profile-Customer',component:SettingProfileCustomer},
     {path:'/home/Edit-Profile-Provider',component:SettingProfileWorker},
     {path:'/home/Profile-Worker',component:ProfileWorker},
     {path:'/home/Profile-Customer',component:ProfileCustomer},
-
+    {path:'/home/PostDetails/:id',component:PostDetails},
 ];
 
 const router=new VueRouter({routes,mode:'history'
