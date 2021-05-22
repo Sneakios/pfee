@@ -27,16 +27,14 @@ class HomeController extends Controller
     public function index()
     
     {    
-        
+        $rate=0;
         $countWorker=-1;
         if(Auth::user()->type=='worker'){
         $countWorker = Worker::where('id_worker','=',Auth::user()->getAuthIdentifier())->count();
-        
+        $rate=Worker::where('id_worker','=',Auth::user()->getAuthIdentifier())->value('rate');
     }
-    $settings=Setting::find(1);
-    
-        return view('home',['count'=>$countWorker,'settings'=>$settings]);
-        
+    $settings=Setting::find(1);   
+        return view('home',['count'=>$countWorker,'settings'=>$settings,'rate'=>$rate]);        
     }
 
 

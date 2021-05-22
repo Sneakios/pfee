@@ -38,11 +38,19 @@ class PostController extends Controller
 
    public function GetPosts(){
     $posts=[];
-   
          $pp=Post::select("*")->orderByDesc("created_at")->get();
+        
          foreach($pp as $p){  
+             $user=User::where('id',$p->id_user)->value('type');
+             if(Auth::user()->type=="worker"){
+                 if($user=="customer"){
             $post=['id'=>$p->id,'body'=>$p->body,'user'=>User::where('id',$p->id_user)->value('name'),'cmntsNbr'=>Comment::where('post_id',$p->id)->count(),'date'=>$p->created_at->diffForHumans(),'avatar'=>User::where('id',$p->id_user)->value('avatar')];        
-            array_push($posts,$post);
+            array_push($posts,$post);}}
+           
+            if(Auth::user()->type=="customer"){
+                if($user=="worker"){
+           $post=['id'=>$p->id,'body'=>$p->body,'user'=>User::where('id',$p->id_user)->value('name'),'cmntsNbr'=>Comment::where('post_id',$p->id)->count(),'date'=>$p->created_at->diffForHumans(),'avatar'=>User::where('id',$p->id_user)->value('avatar')];        
+           array_push($posts,$post);}}
          }
           
        return response()->json(['data'=>$posts]);

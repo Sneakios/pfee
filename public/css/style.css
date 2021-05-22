@@ -165,3 +165,19 @@
   background: #fff;
   min-height: 460px;
   } 
+
+  .heading {
+    font-size: 25px;
+    margin-right: 25px;
+  }
+  
+  .fa {
+    font-size: 25px;
+  }
+  .checked {
+    color: orange;
+  }
+
+  .rating{
+    margin-left: 7%
+  }

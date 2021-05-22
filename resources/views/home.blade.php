@@ -27,7 +27,18 @@
 						{{Auth::user()->type}}
 
 					</div>
-					
+					@if(Auth::user()->type=='worker' && $count==1)
+					<div class="rating">	
+						@for ($i =1; $i <= 5; $i++)
+						@if ($i <= $rate)
+						<span class="fa fa-star checked"></span>
+						@else
+						<span class="fa fa-star"></span>
+						@endif						
+					 @endfor 			
+					<p>4.1 average based on 254 reviews.</p>
+					</div>
+					@endif
 				</div>
 				
 				<!-- END SIDEBAR USER TITLE -->
