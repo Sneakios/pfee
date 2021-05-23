@@ -2202,7 +2202,7 @@ __webpack_require__.r(__webpack_exports__);
             if (response.data.status == "success") {
               Swal.fire('Deleted!', 'Your post has been deleted.', 'success');
 
-              for (var i = 0; _this2.posts[i].id != id; i++) {
+              for (var i = 0; i < _this2.posts.length; i++) {
                 if (_this2.posts[i].id == id) {
                   _this2.posts.splice(i, 1);
                 }
