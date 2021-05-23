@@ -2170,6 +2170,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
+      edit: true,
       posts: {
         id: "",
         body: "",
@@ -2197,9 +2198,7 @@ __webpack_require__.r(__webpack_exports__);
         icon: 'warning'
       }).then(function (result) {
         if (result.isConfirmed) {
-          axios["delete"]('/deleteMyPost/' + id).then(function (response) {
-            console.log(response.data.status);
-          });
+          axios["delete"]('/deleteMyPost/' + id);
           Swal.fire('Deleted!', 'Your post has been deleted.', 'success');
 
           for (var i = 0; i < _this2.posts.length; i++) {
@@ -2769,8 +2768,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-//
-//
 //
 //
 //
@@ -43493,11 +43490,17 @@ var staticRenderFns = [
             border: "2px #0000FF solid",
             color: "white",
             "font-weight": "600",
-            width: "100px"
+            width: "105px"
           },
           attrs: { "data-toggle": "modal", "data-target": "#exampleModal" }
         },
-        [_c("b", [_vm._v("+")]), _vm._v(" Create Post\n    ")]
+        [
+          _c("i", {
+            staticClass: "fa fa-plus-circle blue",
+            staticStyle: { "font-size": "15px", weight: "600" }
+          }),
+          _vm._v(" Create Post\n    ")
+        ]
       )
     ])
   },
@@ -44022,7 +44025,16 @@ var render = function() {
                                 }
                               }
                             },
-                            [_vm._v("Delete")]
+                            [
+                              _c("i", {
+                                staticClass: "fa fa-trash red",
+                                staticStyle: {
+                                  "font-size": "15px",
+                                  weight: "600"
+                                }
+                              }),
+                              _vm._v(" Delete")
+                            ]
                           )
                         ])
                       ]
@@ -44057,7 +44069,13 @@ var staticRenderFns = [
             "font-weight": "600"
           }
         },
-        [_vm._v("Edit")]
+        [
+          _c("i", {
+            staticClass: "fa fa-edit green",
+            staticStyle: { "font-size": "15px", weight: "600" }
+          }),
+          _vm._v("  Edit")
+        ]
       )
     ])
   }

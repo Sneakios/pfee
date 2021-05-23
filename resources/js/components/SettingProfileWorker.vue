@@ -103,9 +103,7 @@
                   <select id="ville" class="form-select birth" v-model="skills">
                     <option value="Baby sitting">Baby Sitting</option>
                     <option value="Builder">Building</option>
-                    <option value="Beauty and well being"
-                      >Beauty and well being</option
-                    >
+                    <option value="Beauty and well being">Beauty and well being</option>
                     <option value="Chouffeur">Chouffeur</option>
                     <option value="Delovery">Delovery</option>
                     <option value="Painting">Painting</option>

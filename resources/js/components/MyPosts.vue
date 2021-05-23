@@ -36,9 +36,9 @@
                 <ul class="list-inline list-unstyled d-flex post-info">
                 <li> <router-link :to="'/home/PostDetails/' + post.id"><span><i class="fa fa-comment"></i> {{ post.cmntsNbr }}</span></router-link>  </li>
                 
-                <li> <button style="border-radius: 5px;margin-left:5px;font-size:15px;background-color:green;border: 2px green solid;color:white;font-size:13px;font-weight:600" >Edit</button></li>
+                <li> <button style="border-radius: 5px;margin-left:5px;font-size:15px;background-color:green;border: 2px green solid;color:white;font-size:13px;font-weight:600" ><i style="font-size:15px;weight:600" class="fa fa-edit green"></i>  Edit</button></li>
                
-                <li> <button style="border-radius: 5px;margin-left:5px;font-size:15px;background-color:red;border: 2px red solid;color:white;font-size:13px;font-weight:600" @click="deleteMyPost(post.id)">Delete</button></li>
+                <li> <button style="border-radius: 5px;margin-left:5px;font-size:15px;background-color:red;border: 2px red solid;color:white;font-size:13px;font-weight:600" @click="deleteMyPost(post.id)"><i style="font-size:15px;weight:600" class="fa fa-trash red"></i> Delete</button></li>
                           
                 </ul>
               </div>
@@ -54,6 +54,7 @@
 export default {
   data() {
     return {
+      edit:true,
       posts: {
         id: "",
         body: "",
@@ -79,9 +80,7 @@ export default {
             icon: 'warning',         
           }).then((result) => {
             if (result.isConfirmed) {
-                axios.delete('/deleteMyPost/'+id).then(response=>{
-        console.log(response.data.status)
-      })
+                axios.delete('/deleteMyPost/'+id)
               Swal.fire(
                 'Deleted!',
                 'Your post has been deleted.',

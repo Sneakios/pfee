@@ -3,11 +3,11 @@
     <div class="col-md-4 offset-md-4">
       <!-- Button trigger modal -->
       <button
-        style="border-radius: 5px;font-size:15px;background-color:#0000FF;border: 2px #0000FF solid;color:white;font-size:13px;font-weight:600;width:100px;"
+        style="border-radius: 5px;font-size:15px;background-color:#0000FF;border: 2px #0000FF solid;color:white;font-size:13px;font-weight:600;width:105px;"
         data-toggle="modal"
         data-target="#exampleModal"
       >
-        <b>+</b> Create Post
+        <i style="font-size:15px;weight:600" class="fa fa-plus-circle blue"></i> Create Post
       </button>
     </div>
     <!-- Modal -->
