@@ -38,6 +38,8 @@ const Toast = Swal.mixin({
   window.Alert=Alert;
 
 Vue.component('add-post', require('./components/AddPost.vue').default);
+Vue.component('edit-post', require('./components/EditPost.vue').default);
+
 Vue.component('complete-profile-worker', require('./components/CompleteProfileWorker.vue').default);
 Vue.use(VueRouter);
 
@@ -52,6 +54,7 @@ const routes =[
     {path:'/home/Profile-Customer',component:ProfileCustomer},
     {path:'/home/PostDetails/:id',component:PostDetails},
     {path:'/home/MyPosts/',component:MyPosts},
+  
 
 ];
 

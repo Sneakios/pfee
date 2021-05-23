@@ -37,6 +37,8 @@ Route::get('/getPosts', [PostController::class,'GetPosts']);
 Route::get('/getMyPosts', [PostController::class,'GetMyPosts']);
 Route::get('/getPostDetails/{id}', [PostController::class,'GetPostDetails']);
 Route::delete('/deleteMyPost/{id}', [PostController::class,'DeleteMyPost']);
+Route::put('/editMyPost/{id}', [PostController::class,'EditMyPost']);
+
 
 
 //Customer Routes//

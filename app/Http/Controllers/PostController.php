@@ -51,8 +51,7 @@ class PostController extends Controller
                 if($user=="worker"){
            $post=['id'=>$p->id,'body'=>$p->body,'user'=>User::where('id',$p->id_user)->value('name'),'cmntsNbr'=>Comment::where('post_id',$p->id)->count(),'date'=>$p->created_at->diffForHumans(),'avatar'=>User::where('id',$p->id_user)->value('avatar')];        
            array_push($posts,$post);}}
-         }
-          
+         }         
        return response()->json(['data'=>$posts]);
    }
 
@@ -60,21 +59,15 @@ class PostController extends Controller
        $p=Post::find($id);
        $post=['id'=>$p->id,'body'=>$p->body,'user'=>User::where('id',$p->id_user)->value('name'),'cmntsNbr'=>Comment::where('post_id',$id)->count(),'date'=>$p->created_at->diffForHumans(),'avatar'=>User::where('id',$p->id_user)->value('avatar')];        
        return response()->json(['post'=>$post]);
-
-
    }
 
    public function GetMyPosts(){
     $posts=[];
-         $pp=Post::where('id_user',Auth::user()->id)->orderByDesc("created_at")->get();
-        
-         foreach($pp as $p){  
-                
+         $pp=Post::where('id_user',Auth::user()->id)->orderByDesc("created_at")->get();        
+         foreach($pp as $p){                 
             $post=['id'=>$p->id,'body'=>$p->body,'user'=>Auth::user()->name,'cmntsNbr'=>Comment::where('post_id',$p->id)->count(),'date'=>$p->created_at->diffForHumans(),'avatar'=>Auth::user()->avatar];        
-            array_push($posts,$post);
-       
-         }
-          
+            array_push($posts,$post);      
+         }          
        return response()->json(['data'=>$posts]);
    }
 
@@ -83,6 +76,30 @@ class PostController extends Controller
     $post->delete();
     return response()->json(['status'=>'success']);
    }
+
+   public function EditMyPost(Request $request,$id){
+
+    $validator = Validator::make($request->all(),[
+      
+        'body'=>'required|min:5',
+       
+        
+      ]);
+  
+      if($validator->fails()){
+          return response()->json(['status'=>'error','errors'=>$validator->errors()]);
+      }
+  
+  
+    
+     
+    Post::find($id)->update(
+      ['body'=>$request->body],  
+    );
+    
+    return response()->json(['status'=>'success']);
+     }
+   
 
 
 }
