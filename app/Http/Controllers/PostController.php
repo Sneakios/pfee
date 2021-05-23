@@ -64,4 +64,25 @@ class PostController extends Controller
 
    }
 
+   public function GetMyPosts(){
+    $posts=[];
+         $pp=Post::where('id_user',Auth::user()->id)->orderByDesc("created_at")->get();
+        
+         foreach($pp as $p){  
+                
+            $post=['id'=>$p->id,'body'=>$p->body,'user'=>Auth::user()->name,'cmntsNbr'=>Comment::where('post_id',$p->id)->count(),'date'=>$p->created_at->diffForHumans(),'avatar'=>Auth::user()->avatar];        
+            array_push($posts,$post);
+       
+         }
+          
+       return response()->json(['data'=>$posts]);
+   }
+
+   public function DeleteMyPost($id){
+       $post=Post::find($id);
+    $post->delete();
+    return response()->json(['status'=>'success']);
+   }
+
+
 }

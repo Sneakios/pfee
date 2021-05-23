@@ -34,7 +34,11 @@ Route::put('/changeWorkerSettings', [WorkerController::class,'ChangeWorkerSettin
 //Posts Routes//
 Route::post('/savePost', [PostController::class,'SavePost']);
 Route::get('/getPosts', [PostController::class,'GetPosts']);
+Route::get('/getMyPosts', [PostController::class,'GetMyPosts']);
 Route::get('/getPostDetails/{id}', [PostController::class,'GetPostDetails']);
+Route::delete('/deleteMyPost/{id}', [PostController::class,'DeleteMyPost']);
+
+
 //Customer Routes//
 Route::get('/showCustomerSettings', [CustomerController::class,'ShowCustomerSettings']);
 Route::put('/changeCustomerSettings', [CustomerController::class,'ChangeCustomerSettings']);
