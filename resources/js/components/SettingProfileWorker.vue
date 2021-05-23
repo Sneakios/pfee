@@ -101,7 +101,7 @@
                 </div>
                 <div class="form-group col-md-6">
                   <select id="ville" class="form-select birth" v-model="skills">
-                    <option value="Baby sitting">Baby Sitting</option>
+                    <option value="Baby sitting"> <i class="fas fa-baby"></i>Baby Sitting</option>
                     <option value="Builder">Building</option>
                     <option value="Beauty and well being">Beauty and well being</option>
                     <option value="Chouffeur">Chouffeur</option>

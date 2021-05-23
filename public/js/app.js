@@ -2198,14 +2198,19 @@ __webpack_require__.r(__webpack_exports__);
         icon: 'warning'
       }).then(function (result) {
         if (result.isConfirmed) {
-          axios["delete"]('/deleteMyPost/' + id);
-          Swal.fire('Deleted!', 'Your post has been deleted.', 'success');
+          axios["delete"]('/deleteMyPost/' + id).then(function (response) {
+            if (response.data.status == "success") {
+              Swal.fire('Deleted!', 'Your post has been deleted.', 'success');
 
-          for (var i = 0; i < _this2.posts.length; i++) {
-            if (_this2.posts[i].id == id) {
-              _this2.posts.splice(i, 1);
+              for (var i = 0; _this2.posts[i].id != id; i++) {
+                if (_this2.posts[i].id == id) {
+                  _this2.posts.splice(i, 1);
+                }
+              }
             }
-          }
+          });
+        } else {
+          Swal.fire('Cancelled!', 'Your post is safe :)', 'error');
         }
       });
     }
@@ -45221,9 +45226,7 @@ var render = function() {
                         }
                       },
                       [
-                        _c("option", { attrs: { value: "Baby sitting" } }, [
-                          _vm._v("Baby Sitting")
-                        ]),
+                        _vm._m(0),
                         _vm._v(" "),
                         _c("option", { attrs: { value: "Builder" } }, [
                           _vm._v("Building")
@@ -45298,7 +45301,7 @@ var render = function() {
                   ])
                 ]),
                 _vm._v(" "),
-                _vm._m(0)
+                _vm._m(1)
               ]
             )
           ])
@@ -45308,6 +45311,15 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("option", { attrs: { value: "Baby sitting" } }, [
+      _c("i", { staticClass: "fas fa-baby" }),
+      _vm._v("Baby Sitting")
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement

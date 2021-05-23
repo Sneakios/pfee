@@ -79,19 +79,27 @@ export default {
             text: "You won't be able to revert this!",
             icon: 'warning',         
           }).then((result) => {
-            if (result.isConfirmed) {
-                axios.delete('/deleteMyPost/'+id)
-              Swal.fire(
-                'Deleted!',
-                'Your post has been deleted.',
-                'success'
-              )             
-                  for(var i=0; i < this.posts.length; i++) {
-                    if(this.posts[i].id == id)
-                    {
-                        this.posts.splice(i,1);
-                    } }
-            }
+              if (result.isConfirmed) {
+                  axios.delete('/deleteMyPost/'+id).then(response=>{
+                    if(response.data.status=="success"){
+                Swal.fire(
+                  'Deleted!',
+                  'Your post has been deleted.',
+                  'success'
+                 )             
+                    for(var i=0; this.posts[i].id != id; i++) {
+                      if(this.posts[i].id == id)
+                      {
+                          this.posts.splice(i,1);
+                      } }
+                    }
+                })
+          
+            }else{Swal.fire(
+                'Cancelled!',
+                'Your post is safe :)',
+                'error'
+              )       }
           })          
     }  
   },
