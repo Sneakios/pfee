@@ -2104,6 +2104,118 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/EditComment.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/EditComment.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: ['body', 'id'],
+  data: function data() {
+    return {
+      dcbody: this.body,
+      dcid: this.id,
+      errors: []
+    };
+  },
+  methods: {
+    EditComment: function EditComment() {
+      var _this = this;
+
+      Alert.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        confirmButtonText: 'Yes, change it!'
+      }).then(function (result) {
+        if (result.isConfirmed) {
+          axios.put("/editMyComment/" + _this.dcid, {
+            body: _this.dcbody
+          }).then(function (response) {
+            if (response.data.status == "error") {
+              Toast.fire({
+                icon: "error",
+                title: "too short !!"
+              });
+              _this.errors = response.data.errors;
+            } else if (response.data.status == "success") {
+              Swal.fire('Saved!', 'Your comment has been changed.', 'success');
+              _this.errors = [];
+            }
+          });
+        } else {
+          Swal.fire('Cancelled!', 'Your comment is not changed :)', 'error');
+        }
+      });
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/EditPost.vue?vue&type=script&lang=js&":
 /*!***************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/EditPost.vue?vue&type=script&lang=js& ***!
@@ -2188,7 +2300,8 @@ __webpack_require__.r(__webpack_exports__);
       Alert.fire({
         title: 'Are you sure?',
         text: "You won't be able to revert this!",
-        icon: 'warning'
+        icon: 'warning',
+        confirmButtonText: 'Yes, change it!'
       }).then(function (result) {
         if (result.isConfirmed) {
           axios.put("/editMyPost/" + _this.did, {
@@ -2279,7 +2392,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ['body'],
+  props: ['body', 'id'],
   data: function data() {
     return {
       edit: true,
@@ -2307,7 +2420,8 @@ __webpack_require__.r(__webpack_exports__);
       Alert.fire({
         title: 'Are you sure?',
         text: "You won't be able to revert this!",
-        icon: 'warning'
+        icon: 'warning',
+        confirmButtonText: 'Yes, delete it!'
       }).then(function (result) {
         if (result.isConfirmed) {
           axios["delete"]('/deleteMyPost/' + id).then(function (response) {
@@ -2420,7 +2534,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: ['body', 'id'],
   data: function data() {
     return {
       errors: [],
@@ -2433,10 +2558,12 @@ __webpack_require__.r(__webpack_exports__);
         avatar: ""
       },
       comments: {
+        id: "",
         avatar: "",
         body: "",
         user: "",
-        date: ""
+        date: "",
+        me: ""
       },
       comment: {
         user: "",
@@ -2485,6 +2612,32 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get("/getComments/" + this.$route.params.id).then(function (response) {
         _this3.comments = response.data.comments;
+      });
+    },
+    deleteMyComment: function deleteMyComment(id) {
+      var _this4 = this;
+
+      Alert.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        confirmButtonText: 'Yes, delete it!'
+      }).then(function (result) {
+        if (result.isConfirmed) {
+          axios["delete"]('/deleteMyComment/' + id).then(function (response) {
+            if (response.data.status == "success") {
+              Swal.fire('Deleted!', 'Your comment has been deleted.', 'success');
+
+              for (var i = 0; i < _this4.comments.length; i++) {
+                if (_this4.comments[i].id == id) {
+                  _this4.comments.splice(i, 1);
+                }
+              }
+            }
+          });
+        } else {
+          Swal.fire('Cancelled!', 'Your comment is safe :)', 'error');
+        }
       });
     }
   },
@@ -3145,13 +3298,13 @@ var Toast = sweetalert2__WEBPACK_IMPORTED_MODULE_8___default().mixin({
 var Alert = sweetalert2__WEBPACK_IMPORTED_MODULE_8___default().mixin({
   showCancelButton: true,
   confirmButtonColor: '#3085d6',
-  cancelButtonColor: '#d33',
-  confirmButtonText: 'Yes, delete it!'
+  cancelButtonColor: '#d33'
 });
 window.Toast = Toast;
 window.Alert = Alert;
 vue__WEBPACK_IMPORTED_MODULE_0__.default.component('add-post', __webpack_require__(/*! ./components/AddPost.vue */ "./resources/js/components/AddPost.vue").default);
 vue__WEBPACK_IMPORTED_MODULE_0__.default.component('edit-post', __webpack_require__(/*! ./components/EditPost.vue */ "./resources/js/components/EditPost.vue").default);
+vue__WEBPACK_IMPORTED_MODULE_0__.default.component('edit-comment', __webpack_require__(/*! ./components/EditComment.vue */ "./resources/js/components/EditComment.vue").default);
 vue__WEBPACK_IMPORTED_MODULE_0__.default.component('complete-profile-worker', __webpack_require__(/*! ./components/CompleteProfileWorker.vue */ "./resources/js/components/CompleteProfileWorker.vue").default);
 vue__WEBPACK_IMPORTED_MODULE_0__.default.use(vue_router__WEBPACK_IMPORTED_MODULE_9__.default);
 var routes = [{
@@ -42931,6 +43084,45 @@ component.options.__file = "resources/js/components/CompleteProfileWorker.vue"
 
 /***/ }),
 
+/***/ "./resources/js/components/EditComment.vue":
+/*!*************************************************!*\
+  !*** ./resources/js/components/EditComment.vue ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _EditComment_vue_vue_type_template_id_6c52dd4c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./EditComment.vue?vue&type=template&id=6c52dd4c& */ "./resources/js/components/EditComment.vue?vue&type=template&id=6c52dd4c&");
+/* harmony import */ var _EditComment_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./EditComment.vue?vue&type=script&lang=js& */ "./resources/js/components/EditComment.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__.default)(
+  _EditComment_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
+  _EditComment_vue_vue_type_template_id_6c52dd4c___WEBPACK_IMPORTED_MODULE_0__.render,
+  _EditComment_vue_vue_type_template_id_6c52dd4c___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/EditComment.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/EditPost.vue":
 /*!**********************************************!*\
   !*** ./resources/js/components/EditPost.vue ***!
@@ -43275,6 +43467,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/EditComment.vue?vue&type=script&lang=js&":
+/*!**************************************************************************!*\
+  !*** ./resources/js/components/EditComment.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EditComment_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./EditComment.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/EditComment.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EditComment_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+
+/***/ }),
+
 /***/ "./resources/js/components/EditPost.vue?vue&type=script&lang=js&":
 /*!***********************************************************************!*\
   !*** ./resources/js/components/EditPost.vue?vue&type=script&lang=js& ***!
@@ -43433,6 +43641,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CompleteProfileWorker_vue_vue_type_template_id_99ae5d1a___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CompleteProfileWorker_vue_vue_type_template_id_99ae5d1a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./CompleteProfileWorker.vue?vue&type=template&id=99ae5d1a& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/CompleteProfileWorker.vue?vue&type=template&id=99ae5d1a&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/EditComment.vue?vue&type=template&id=6c52dd4c&":
+/*!********************************************************************************!*\
+  !*** ./resources/js/components/EditComment.vue?vue&type=template&id=6c52dd4c& ***!
+  \********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditComment_vue_vue_type_template_id_6c52dd4c___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditComment_vue_vue_type_template_id_6c52dd4c___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditComment_vue_vue_type_template_id_6c52dd4c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./EditComment.vue?vue&type=template&id=6c52dd4c& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/EditComment.vue?vue&type=template&id=6c52dd4c&");
 
 
 /***/ }),
@@ -44040,6 +44265,176 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/EditComment.vue?vue&type=template&id=6c52dd4c&":
+/*!***********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/EditComment.vue?vue&type=template&id=6c52dd4c& ***!
+  \***********************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _vm._m(0),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "modal fade",
+        attrs: {
+          id: "EditModalComment",
+          tabindex: "-1",
+          role: "dialog",
+          "aria-labelledby": "exampleModalLabel",
+          "aria-hidden": "true"
+        }
+      },
+      [
+        _c(
+          "div",
+          { staticClass: "modal-dialog", attrs: { role: "document" } },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _vm._m(1),
+              _vm._v(" "),
+              _c(
+                "form",
+                {
+                  on: {
+                    submit: function($event) {
+                      $event.preventDefault()
+                      return _vm.EditComment($event)
+                    }
+                  }
+                },
+                [
+                  _c("div", { staticClass: "modal-body" }, [
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("div", { staticClass: "form-group col-md-12" }, [
+                        _c("textarea", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.dcbody,
+                              expression: "dcbody"
+                            }
+                          ],
+                          class: [
+                            "form-control",
+                            _vm.errors.body ? "is-invalid" : ""
+                          ],
+                          attrs: { placeholder: "body ...", required: "" },
+                          domProps: { value: _vm.dcbody },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.dcbody = $event.target.value
+                            }
+                          }
+                        })
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _vm._m(2)
+                ]
+              )
+            ])
+          ]
+        )
+      ]
+    )
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      {
+        staticStyle: {
+          "border-radius": "5px",
+          "margin-left": "5px",
+          "font-size": "13px",
+          "background-color": "green",
+          border: "2px green solid",
+          color: "white",
+          "font-weight": "600"
+        },
+        attrs: { "data-toggle": "modal", "data-target": "#EditModalComment" }
+      },
+      [
+        _c("i", {
+          staticClass: "fa fa-edit",
+          staticStyle: { "font-size": "15px", weight: "600" }
+        })
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c(
+        "h5",
+        { staticClass: "modal-title", attrs: { id: "exampleModalLabel" } },
+        [_vm._v("Edit Comment")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-label": "Close"
+          }
+        },
+        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-footer" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-danger",
+          attrs: { type: "button", "data-dismiss": "modal" }
+        },
+        [_vm._v("\n              Close\n            ")]
+      ),
+      _vm._v(" "),
+      _c("input", {
+        staticClass: "btn btn-success",
+        attrs: { type: "submit", value: "Save" }
+      })
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/EditPost.vue?vue&type=template&id=4292f396&":
 /*!********************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/EditPost.vue?vue&type=template&id=4292f396& ***!
@@ -44612,11 +45007,64 @@ var render = function() {
             }),
             _vm._v(" "),
             _c("div", { staticClass: "media-body" }, [
-              _c("strong", { staticClass: "text-primary" }, [
-                _vm._v(" " + _vm._s(comment.user))
-              ]),
-              _c("br"),
-              _vm._v("\n        " + _vm._s(comment.body) + " "),
+              _c(
+                "ul",
+                { staticClass: "list-inline list-unstyled d-flex post-info" },
+                [
+                  _c("li", [
+                    _c("strong", { staticClass: "text-primary" }, [
+                      _vm._v(" " + _vm._s(comment.user))
+                    ]),
+                    _c("br")
+                  ]),
+                  _vm._v(" "),
+                  comment.me
+                    ? _c(
+                        "li",
+                        [
+                          _c("edit-comment", {
+                            attrs: { body: comment.body, id: comment.id }
+                          })
+                        ],
+                        1
+                      )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  comment.me
+                    ? _c("li", [
+                        _c(
+                          "button",
+                          {
+                            staticStyle: {
+                              "border-radius": "5px",
+                              "margin-left": "5px",
+                              "font-size": "13px",
+                              "background-color": "red",
+                              border: "2px red solid",
+                              color: "white",
+                              "font-weight": "600"
+                            },
+                            on: {
+                              click: function($event) {
+                                return _vm.deleteMyComment(comment.id)
+                              }
+                            }
+                          },
+                          [
+                            _c("i", {
+                              staticClass: "fa fa-trash red",
+                              staticStyle: {
+                                "font-size": "15px",
+                                weight: "600"
+                              }
+                            })
+                          ]
+                        )
+                      ])
+                    : _vm._e()
+                ]
+              ),
+              _vm._v("\n    \n        " + _vm._s(comment.body) + " "),
               _c("br"),
               _vm._v(" "),
               _c("span", [

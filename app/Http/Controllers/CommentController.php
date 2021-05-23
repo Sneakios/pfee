@@ -34,12 +34,36 @@ class CommentController extends Controller
   }
 
   public function GetComments($id){
+    $me=false;
     $comments=[];  
          $cc=Comment::where('post_id',$id)->orderBy("created_at")->get();
          foreach($cc as $c){  
-            $comment=['body'=>$c->body,'user'=>User::where('id',$c->user_id)->value('name'),'date'=>$c->created_at->diffForHumans(),'avatar'=>User::where('id',$c->user_id)->value('avatar')];        
+           if($c->user_id==Auth::user()->id){$me=true;}
+            $comment=['body'=>$c->body,'user'=>User::where('id',$c->user_id)->value('name'),'date'=>$c->created_at->diffForHumans(),'avatar'=>User::where('id',$c->user_id)->value('avatar'),'me'=>$me,'id'=>$c->id];        
             array_push($comments,$comment);
+            $me=false;
          }         
        return response()->json(['comments'=>$comments]);
   }
+
+  public function DeleteMyComment($id){
+    $comment=Comment::find($id);
+ $comment->delete();
+ return response()->json(['status'=>'success']);
+}
+
+public function EditMyComment(Request $request,$id){
+
+  $validator = Validator::make($request->all(),[    
+      'body'=>'required|min:2',     
+    ]);
+    if($validator->fails()){
+        return response()->json(['status'=>'error','errors'=>$validator->errors()]);
+    }
+  Comment::find($id)->update(
+    ['body'=>$request->body],  
+  ); 
+  return response()->json(['status'=>'success']);
+   }
+
 }

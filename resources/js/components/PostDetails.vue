@@ -63,10 +63,20 @@
           alt=""
         />
         <div class="media-body">
-          <strong class="text-primary"> {{ comment.user }}</strong
-          ><br />
+          <ul class="list-inline list-unstyled d-flex post-info">
+                <li>      <strong class="text-primary"> {{ comment.user }}</strong
+          ><br /> </li>
+                
+                <li v-if="comment.me"> <edit-comment :body="comment.body" :id="comment.id"></edit-comment></li>              
+                <li v-if="comment.me"> <button style="border-radius: 5px;margin-left:5px;font-size:15px;background-color:red;border: 2px red solid;color:white;font-size:13px;font-weight:600" @click="deleteMyComment(comment.id)"><i style="font-size:15px;weight:600" class="fa fa-trash red"></i></button></li>
+                          
+                </ul>
+      
           {{ comment.body }} <br />
-          <span> <i class="fa fa-calendar"></i> {{ comment.date }}</span>
+                 <span> <i class="fa fa-calendar"></i> {{ comment.date }}</span>  
+           
+         
+         
         </div>
       </div>
     </div>
@@ -75,6 +85,7 @@
 
 <script>
 export default {
+  props: ['body','id'],
   data() {
     return {
       errors: [],
@@ -87,10 +98,12 @@ export default {
         avatar: ""
       },
       comments: {
+        id:"",
         avatar: "",
         body: "",
         user: "",
-        date: ""
+        date: "",
+        me:"",
       },
       comment: {
         user: "",
@@ -137,7 +150,39 @@ export default {
       axios.get("/getComments/" + this.$route.params.id).then(response => {
         this.comments = response.data.comments;
       });
-    }
+    },
+    
+    deleteMyComment(id){
+      Alert.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning', 
+            confirmButtonText: 'Yes, delete it!'    
+                 
+          }).then((result) => {
+            if (result.isConfirmed) {
+                axios.delete('/deleteMyComment/'+id).then(response=>{
+                  if(response.data.status=="success"){
+         Swal.fire(
+                'Deleted!',
+                'Your comment has been deleted.',
+                'success'
+              )             
+                  for(var i=0; i < this.comments.length; i++) {
+                    if(this.comments[i].id == id)
+                    {
+                        this.comments.splice(i,1);
+                    } }
+                  }
+                })
+          
+            }else{Swal.fire(
+                'Cancelled!',
+                'Your comment is safe :)',
+                'error'
+              )       }
+          })          
+    } 
   },
   created() {
     this.getPostDetails();

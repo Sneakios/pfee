@@ -3,14 +3,14 @@
       <!-- Button trigger modal -->
       <button style="border-radius: 5px;margin-left:5px;font-size:15px;background-color:green;border: 2px green solid;color:white;font-size:13px;font-weight:600"
         data-toggle="modal"
-        data-target="#EditModal" >
-        <i style="font-size:15px;weight:600" class="fa fa-edit"></i> Edit
+        data-target="#EditModalComment" >
+        <i style="font-size:15px;weight:600" class="fa fa-edit"></i>
       </button>
    
     <!-- Modal -->
     <div
       class="modal fade"
-      id="EditModal"
+      id="EditModalComment"
       tabindex="-1"
       role="dialog"
       aria-labelledby="exampleModalLabel"
@@ -19,7 +19,7 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Edit Post</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Edit Comment</h5>
             <button
               type="button"
               class="close"
@@ -29,13 +29,13 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <form @submit.prevent="EditPost">
+          <form @submit.prevent="EditComment">
             <div class="modal-body">
               <div class="form-group">
                 <div class="form-group col-md-12">
                   <textarea
                     :class="['form-control', errors.body ? 'is-invalid' : '']"
-                    v-model="dbody"
+                    v-model="dcbody"
                     placeholder="body ..."
                     required
                   ></textarea>
@@ -61,15 +61,15 @@ export default {
   data() {
       
     return {
-      dbody:this.body,
-      did:this.id,
+      dcbody:this.body,
+      dcid:this.id,
       errors: []
     };
   },
 
 
   methods: {
-      EditPost() {
+      EditComment() {
      
       Alert.fire({
             title: 'Are you sure?',
@@ -78,8 +78,8 @@ export default {
             confirmButtonText: 'Yes, change it!'    
           }).then((result) => {
             if (result.isConfirmed) {
-               axios.put("/editMyPost/"+this.did, {
-          body: this.dbody,       
+               axios.put("/editMyComment/"+this.dcid, {
+          body: this.dcbody,       
         })
         .then(response => {
           if (response.data.status == "error") {
@@ -91,7 +91,7 @@ export default {
           } else if (response.data.status == "success") {
               Swal.fire(
                 'Saved!',
-                'Your post has been changed.',
+                'Your comment has been changed.',
                 'success'
               )  
               
@@ -100,7 +100,7 @@ export default {
         });
             }else{Swal.fire(
                 'Cancelled!',
-                'Your post is not changed :)',
+                'Your comment is not changed :)',
                 'error'
               )       }
             })

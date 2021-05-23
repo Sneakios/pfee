@@ -32,13 +32,14 @@ const Toast = Swal.mixin({
     showCancelButton: true,
     confirmButtonColor: '#3085d6',
     cancelButtonColor: '#d33',
-    confirmButtonText: 'Yes, delete it!'
+    
   })
   window.Toast=Toast;
   window.Alert=Alert;
 
 Vue.component('add-post', require('./components/AddPost.vue').default);
 Vue.component('edit-post', require('./components/EditPost.vue').default);
+Vue.component('edit-comment', require('./components/EditComment.vue').default);
 
 Vue.component('complete-profile-worker', require('./components/CompleteProfileWorker.vue').default);
 Vue.use(VueRouter);
