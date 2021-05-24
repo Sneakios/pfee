@@ -2729,6 +2729,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -2738,7 +2744,8 @@ __webpack_require__.r(__webpack_exports__);
         user: "",
         cmntsNbr: "",
         date: "",
-        avatar: ""
+        avatar: "",
+        interessent: ""
       }
     };
   },
@@ -2750,8 +2757,57 @@ __webpack_require__.r(__webpack_exports__);
         _this.posts = response.data.data;
       });
     },
-    doSomething: function doSomething() {
-      alert("fathy");
+    Interessent: function Interessent(id) {
+      var _this2 = this;
+
+      Alert.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        confirmButtonText: 'Yes, added it!'
+      }).then(function (result) {
+        if (result.isConfirmed) {
+          axios.post('/interessentPost/' + id).then(function (response) {
+            if (response.data.status == "success") {
+              Swal.fire('Added!', 'This post has been added.', 'success');
+
+              for (var i = 0; i < _this2.posts.length; i++) {
+                if (_this2.posts[i].id == id) {
+                  _this2.posts[i].interessent = true;
+                }
+              }
+            }
+          });
+        } else {
+          Swal.fire('Cancelled!', 'This post not added :)', 'error');
+        }
+      });
+    },
+    UnInteressent: function UnInteressent(id) {
+      var _this3 = this;
+
+      Alert.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        confirmButtonText: 'Yes, delelte it from favorit list!'
+      }).then(function (result) {
+        if (result.isConfirmed) {
+          axios["delete"]('/unInteressentPost/' + id).then(function (response) {
+            if (response.data.status == "success") {
+              Swal.fire('Deleted!', 'This post has been deleted from favorit list.', 'success');
+
+              for (var i = 0; i < _this3.posts.length; i++) {
+                if (_this3.posts[i].id == id) {
+                  _this3.posts[i].interessent = false;
+                }
+              }
+            }
+          });
+        } else {
+          Swal.fire('Cancelled!', 'This post is safe :)', 'error');
+        }
+      });
     }
   },
   created: function created() {
@@ -45185,8 +45241,72 @@ var render = function() {
                                   [
                                     _vm._v(
                                       "\n                        " +
-                                        _vm._s(post.user)
-                                    )
+                                        _vm._s(post.user) +
+                                        " \n                        "
+                                    ),
+                                    post.interessent
+                                      ? _c(
+                                          "button",
+                                          {
+                                            staticStyle: {
+                                              "border-radius": "5px",
+                                              "margin-left": "5px",
+                                              "font-size": "13px",
+                                              "background-color": "white",
+                                              border: "0px",
+                                              "font-weight": "600"
+                                            },
+                                            on: {
+                                              click: function($event) {
+                                                return _vm.UnInteressent(
+                                                  post.id
+                                                )
+                                              }
+                                            }
+                                          },
+                                          [
+                                            _c("i", {
+                                              staticClass: "fa fa-star",
+                                              staticStyle: {
+                                                "font-size": "23px",
+                                                color: "yellow",
+                                                "margin-left": "3px"
+                                              }
+                                            })
+                                          ]
+                                        )
+                                      : _vm._e(),
+                                    _vm._v(" "),
+                                    !post.interessent
+                                      ? _c(
+                                          "button",
+                                          {
+                                            staticStyle: {
+                                              "border-radius": "5px",
+                                              "margin-left": "5px",
+                                              "font-size": "13px",
+                                              "background-color": "white",
+                                              border: "0px",
+                                              "font-weight": "600"
+                                            },
+                                            on: {
+                                              click: function($event) {
+                                                return _vm.Interessent(post.id)
+                                              }
+                                            }
+                                          },
+                                          [
+                                            _c("i", {
+                                              staticClass: "fa fa-star",
+                                              staticStyle: {
+                                                "font-size": "23px",
+                                                weight: "600",
+                                                color: "grey"
+                                              }
+                                            })
+                                          ]
+                                        )
+                                      : _vm._e()
                                   ]
                                 ),
                                 _c("br")
@@ -45224,17 +45344,22 @@ var render = function() {
                       },
                       [
                         _c(
-                          "router-link",
-                          { attrs: { to: "/home/PostDetails/" + post.id } },
+                          "li",
                           [
-                            _c("span", [
-                              _c("i", { staticClass: "fa fa-comment" }),
-                              _vm._v(" " + _vm._s(post.cmntsNbr))
-                            ])
-                          ]
+                            _c(
+                              "router-link",
+                              { attrs: { to: "/home/PostDetails/" + post.id } },
+                              [
+                                _c("span", [
+                                  _c("i", { staticClass: "fa fa-comment" }),
+                                  _vm._v(" " + _vm._s(post.cmntsNbr))
+                                ])
+                              ]
+                            )
+                          ],
+                          1
                         )
-                      ],
-                      1
+                      ]
                     )
                   ]
                 )

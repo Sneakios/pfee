@@ -26,6 +26,10 @@ Route::get('/getMyPosts', [PostController::class,'GetMyPosts']);
 Route::get('/getPostDetails/{id}', [PostController::class,'GetPostDetails']);
 Route::delete('/deleteMyPost/{id}', [PostController::class,'DeleteMyPost']);
 Route::put('/editMyPost/{id}', [PostController::class,'EditMyPost']);
+Route::post('/interessentPost/{id}', [PostController::class,'InteressentPost']);
+Route::delete('/unInteressentPost/{id}', [PostController::class,'UnInteressentPost']);
+
+
 //Customer Routes//
 Route::get('/showCustomerSettings', [CustomerController::class,'ShowCustomerSettings']);
 Route::put('/changeCustomerSettings', [CustomerController::class,'ChangeCustomerSettings']);

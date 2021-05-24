@@ -34,14 +34,16 @@
                   <div class="form-group col-md-4;border:1px solid white">
                     <div class="form-group">
                       <div>
+                      
                         <strong class="text-primary" style="margin-left:1px">
-                          {{ post.user }}</strong
+                          {{ post.user }} 
+                          <button  v-if="post.interessent" style="border-radius: 5px;margin-left:5px;font-size:15px;background-color:white	;border: 0px;font-size:13px;font-weight:600;" @click="UnInteressent(post.id)"><i  class="fa fa-star" style="font-size:23px;color:yellow	;margin-left:3px"></i></button>
+                          <button  v-if="!post.interessent" style="border-radius: 5px;margin-left:5px;font-size:15px;background-color:white	;border: 0px;font-size:13px;font-weight:600;" @click="Interessent(post.id)"><i style="font-size:15px;weight:600;color:grey;font-size:23px" class="fa fa-star"></i></button></strong
                         ><br />
                       </div>
                       <div style="margin-left:5px">
-                        <span>
-                          <i class="fa fa-calendar"></i> {{ post.date }}</span
-                        >
+
+                        <span> <i class="fa fa-calendar"></i> {{ post.date }}</span>
                       </div>
                     </div>
                   </div>
@@ -51,11 +53,15 @@
                   {{ post.body }}
                 </b>
                 <ul class="list-inline list-unstyled d-flex post-info">
+                <li>
                   <router-link :to="'/home/PostDetails/' + post.id"
                     ><span
                       ><i class="fa fa-comment"></i> {{ post.cmntsNbr }}</span
                     ></router-link
                   >
+                </li>
+                
+                
                 </ul>
               </div>
 
@@ -77,7 +83,8 @@ export default {
         user: "",
         cmntsNbr: "",
         date: "",
-        avatar: ""
+        avatar: "",
+        interessent:""
       }
     };
   },
@@ -88,8 +95,73 @@ export default {
         this.posts = response.data.data;
       });
     },
-    doSomething() {
-      alert("fathy");
+    Interessent(id) {
+      Alert.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning', 
+            confirmButtonText: 'Yes, added it!'    
+                 
+          }).then((result) => {
+            if (result.isConfirmed) {
+                axios.post('/interessentPost/'+id).then(response=>{
+                  if(response.data.status=="success"){
+                  
+         Swal.fire(
+                'Added!',
+                'This post has been added.',
+                'success'
+              )     
+                   for(var i=0; i < this.posts.length; i++) {
+                    if(this.posts[i].id == id)
+                    {
+                        this.posts[i].interessent=true;
+                    } }        
+                  
+                  }
+                })
+          
+            }else{Swal.fire(
+                'Cancelled!',
+                'This post not added :)',
+                'error'
+              )       }
+          })   
+
+    },
+    UnInteressent(id){
+       Alert.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning', 
+            confirmButtonText: 'Yes, delelte it from favorit list!'    
+                 
+          }).then((result) => {
+            if (result.isConfirmed) {
+                axios.delete('/unInteressentPost/'+id).then(response=>{
+                  if(response.data.status=="success"){
+                    
+                   
+         Swal.fire(
+                'Deleted!',
+                'This post has been deleted from favorit list.',
+                'success'
+              )             
+                      for(var i=0; i < this.posts.length; i++) {
+                    if(this.posts[i].id == id)
+                    {
+                        this.posts[i].interessent=false;
+                    } }
+                  }
+                })
+          
+            }else{Swal.fire(
+                'Cancelled!',
+                'This post is safe :)',
+                'error'
+              )       }
+          })   
+
     }
   },
   created() {
