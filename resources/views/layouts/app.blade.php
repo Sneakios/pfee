@@ -104,7 +104,7 @@
               <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                 <li> <router-link to="/home/" class="dropdown-item">News</router-link></li>
                 <li><router-link to="/home/MyPosts/" class="dropdown-item">My Posts</router-link></li>
-                <li><a class="dropdown-item" href="#">Interresent posts</a></li>
+                <li><router-link to="/home/PostsInteressent/" class="dropdown-item">Interresent posts</router-link></li>
               </ul>
             </div></router-link>
             <li><a class="nav-link scrollto " >    </a></li>

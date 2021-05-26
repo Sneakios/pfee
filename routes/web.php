@@ -28,6 +28,7 @@ Route::delete('/deleteMyPost/{id}', [PostController::class,'DeleteMyPost']);
 Route::put('/editMyPost/{id}', [PostController::class,'EditMyPost']);
 Route::post('/interessentPost/{id}', [PostController::class,'InteressentPost']);
 Route::delete('/unInteressentPost/{id}', [PostController::class,'UnInteressentPost']);
+Route::get('/getInteressentPosts', [PostController::class,'GetInteressentPosts']);
 
 
 //Customer Routes//

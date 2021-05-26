@@ -100,9 +100,11 @@ class PostController extends Controller
      $interessent=new Interessent;
      $interessent->user_id=Auth::user()->id;
      $interessent->post_id=$id;
+     $user_id_post=Post::where('id',$id)->value('id_user');
+     $interessent->post_user_id=$user_id_post;
      $interessent->save();
 
-return response()->json(['status'=>'success']);
+      return response()->json(['status'=>'success']);
      }
    
      public function UnInteressentPost($id){
@@ -111,6 +113,25 @@ return response()->json(['status'=>'success']);
          return response()->json(['status'=>'success']);
 
      }
+
+
+     public function GetInteressentPosts(){
+      $posts=[];
+           $pp=Interessent::where('user_id',Auth::user()->id)->orderByDesc("created_at")->get();        
+           foreach($pp as $p){                 
+              $post=['id'=>$p->post_id,'body'=>Post::where('id',$p->post_id)->value('body'),'user'=>User::where('id',$p->user_id)->value('name'),'cmntsNbr'=>Comment::where('post_id',$p->post_user_id)->count(),'date'=>Post::where('id',$p->post_id)->value('created_at')->diffForHumans(),'avatar'=>User::where('id',$p->post_user_id)->value('avatar')];        
+              array_push($posts,$post);    
+               
+           }          
+         return response()->json(['data'=>$posts]);
+     }
+
+
+   
+
+
+
+    
 
 
 }

@@ -12,6 +12,7 @@ class Post extends Model
         'id_user',
         'body',
         'type_user',
+        'cmnts_nbr'
       
         
        

@@ -13,6 +13,7 @@ import ProfileCustomer from './components/ProfileCustomer.vue';
 import PostDetails from './components/PostDetails.vue';
 import Posts from './components/Posts.vue';
 import MyPosts from './components/MyPosts.vue';
+import PostInteressent from './components/PostInteressent.vue'
 import Swal from 'sweetalert2';
 window.Swal=Swal;
 
@@ -55,7 +56,7 @@ const routes =[
     {path:'/home/Profile-Customer',component:ProfileCustomer},
     {path:'/home/PostDetails/:id',component:PostDetails},
     {path:'/home/MyPosts/',component:MyPosts},
-  
+   {path:'/home/PostsInteressent/',component:PostInteressent}
 
 ];
 
