@@ -59,7 +59,7 @@ const routes =[
     {path:'/home/MyPosts/',component:MyPosts},
     {path:'/home/PostsInteressent/',component:PostInteressent},
     {path:'/home/UserDetails/',component:UserDetails},
-    {path:'/home/Port-Folio',component:PortFolio}
+    {path:'/home/Port-Folio/',component:PortFolio}
 
 ];
 

@@ -2392,7 +2392,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ['body', 'id'],
   data: function data() {
     return {
       edit: true,
@@ -3700,7 +3699,7 @@ var routes = [{
   path: '/home/UserDetails/',
   component: _components_UserDetails_vue__WEBPACK_IMPORTED_MODULE_8__.default
 }, {
-  path: '/home/Port-Folio',
+  path: '/home/Port-Folio/',
   component: _components_PortFolio_vue__WEBPACK_IMPORTED_MODULE_10__.default
 }];
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_12__.default({

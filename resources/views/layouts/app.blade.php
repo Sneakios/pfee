@@ -95,8 +95,8 @@
             <li><a class="nav-link scrollto " href="#contact">Contact Us</a></li>
             <li><a class="nav-link scrollto " >    </a></li>
             @endif
-            @if (('home' ==  request()->path()) && (Auth::user()->type=='worker'))
-            <router-link to="/Port-Folio/">Port-Folio</router-link>
+            @if ((('' !=  request()->path()) && ('login' !=  request()->path())) && (Auth::user()->type=='worker'))
+            <router-link to="/home/Port-Folio/">Port-Folio</router-link>
             <router-link to="/home/Profile-Worker">Profile</router-link>
             <router-link to="/home/"><div class="dropdown">
               <div class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
@@ -110,7 +110,7 @@
             </div></router-link>
             <li><a class="nav-link scrollto " >    </a></li>
             @endif
-            @if (('home' ==  request()->path()) && (Auth::user()->type=='customer'))
+            @if ((('' !=  request()->path()) && ('login' !=  request()->path())) && (Auth::user()->type=='customer'))
             <router-link to="/home/Profile-Customer">Profile</router-link>
             <router-link to="#"><div class="dropdown">
               <div class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
@@ -119,7 +119,7 @@
               <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                 <li> <router-link to="/home/" class="dropdown-item">News</router-link></li>
                 <li><router-link to="/home/MyPosts" class="dropdown-item">My Posts</router-link></li>
-                <li><a class="dropdown-item" href="#">Interessent</a></li>
+                <li><router-link to="/home/PostsInteressent/" class="dropdown-item">Interresent posts</router-link></li>
               </ul>
             </div></router-link>
             

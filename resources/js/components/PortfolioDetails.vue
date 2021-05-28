@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div class="row justify-content-center">
-           Portfolio Details  
+        Portfolio Details  
         </div>
     </div>
 </template>

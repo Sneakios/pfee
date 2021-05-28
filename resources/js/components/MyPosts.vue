@@ -52,7 +52,6 @@
 
 <script>
 export default {
-  props: ['body','id'],
   data() {
     
     return {
@@ -67,6 +66,7 @@ export default {
       }
     };
   },
+
 
   methods: {
     getMyPosts() {
