@@ -36,9 +36,9 @@
                       <div>
                       
                         <strong class="text-primary" style="margin-left:1px">
-                          {{ post.user }} 
-                          <button  v-if="post.interessent" style="border-radius: 5px;margin-left:5px;font-size:15px;background-color:white	;border: 0px;font-size:13px;font-weight:600;" @click="UnInteressent(post.id)"><i  class="fa fa-star" style="font-size:23px;color:yellow	;margin-left:3px"></i></button>
-                          <button  v-if="!post.interessent" style="border-radius: 5px;margin-left:5px;font-size:15px;background-color:white	;border: 0px;font-size:13px;font-weight:600;" @click="Interessent(post.id)"><i style="font-size:15px;weight:600;color:grey;font-size:23px" class="fa fa-star"></i></button></strong
+                        <router-link to="/home/UserDetails/"> {{ post.user }}</router-link> 
+                          <button  v-if="post.interessent" style="border-radius: 5px;margin-left:5px;font-size:15px;background-color:white	;border: 0px;font-size:13px;font-weight:600;" @click="UnInteressent(post.id)"><i  class="fa fa-star" style="font-size:23px;color:	#ffdc14	;margin-left:3px"></i></button>
+                          <button  v-if="!post.interessent" style="border-radius: 5px;margin-left:5px;font-size:15px;background-color:white	;border: 0px;font-size:13px;font-weight:600;" @click="Interessent(post.id)"><i style="font-size:15px;weight:600;color:#A9A9A9;font-size:23px" class="fa fa-star"></i></button></strong
                         ><br />
                       </div>
                       <div style="margin-left:5px">
@@ -123,9 +123,10 @@ export default {
           
             }else{Swal.fire(
                 'Cancelled!',
-                'This post not added :)',
+                'This post has not been added :)',
                 'error'
-              )       }
+              )       
+              }
           })   
 
     },

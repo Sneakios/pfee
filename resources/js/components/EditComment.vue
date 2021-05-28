@@ -100,7 +100,7 @@ export default {
         });
             }else{Swal.fire(
                 'Cancelled!',
-                'Your comment is not changed :)',
+                'Your comment has been not changed :)',
                 'error'
               )       }
             })

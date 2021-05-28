@@ -101,7 +101,7 @@ export default {
           
             }else{Swal.fire(
                 'Cancelled!',
-                'Your post is safe :)',
+                'Your post has not been deleted :)',
                 'error'
               )       }
           })          

@@ -5,14 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Post extends Model
+class Portfolio extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'id_user',
-        'body',
-        'type_user',
-        'cmnts_nbr'
+        'worker_id',
+        'picture',
+        'title',
+        'description'
      
     ];
 }

@@ -96,6 +96,7 @@
             <li><a class="nav-link scrollto " >    </a></li>
             @endif
             @if (('home' ==  request()->path()) && (Auth::user()->type=='worker'))
+            <router-link to="/Port-Folio/">Port-Folio</router-link>
             <router-link to="/home/Profile-Worker">Profile</router-link>
             <router-link to="/home/"><div class="dropdown">
               <div class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">

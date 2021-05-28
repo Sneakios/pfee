@@ -178,7 +178,7 @@ export default {
           
             }else{Swal.fire(
                 'Cancelled!',
-                'Your comment is safe :)',
+                'Your comment has been not deleted :)',
                 'error'
               )       }
           })          

@@ -163,12 +163,12 @@ export default {
             this.errors = response.data.errors;
             Toast.fire({
               icon: "error",
-              title: "False informations !!"
+              title: "Wrong informations !!"
             });
           } else if (response.data.status == "success") {
             Toast.fire({
               icon: "success",
-              title: "Saved in successfully"
+              title: "Saved  successfully"
             });
             this.errors = [];
           }

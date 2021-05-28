@@ -13,7 +13,9 @@ import ProfileCustomer from './components/ProfileCustomer.vue';
 import PostDetails from './components/PostDetails.vue';
 import Posts from './components/Posts.vue';
 import MyPosts from './components/MyPosts.vue';
-import PostInteressent from './components/PostInteressent.vue'
+import UserDetails from './components/UserDetails.vue';
+import PostInteressent from './components/PostInteressent.vue';
+import PortFolio from './components/PortFolio.vue';
 import Swal from 'sweetalert2';
 window.Swal=Swal;
 
@@ -28,13 +30,12 @@ const Toast = Swal.mixin({
       toast.addEventListener('mouseleave', Swal.resumeTimer)
     }
   }) 
- const Alert = Swal.mixin({
-  
+ const Alert = Swal.mixin({  
     showCancelButton: true,
     confirmButtonColor: '#3085d6',
-    cancelButtonColor: '#d33',
-    
+    cancelButtonColor: '#d33',   
   })
+
   window.Toast=Toast;
   window.Alert=Alert;
 
@@ -56,12 +57,13 @@ const routes =[
     {path:'/home/Profile-Customer',component:ProfileCustomer},
     {path:'/home/PostDetails/:id',component:PostDetails},
     {path:'/home/MyPosts/',component:MyPosts},
-   {path:'/home/PostsInteressent/',component:PostInteressent}
+    {path:'/home/PostsInteressent/',component:PostInteressent},
+    {path:'/home/UserDetails/',component:UserDetails},
+    {path:'/home/Port-Folio',component:PortFolio}
 
 ];
 
-const router=new VueRouter({routes,mode:'history'
-});
+const router=new VueRouter({routes,mode:'history'});
 const app = new Vue({
     el: '#app',
     router:router

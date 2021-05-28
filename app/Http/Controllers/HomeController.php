@@ -37,6 +37,8 @@ class HomeController extends Controller
         return view('home',['count'=>$countWorker,'settings'=>$settings,'rate'=>$rate]);        
     }
 
+    
+
 
     public function change_avatar(Request $request)
     {

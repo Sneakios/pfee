@@ -138,7 +138,7 @@ export default {
           } else if (response.data.status == "success") {
             Toast.fire({
               icon: "success",
-              title: "Saved in successfully"
+              title: "Saved  successfully"
             });
 
             this.errors = [];

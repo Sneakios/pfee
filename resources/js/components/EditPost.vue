@@ -100,7 +100,7 @@ export default {
         });
             }else{Swal.fire(
                 'Cancelled!',
-                'Your post is not changed :)',
+                'Your post has been not changed :)',
                 'error'
               )       }
             })
