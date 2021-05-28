@@ -2391,10 +2391,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      edit: true,
+      edit: false,
       posts: {
         id: "",
         body: "",
@@ -45317,13 +45318,15 @@ var render = function() {
                       ]
                     ),
                     _vm._v(" "),
-                    _c("b", [
-                      _vm._v(
-                        "\n                " +
-                          _vm._s(post.body) +
-                          "\n              "
-                      )
-                    ]),
+                    !_vm.edit
+                      ? _c("b", [
+                          _vm._v(
+                            "\n                " +
+                              _vm._s(post.body) +
+                              "\n              "
+                          )
+                        ])
+                      : _vm._e(),
                     _vm._v(" "),
                     _c(
                       "ul",

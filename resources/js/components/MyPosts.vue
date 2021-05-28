@@ -30,9 +30,10 @@
                     </div>
                   </div>                
                 </div>
-               <b>
+               <b v-if="!edit">
                   {{ post.body }}
                 </b>
+                
                 <ul class="list-inline list-unstyled d-flex post-info">
                 <li> <router-link :to="'/home/PostDetails/' + post.id"><span><i class="fa fa-comment"></i> {{ post.cmntsNbr }}</span></router-link>  </li>
                 
@@ -55,7 +56,7 @@ export default {
   data() {
     
     return {
-      edit:true,
+      edit:false,
       posts: {
         id: "",
         body: "",
