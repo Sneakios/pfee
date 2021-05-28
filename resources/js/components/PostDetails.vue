@@ -67,9 +67,7 @@
                   <strong class="text-primary"> {{ comment.user }}</strong>
                   <span v-if="comment.me && !comment.edit"> <button style="border-radius: 5px;margin-left:5px;font-size:15px;background-color:green;border: 2px green solid;color:white;font-size:13px;font-weight:600" @click="editMyComment(comment.id)"><i style="font-size:15px;weight:600" class="fa fa-edit red"></i></button></span>              
                  <span v-if="comment.me && !comment.edit"> <button style="border-radius: 5px;margin-left:5px;font-size:15px;background-color:red;border: 2px red solid;color:white;font-size:13px;font-weight:600" @click="deleteMyComment(comment.id)"><i style="font-size:15px;weight:600" class="fa fa-trash red"></i></button> </span>  
-                  
-                  <br>               
-             
+                  <br>                            
                    <form @submit.prevent="SaveCommentEdit(comment.id,index)" v-if="comment.edit">
                     <input type="hidden" name="" />
                     <div class="form-group">

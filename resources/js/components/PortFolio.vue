@@ -5,7 +5,7 @@
         <div class="section-title">
           <span>Portfolio</span>
           <h2>Portfolio</h2>
-          <p>Sit sint consectetur velit quisquam cupiditate impedit suscipit alias</p>
+          <p>Here are some of our recent projects from a variety of industries we serve.</p>
         </div>
 
      

@@ -111,15 +111,15 @@ class PostController extends Controller
        $post=Interessent::where("user_id","=",Auth::user()->getAuthIdentifier())->where('post_id',$id);
          $post->delete();
          return response()->json(['status'=>'success']);
-
      }
 
 
      public function GetInteressentPosts(){
       $posts=[];
            $pp=Interessent::where('user_id',Auth::user()->id)->orderByDesc("created_at")->get();        
-           foreach($pp as $p){                 
-              $post=['id'=>$p->post_id,'body'=>Post::where('id',$p->post_id)->value('body'),'user'=>User::where('id',$p->user_id)->value('name'),'cmntsNbr'=>Comment::where('post_id',$p->post_id)->count(),'date'=>Post::where('id',$p->post_id)->value('created_at')->diffForHumans(),'avatar'=>User::where('id',$p->post_user_id)->value('avatar')];        
+           foreach($pp as $p){  
+              $poster=Post::where('id',$p->post_id)->value('id_user');     
+              $post=['id'=>$p->post_id,'body'=>Post::where('id',$p->post_id)->value('body'),'user'=>User::where('id',$poster)->value('name'),'cmntsNbr'=>Comment::where('post_id',$p->post_id)->count(),'date'=>Post::where('id',$p->post_id)->value('created_at')->diffForHumans(),'avatar'=>User::where('id',$p->post_user_id)->value('avatar')];        
               array_push($posts,$post);    
                
            }          

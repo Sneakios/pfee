@@ -40,14 +40,8 @@ const Toast = Swal.mixin({
   window.Alert=Alert;
 
 Vue.component('add-post', require('./components/AddPost.vue').default);
-Vue.component('edit-post', require('./components/EditPost.vue').default);
-Vue.component('edit-comment', require('./components/EditComment.vue').default);
-
 Vue.component('complete-profile-worker', require('./components/CompleteProfileWorker.vue').default);
 Vue.use(VueRouter);
-
-
-
 
 const routes =[
     {path:'/home/',component:Posts},
