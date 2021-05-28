@@ -2773,6 +2773,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -46292,84 +46293,71 @@ var render = function() {
             }),
             _vm._v(" "),
             _c("div", { staticClass: "media-body" }, [
-              _c(
-                "ul",
-                { staticClass: "list-inline list-unstyled d-flex post-info" },
-                [
-                  _c("li", [
-                    _c("strong", { staticClass: "text-primary" }, [
-                      _vm._v(" " + _vm._s(comment.user))
-                    ]),
-                    _c("br")
-                  ]),
-                  _vm._v(" "),
-                  comment.me && !comment.edit
-                    ? _c("li", [
-                        _c(
-                          "button",
-                          {
-                            staticStyle: {
-                              "border-radius": "5px",
-                              "margin-left": "5px",
-                              "font-size": "13px",
-                              "background-color": "green",
-                              border: "2px green solid",
-                              color: "white",
-                              "font-weight": "600"
-                            },
-                            on: {
-                              click: function($event) {
-                                return _vm.editMyComment(comment.id)
-                              }
-                            }
-                          },
-                          [
-                            _c("i", {
-                              staticClass: "fa fa-edit red",
-                              staticStyle: {
-                                "font-size": "15px",
-                                weight: "600"
-                              }
-                            })
-                          ]
-                        )
-                      ])
-                    : _vm._e(),
-                  _vm._v(" "),
-                  comment.me && !comment.edit
-                    ? _c("li", [
-                        _c(
-                          "button",
-                          {
-                            staticStyle: {
-                              "border-radius": "5px",
-                              "margin-left": "5px",
-                              "font-size": "13px",
-                              "background-color": "red",
-                              border: "2px red solid",
-                              color: "white",
-                              "font-weight": "600"
-                            },
-                            on: {
-                              click: function($event) {
-                                return _vm.deleteMyComment(comment.id)
-                              }
-                            }
-                          },
-                          [
-                            _c("i", {
-                              staticClass: "fa fa-trash red",
-                              staticStyle: {
-                                "font-size": "15px",
-                                weight: "600"
-                              }
-                            })
-                          ]
-                        )
-                      ])
-                    : _vm._e()
-                ]
-              ),
+              _c("strong", { staticClass: "text-primary" }, [
+                _vm._v(" " + _vm._s(comment.user))
+              ]),
+              _vm._v(" "),
+              comment.me && !comment.edit
+                ? _c("span", [
+                    _c(
+                      "button",
+                      {
+                        staticStyle: {
+                          "border-radius": "5px",
+                          "margin-left": "5px",
+                          "font-size": "13px",
+                          "background-color": "green",
+                          border: "2px green solid",
+                          color: "white",
+                          "font-weight": "600"
+                        },
+                        on: {
+                          click: function($event) {
+                            return _vm.editMyComment(comment.id)
+                          }
+                        }
+                      },
+                      [
+                        _c("i", {
+                          staticClass: "fa fa-edit red",
+                          staticStyle: { "font-size": "15px", weight: "600" }
+                        })
+                      ]
+                    )
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              comment.me && !comment.edit
+                ? _c("span", [
+                    _c(
+                      "button",
+                      {
+                        staticStyle: {
+                          "border-radius": "5px",
+                          "margin-left": "5px",
+                          "font-size": "13px",
+                          "background-color": "red",
+                          border: "2px red solid",
+                          color: "white",
+                          "font-weight": "600"
+                        },
+                        on: {
+                          click: function($event) {
+                            return _vm.deleteMyComment(comment.id)
+                          }
+                        }
+                      },
+                      [
+                        _c("i", {
+                          staticClass: "fa fa-trash red",
+                          staticStyle: { "font-size": "15px", weight: "600" }
+                        })
+                      ]
+                    )
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              _c("br"),
               _vm._v(" "),
               comment.edit
                 ? _c(
@@ -46425,7 +46413,7 @@ var render = function() {
                 : _vm._e(),
               _vm._v(" "),
               !comment.edit
-                ? _c("span", [_vm._v(_vm._s(comment.body) + " ")])
+                ? _c("b", [_vm._v(_vm._s(comment.body) + " ")])
                 : _vm._e(),
               _c("br"),
               _vm._v(" "),
