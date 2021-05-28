@@ -69,7 +69,7 @@ export default {
     
     return {
      
-      
+      errors: [],
       posts: {
         id: "",
         body: "",
@@ -128,7 +128,7 @@ export default {
                     {
                         this.posts[i].edit=false;
 
-                    } }
+                    }}
                  
            this.errors = [];
           }

@@ -2407,6 +2407,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
+      errors: [],
       posts: {
         id: "",
         body: "",
@@ -2677,9 +2678,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-//
-//
-//
 //
 //
 //
@@ -46401,7 +46399,7 @@ var render = function() {
                             "form-control",
                             _vm.errors.body ? "is-invalid" : ""
                           ],
-                          attrs: { rows: "3", required: "" },
+                          attrs: { rows: "3", required: "", cols: "100" },
                           domProps: { value: comment.body },
                           on: {
                             input: function($event) {
@@ -46427,7 +46425,7 @@ var render = function() {
                 : _vm._e(),
               _vm._v(" "),
               !comment.edit
-                ? _c("p", [_vm._v("\n        " + _vm._s(comment.body) + " ")])
+                ? _c("span", [_vm._v(_vm._s(comment.body) + " ")])
                 : _vm._e(),
               _c("br"),
               _vm._v(" "),
