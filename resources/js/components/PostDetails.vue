@@ -54,8 +54,9 @@
         </form>
       </div>
     </div>
-    <div class="media mb-4" v-for="comment in comments" :key="comment.id">
+    <div class="media mb-4" v-for="(comment,index) in comments" :key="index">
       <div class="media mb-4">
+      
         <img
           class="d-flex mr-3 rounded-circle"
           :src="'http://127.0.0.1:8000/assets/avatars/' + comment.avatar"
@@ -67,12 +68,24 @@
                 <li>      <strong class="text-primary"> {{ comment.user }}</strong
           ><br /> </li>
                 
-                <li v-if="comment.me"> <edit-comment :body="comment.body" :id="comment.id"></edit-comment></li>              
-                <li v-if="comment.me"> <button style="border-radius: 5px;margin-left:5px;font-size:15px;background-color:red;border: 2px red solid;color:white;font-size:13px;font-weight:600" @click="deleteMyComment(comment.id)"><i style="font-size:15px;weight:600" class="fa fa-trash red"></i></button></li>
+                <li v-if="comment.me && !comment.edit"> <button style="border-radius: 5px;margin-left:5px;font-size:15px;background-color:green;border: 2px green solid;color:white;font-size:13px;font-weight:600" @click="editMyComment(comment.id)"><i style="font-size:15px;weight:600" class="fa fa-edit red"></i></button></li>              
+                <li v-if="comment.me && !comment.edit"> <button style="border-radius: 5px;margin-left:5px;font-size:15px;background-color:red;border: 2px red solid;color:white;font-size:13px;font-weight:600" @click="deleteMyComment(comment.id)"><i style="font-size:15px;weight:600" class="fa fa-trash red"></i></button></li>
                           
                 </ul>
-      
-          {{ comment.body }} <br />
+                   <form @submit.prevent="SaveCommentEdit(comment.id,index)" v-if="comment.edit">
+                    <input type="hidden" name="" />
+                    <div class="form-group">
+                      <textarea
+                         :class="['form-control', errors.body ? 'is-invalid' : '']"
+                        rows="3"
+                        v-model="comment.body"
+                        required
+                      ></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                  </form>
+      <p v-if="!comment.edit">
+          {{ comment.body }} </p><br />
                  <span> <i class="fa fa-calendar"></i> {{ comment.date }}</span>  
            
          
@@ -85,7 +98,7 @@
 
 <script>
 export default {
-  props: ['body','id'],
+ 
   data() {
     return {
       errors: [],
@@ -104,12 +117,14 @@ export default {
         user: "",
         date: "",
         me:"",
+        edit:""
       },
       comment: {
         user: "",
         body: "",
         date: "",
-        avatar: ""
+        avatar: "",
+        edit:""
       }
     };
   },
@@ -120,6 +135,13 @@ export default {
         this.post = response.data.post;
       });
     },
+    editMyComment(id){
+            for(var i=0; i < this.comments.length; i++) {
+                    if(this.comments[i].id == id)
+                    {
+                        this.comments[i].edit=true;
+                    } }
+                  },
 
     addComment() {
       axios
@@ -182,7 +204,53 @@ export default {
                 'error'
               )       }
           })          
-    } 
+    },
+
+
+      SaveCommentEdit(did,indexx) {     
+      Alert.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',     
+            confirmButtonText: 'Yes, change it!'    
+          }).then((result) => {
+            if (result.isConfirmed) {
+               axios.put("/editMyComment/"+did, {
+          body: this.comments[indexx].body,       
+        })
+        .then(response => {
+          if (response.data.status == "error") {
+             Toast.fire({
+              icon: "error",
+              title: "too short !!"
+            });
+            this.errors = response.data.errors;
+          } else if (response.data.status == "success") {
+              Swal.fire(
+                'Saved!',
+                'Your comment has been changed.',
+                'success'
+              )          
+              for(var i=0; i < this.comments.length; i++) {
+                    if(this.comments[i].id == did)
+                    {
+                        this.comments[i].edit=false;
+
+                    } }      
+           this.errors = [];
+          }
+        });
+            }else{Swal.fire(
+                'Cancelled!',
+                'Your comment has been not changed :)',
+                'error'
+              )       }
+            })
+     
+     
+    
+    }
+    
   },
   created() {
     this.getPostDetails();

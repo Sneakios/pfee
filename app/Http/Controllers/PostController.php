@@ -70,7 +70,7 @@ class PostController extends Controller
     $posts=[];
          $pp=Post::where('id_user',Auth::user()->id)->orderByDesc("created_at")->get();        
          foreach($pp as $p){                 
-            $post=['id'=>$p->id,'body'=>$p->body,'user'=>Auth::user()->name,'cmntsNbr'=>Comment::where('post_id',$p->id)->count(),'date'=>$p->created_at->diffForHumans(),'avatar'=>Auth::user()->avatar];        
+            $post=['id'=>$p->id,'body'=>$p->body,'user'=>Auth::user()->name,'cmntsNbr'=>Comment::where('post_id',$p->id)->count(),'date'=>$p->created_at->diffForHumans(),'avatar'=>Auth::user()->avatar,"edit"=>false];        
             array_push($posts,$post);      
          }          
        return response()->json(['data'=>$posts]);

@@ -39,7 +39,7 @@ class CommentController extends Controller
          $cc=Comment::where('post_id',$id)->orderBy("created_at")->get();
          foreach($cc as $c){  
            if($c->user_id==Auth::user()->id){$me=true;}
-            $comment=['body'=>$c->body,'user'=>User::where('id',$c->user_id)->value('name'),'date'=>$c->created_at->diffForHumans(),'avatar'=>User::where('id',$c->user_id)->value('avatar'),'me'=>$me,'id'=>$c->id];        
+            $comment=['body'=>$c->body,'user'=>User::where('id',$c->user_id)->value('name'),'date'=>$c->created_at->diffForHumans(),'avatar'=>User::where('id',$c->user_id)->value('avatar'),'me'=>$me,'id'=>$c->id,'edit'=>false];        
             array_push($comments,$comment);
             $me=false;
          }         

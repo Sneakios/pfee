@@ -2392,17 +2392,29 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      edit: false,
       posts: {
         id: "",
         body: "",
         user: "",
         cmntsNbr: "",
         date: "",
-        avatar: ""
+        avatar: "",
+        edit: ""
       }
     };
   },
@@ -2414,8 +2426,51 @@ __webpack_require__.r(__webpack_exports__);
         _this.posts = response.data.data;
       });
     },
-    deleteMyPost: function deleteMyPost(id) {
+    editMyPost: function editMyPost(id) {
+      for (var i = 0; i < this.posts.length; i++) {
+        if (this.posts[i].id == id) {
+          this.posts[i].edit = true;
+        }
+      }
+    },
+    SavePostEdit: function SavePostEdit(iid, indexx) {
       var _this2 = this;
+
+      Alert.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        confirmButtonText: 'Yes, change it!'
+      }).then(function (result) {
+        if (result.isConfirmed) {
+          axios.put("/editMyPost/" + iid, {
+            body: _this2.posts[indexx].body
+          }).then(function (response) {
+            if (response.data.status == "error") {
+              Toast.fire({
+                icon: "error",
+                title: "too short !!"
+              });
+              _this2.errors = response.data.errors;
+            } else if (response.data.status == "success") {
+              Swal.fire('Saved!', 'Your post has been changed.', 'success');
+
+              for (var i = 0; i < _this2.posts.length; i++) {
+                if (_this2.posts[i].id == iid) {
+                  _this2.posts[i].edit = false;
+                }
+              }
+
+              _this2.errors = [];
+            }
+          });
+        } else {
+          Swal.fire('Cancelled!', 'Your post has been not changed :)', 'error');
+        }
+      });
+    },
+    deleteMyPost: function deleteMyPost(id) {
+      var _this3 = this;
 
       Alert.fire({
         title: 'Are you sure?',
@@ -2428,9 +2483,9 @@ __webpack_require__.r(__webpack_exports__);
             if (response.data.status == "success") {
               Swal.fire('Deleted!', 'Your post has been deleted.', 'success');
 
-              for (var i = 0; i < _this2.posts.length; i++) {
-                if (_this2.posts[i].id == id) {
-                  _this2.posts.splice(i, 1);
+              for (var i = 0; i < _this3.posts.length; i++) {
+                if (_this3.posts[i].id == id) {
+                  _this3.posts.splice(i, 1);
                 }
               }
             }
@@ -2707,8 +2762,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ['body', 'id'],
   data: function data() {
     return {
       errors: [],
@@ -2726,13 +2793,15 @@ __webpack_require__.r(__webpack_exports__);
         body: "",
         user: "",
         date: "",
-        me: ""
+        me: "",
+        edit: ""
       },
       comment: {
         user: "",
         body: "",
         date: "",
-        avatar: ""
+        avatar: "",
+        edit: ""
       }
     };
   },
@@ -2743,6 +2812,13 @@ __webpack_require__.r(__webpack_exports__);
       axios.get("/getPostDetails/" + this.$route.params.id).then(function (response) {
         _this.post = response.data.post;
       });
+    },
+    editMyComment: function editMyComment(id) {
+      for (var i = 0; i < this.comments.length; i++) {
+        if (this.comments[i].id == id) {
+          this.comments[i].edit = true;
+        }
+      }
     },
     addComment: function addComment() {
       var _this2 = this;
@@ -2800,6 +2876,42 @@ __webpack_require__.r(__webpack_exports__);
           });
         } else {
           Swal.fire('Cancelled!', 'Your comment has been not deleted :)', 'error');
+        }
+      });
+    },
+    SaveCommentEdit: function SaveCommentEdit(did, indexx) {
+      var _this5 = this;
+
+      Alert.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        confirmButtonText: 'Yes, change it!'
+      }).then(function (result) {
+        if (result.isConfirmed) {
+          axios.put("/editMyComment/" + did, {
+            body: _this5.comments[indexx].body
+          }).then(function (response) {
+            if (response.data.status == "error") {
+              Toast.fire({
+                icon: "error",
+                title: "too short !!"
+              });
+              _this5.errors = response.data.errors;
+            } else if (response.data.status == "success") {
+              Swal.fire('Saved!', 'Your comment has been changed.', 'success');
+
+              for (var i = 0; i < _this5.comments.length; i++) {
+                if (_this5.comments[i].id == did) {
+                  _this5.comments[i].edit = false;
+                }
+              }
+
+              _this5.errors = [];
+            }
+          });
+        } else {
+          Swal.fire('Cancelled!', 'Your comment has been not changed :)', 'error');
         }
       });
     }
@@ -45224,11 +45336,11 @@ var render = function() {
         _c(
           "div",
           { staticClass: "card-body" },
-          _vm._l(_vm.posts, function(post) {
+          _vm._l(_vm.posts, function(post, index) {
             return _c(
               "div",
               {
-                key: post.id,
+                key: index,
                 staticClass: "media simple-post",
                 staticStyle: { margin: "10px" }
               },
@@ -45294,7 +45406,7 @@ var render = function() {
                                   },
                                   [
                                     _vm._v(
-                                      "\n                        " +
+                                      "\n                     \n                        " +
                                         _vm._s(post.user)
                                     )
                                   ]
@@ -45318,7 +45430,7 @@ var render = function() {
                       ]
                     ),
                     _vm._v(" "),
-                    !_vm.edit
+                    !post.edit
                       ? _c("b", [
                           _vm._v(
                             "\n                " +
@@ -45326,6 +45438,61 @@ var render = function() {
                               "\n              "
                           )
                         ])
+                      : _vm._e(),
+                    _vm._v(" "),
+                    post.edit
+                      ? _c(
+                          "form",
+                          {
+                            on: {
+                              submit: function($event) {
+                                $event.preventDefault()
+                                return _vm.SavePostEdit(post.id, index)
+                              }
+                            }
+                          },
+                          [
+                            _c("input", {
+                              attrs: { type: "hidden", name: "" }
+                            }),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "form-group" }, [
+                              _c("textarea", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: post.body,
+                                    expression: "post.body"
+                                  }
+                                ],
+                                class: [
+                                  "form-control",
+                                  _vm.errors.body ? "is-invalid" : ""
+                                ],
+                                attrs: { rows: "3", required: "" },
+                                domProps: { value: post.body },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(post, "body", $event.target.value)
+                                  }
+                                }
+                              })
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-primary",
+                                attrs: { type: "submit" }
+                              },
+                              [_vm._v("Save")]
+                            )
+                          ]
+                        )
                       : _vm._e(),
                     _vm._v(" "),
                     _c(
@@ -45352,47 +45519,73 @@ var render = function() {
                           1
                         ),
                         _vm._v(" "),
-                        _c(
-                          "li",
-                          [
-                            _c("edit-post", {
-                              attrs: { body: post.body, id: post.id }
-                            })
-                          ],
-                          1
-                        ),
+                        !post.edit
+                          ? _c("li", [
+                              _c(
+                                "button",
+                                {
+                                  staticStyle: {
+                                    "border-radius": "5px",
+                                    "margin-left": "5px",
+                                    "font-size": "13px",
+                                    "background-color": "green",
+                                    border: "2px green solid",
+                                    color: "white",
+                                    "font-weight": "600"
+                                  },
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.editMyPost(post.id)
+                                    }
+                                  }
+                                },
+                                [
+                                  _c("i", {
+                                    staticClass: "fa fa-edit red",
+                                    staticStyle: {
+                                      "font-size": "15px",
+                                      weight: "600"
+                                    }
+                                  }),
+                                  _vm._v(" Edit")
+                                ]
+                              )
+                            ])
+                          : _vm._e(),
                         _vm._v(" "),
-                        _c("li", [
-                          _c(
-                            "button",
-                            {
-                              staticStyle: {
-                                "border-radius": "5px",
-                                "margin-left": "5px",
-                                "font-size": "13px",
-                                "background-color": "red",
-                                border: "2px red solid",
-                                color: "white",
-                                "font-weight": "600"
-                              },
-                              on: {
-                                click: function($event) {
-                                  return _vm.deleteMyPost(post.id)
-                                }
-                              }
-                            },
-                            [
-                              _c("i", {
-                                staticClass: "fa fa-trash red",
-                                staticStyle: {
-                                  "font-size": "15px",
-                                  weight: "600"
-                                }
-                              }),
-                              _vm._v(" Delete")
-                            ]
-                          )
-                        ])
+                        !post.edit
+                          ? _c("li", [
+                              _c(
+                                "button",
+                                {
+                                  staticStyle: {
+                                    "border-radius": "5px",
+                                    "margin-left": "5px",
+                                    "font-size": "13px",
+                                    "background-color": "red",
+                                    border: "2px red solid",
+                                    color: "white",
+                                    "font-weight": "600"
+                                  },
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.deleteMyPost(post.id)
+                                    }
+                                  }
+                                },
+                                [
+                                  _c("i", {
+                                    staticClass: "fa fa-trash red",
+                                    staticStyle: {
+                                      "font-size": "15px",
+                                      weight: "600"
+                                    }
+                                  }),
+                                  _vm._v(" Delete")
+                                ]
+                              )
+                            ])
+                          : _vm._e()
                       ]
                     )
                   ]
@@ -46088,8 +46281,8 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _vm._l(_vm.comments, function(comment) {
-        return _c("div", { key: comment.id, staticClass: "media mb-4" }, [
+      _vm._l(_vm.comments, function(comment, index) {
+        return _c("div", { key: index, staticClass: "media mb-4" }, [
           _c("div", { staticClass: "media mb-4" }, [
             _c("img", {
               staticClass: "d-flex mr-3 rounded-circle",
@@ -46112,19 +46305,40 @@ var render = function() {
                     _c("br")
                   ]),
                   _vm._v(" "),
-                  comment.me
-                    ? _c(
-                        "li",
-                        [
-                          _c("edit-comment", {
-                            attrs: { body: comment.body, id: comment.id }
-                          })
-                        ],
-                        1
-                      )
+                  comment.me && !comment.edit
+                    ? _c("li", [
+                        _c(
+                          "button",
+                          {
+                            staticStyle: {
+                              "border-radius": "5px",
+                              "margin-left": "5px",
+                              "font-size": "13px",
+                              "background-color": "green",
+                              border: "2px green solid",
+                              color: "white",
+                              "font-weight": "600"
+                            },
+                            on: {
+                              click: function($event) {
+                                return _vm.editMyComment(comment.id)
+                              }
+                            }
+                          },
+                          [
+                            _c("i", {
+                              staticClass: "fa fa-edit red",
+                              staticStyle: {
+                                "font-size": "15px",
+                                weight: "600"
+                              }
+                            })
+                          ]
+                        )
+                      ])
                     : _vm._e(),
                   _vm._v(" "),
-                  comment.me
+                  comment.me && !comment.edit
                     ? _c("li", [
                         _c(
                           "button",
@@ -46158,7 +46372,63 @@ var render = function() {
                     : _vm._e()
                 ]
               ),
-              _vm._v("\n    \n        " + _vm._s(comment.body) + " "),
+              _vm._v(" "),
+              comment.edit
+                ? _c(
+                    "form",
+                    {
+                      on: {
+                        submit: function($event) {
+                          $event.preventDefault()
+                          return _vm.SaveCommentEdit(comment.id, index)
+                        }
+                      }
+                    },
+                    [
+                      _c("input", { attrs: { type: "hidden", name: "" } }),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("textarea", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: comment.body,
+                              expression: "comment.body"
+                            }
+                          ],
+                          class: [
+                            "form-control",
+                            _vm.errors.body ? "is-invalid" : ""
+                          ],
+                          attrs: { rows: "3", required: "" },
+                          domProps: { value: comment.body },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(comment, "body", $event.target.value)
+                            }
+                          }
+                        })
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-primary",
+                          attrs: { type: "submit" }
+                        },
+                        [_vm._v("Save")]
+                      )
+                    ]
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              !comment.edit
+                ? _c("p", [_vm._v("\n        " + _vm._s(comment.body) + " ")])
+                : _vm._e(),
               _c("br"),
               _vm._v(" "),
               _c("span", [
