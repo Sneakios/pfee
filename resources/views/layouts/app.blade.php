@@ -53,12 +53,11 @@
       <div class="contact-info d-flex align-items-center">
         <i class="bi bi-envelope d-flex align-items-center"><a href="mailto:contact@example.com">{{$settings->email1}}</a></i>
         <i class="bi bi-phone d-flex align-items-center ms-4"><span>{{$settings->mobile1}}</span></i>
+      
       </div>
-      <div class="social-links d-none d-md-flex">
-        <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
-        <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-        <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-        <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+     
+      <div>
+        <search-user></search-user>
       </div>
     </div>
   </section>
@@ -69,10 +68,11 @@
 
       <div class="logo">
         <h1><a href="{{route('welcome')}}">Help<span>Me</span></a></h1>
+        
+
         <!-- Uncomment below if you prefer to use an image logo -->
         <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
       </div>
-
       <nav id="navbar" class="navbar">
         <ul>
             @guest
@@ -96,6 +96,7 @@
             <li><a class="nav-link scrollto " >    </a></li>
             @endif
             @if ((('' !=  request()->path()) && ('login' !=  request()->path())) && (Auth::user()->type=='worker'))
+            
             <router-link to="/home/Port-Folio/">Port-Folio</router-link>
             <router-link to="/home/Profile-Worker">Profile</router-link>
             <router-link to="/home/"><div class="dropdown">
@@ -111,6 +112,7 @@
             <li><a class="nav-link scrollto " >    </a></li>
             @endif
             @if ((('' !=  request()->path()) && ('login' !=  request()->path())) && (Auth::user()->type=='customer'))
+           
             <router-link to="/home/Profile-Customer">Profile</router-link>
             <router-link to="#"><div class="dropdown">
               <div class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">

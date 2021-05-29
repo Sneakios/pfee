@@ -87,5 +87,11 @@ class HomeController extends Controller
         return response()->json(['data'=>$user]);
     }
 
+    public function SearchUser(Request $request){
+        $users = User::where('name','LIKE','%'.$request->keyword.'%')->get('name','avatar','id');
+        return response()->json(['data'=>$users]); 
+
+    }
+
 
 }

@@ -41,6 +41,8 @@ const Toast = Swal.mixin({
 
 Vue.component('add-post', require('./components/AddPost.vue').default);
 Vue.component('complete-profile-worker', require('./components/CompleteProfileWorker.vue').default);
+Vue.component('search-user', require('./components/Search.vue').default);
+
 Vue.use(VueRouter);
 
 const routes =[
