@@ -19,7 +19,7 @@
                     <div class="form-group">
                       <div>
                         <strong class="text-primary" style="margin-left:1px">
-                          {{ post.user }}</strong
+                          <router-link :to="'/home/UserDetails/'+post.user_id">{{ post.user }}</router-link></strong
                         ><br />
                       </div>
                       <div style="margin-left:5px">
@@ -54,6 +54,7 @@ export default {
     return {
      
       posts: {
+        user_id:"",
         id: "",
         body: "",
         user: "",

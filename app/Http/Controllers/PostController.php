@@ -47,14 +47,14 @@ class PostController extends Controller
                  if($user=="customer"){
                  $interessent=Interessent::where("user_id","=",Auth::user()->getAuthIdentifier())->where('post_id',$p->id)->count();
                  if($interessent>0){$interessent=true;}else{$interessent=false;}
-            $post=['id'=>$p->id,'body'=>$p->body,'user'=>User::where('id',$p->id_user)->value('name'),'cmntsNbr'=>Comment::where('post_id',$p->id)->count(),'date'=>$p->created_at->diffForHumans(),'avatar'=>User::where('id',$p->id_user)->value('avatar'),'interessent'=>$interessent];        
+            $post=['id'=>$p->id,'body'=>$p->body,'user'=>User::where('id',$p->id_user)->value('name'),'cmntsNbr'=>Comment::where('post_id',$p->id)->count(),'date'=>$p->created_at->diffForHumans(),'avatar'=>User::where('id',$p->id_user)->value('avatar'),'interessent'=>$interessent,"user_id"=>$p->id_user];        
             array_push($posts,$post);}}
            
             if(Auth::user()->type=="customer"){
                 if($user=="worker"){
                     $interessent=Interessent::where("user_id","=",Auth::user()->getAuthIdentifier())->where('post_id',$p->id)->count();
                     if($interessent>0){$interessent=true;}else{$interessent=false;}
-           $post=['id'=>$p->id,'body'=>$p->body,'user'=>User::where('id',$p->id_user)->value('name'),'cmntsNbr'=>Comment::where('post_id',$p->id)->count(),'date'=>$p->created_at->diffForHumans(),'avatar'=>User::where('id',$p->id_user)->value('avatar'),'interessent'=>$interessent];        
+           $post=['id'=>$p->id,'body'=>$p->body,'user'=>User::where('id',$p->id_user)->value('name'),'cmntsNbr'=>Comment::where('post_id',$p->id)->count(),'date'=>$p->created_at->diffForHumans(),'avatar'=>User::where('id',$p->id_user)->value('avatar'),'interessent'=>$interessent,"user_id"=>$p->id_user];        
            array_push($posts,$post);}}
          }         
        return response()->json(['data'=>$posts]);
@@ -119,7 +119,7 @@ class PostController extends Controller
            $pp=Interessent::where('user_id',Auth::user()->id)->orderByDesc("created_at")->get();        
            foreach($pp as $p){  
               $poster=Post::where('id',$p->post_id)->value('id_user');     
-              $post=['id'=>$p->post_id,'body'=>Post::where('id',$p->post_id)->value('body'),'user'=>User::where('id',$poster)->value('name'),'cmntsNbr'=>Comment::where('post_id',$p->post_id)->count(),'date'=>Post::where('id',$p->post_id)->value('created_at')->diffForHumans(),'avatar'=>User::where('id',$p->post_user_id)->value('avatar')];        
+              $post=['id'=>$p->post_id,'body'=>Post::where('id',$p->post_id)->value('body'),'user'=>User::where('id',$poster)->value('name'),'cmntsNbr'=>Comment::where('post_id',$p->post_id)->count(),'date'=>Post::where('id',$p->post_id)->value('created_at')->diffForHumans(),'avatar'=>User::where('id',$p->post_user_id)->value('avatar'),"user_id"=>$poster];        
               array_push($posts,$post);    
                
            }          

@@ -67,4 +67,25 @@ class HomeController extends Controller
     }
 
 
+    public function GetUserDetails($id){
+      
+      $u=User::find($id);
+      $type=User::where('id',$id)->value('type');
+      $followers=-1;
+      $skills="";
+      $rate=-1;
+      $description="";
+      if($type=="worker"){
+          $followers=Worker::where('id_worker',$id)->value('followers');
+          $skills=Worker::where('id_worker',$id)->value('specialty');
+          $rate=Worker::where('id_worker',$id)->value('rate');
+          $description=Worker::where('id_worker',$id)->value('description');
+
+      }
+    
+        $user=["name"=>$u->name,"email"=>$u->email,"mobile"=>$u->mobile,"address"=>$u->adresse,"followers"=>$followers,"skills"=>$skills,"rate"=>$rate,"description"=>$description,"avatar"=>$u->avatar];
+        return response()->json(['data'=>$user]);
+    }
+
+
 }

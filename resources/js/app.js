@@ -52,7 +52,7 @@ const routes =[
     {path:'/home/PostDetails/:id',component:PostDetails},
     {path:'/home/MyPosts/',component:MyPosts},
     {path:'/home/PostsInteressent/',component:PostInteressent},
-    {path:'/home/UserDetails/',component:UserDetails},
+    {path:'/home/UserDetails/:id',component:UserDetails},
     {path:'/home/Port-Folio/',component:PortFolio}
 
 ];

@@ -2761,6 +2761,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       posts: {
+        user_id: "",
         id: "",
         body: "",
         user: "",
@@ -2908,7 +2909,8 @@ __webpack_require__.r(__webpack_exports__);
         cmntsNbr: "",
         date: "",
         avatar: "",
-        interessent: ""
+        interessent: "",
+        user_id: ""
       }
     };
   },
@@ -3488,8 +3490,111 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  mounted: function mounted() {}
+  data: function data() {
+    return {
+      user: {
+        name: "",
+        email: "",
+        mobile: "",
+        skills: "",
+        address: "",
+        followers: "",
+        rate: "",
+        description: "",
+        avatar: ""
+      }
+    };
+  },
+  methods: {
+    getUserDetails: function getUserDetails() {
+      var _this = this;
+
+      axios.get("/userDetails/" + this.$route.params.id).then(function (response) {
+        _this.user = response.data.data;
+      });
+    }
+  },
+  created: function created() {
+    this.getUserDetails();
+  }
 });
 
 /***/ }),
@@ -3580,7 +3685,7 @@ var routes = [{
   path: '/home/PostsInteressent/',
   component: _components_PostInteressent_vue__WEBPACK_IMPORTED_MODULE_9__.default
 }, {
-  path: '/home/UserDetails/',
+  path: '/home/UserDetails/:id',
   component: _components_UserDetails_vue__WEBPACK_IMPORTED_MODULE_8__.default
 }, {
   path: '/home/Port-Folio/',
@@ -45820,11 +45925,18 @@ var render = function() {
                                     staticStyle: { "margin-left": "1px" }
                                   },
                                   [
-                                    _vm._v(
-                                      "\n                        " +
-                                        _vm._s(post.user)
+                                    _c(
+                                      "router-link",
+                                      {
+                                        attrs: {
+                                          to:
+                                            "/home/UserDetails/" + post.user_id
+                                        }
+                                      },
+                                      [_vm._v(_vm._s(post.user))]
                                     )
-                                  ]
+                                  ],
+                                  1
                                 ),
                                 _c("br")
                               ]),
@@ -46027,7 +46139,12 @@ var render = function() {
                                   [
                                     _c(
                                       "router-link",
-                                      { attrs: { to: "/home/UserDetails/" } },
+                                      {
+                                        attrs: {
+                                          to:
+                                            "/home/UserDetails/" + post.user_id
+                                        }
+                                      },
                                       [_vm._v(" " + _vm._s(post.user))]
                                     ),
                                     _vm._v(" "),
@@ -47044,24 +47161,220 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "container" }, [
+    _c("div", { staticClass: "container" }, [
+      _c("div", { staticClass: "main-body" }, [
+        _c("div", { staticClass: "row gutters-sm" }, [
+          _c("div", { staticClass: "col-md-5 mb-3" }, [
+            _c("div", { staticClass: "card" }, [
+              _c("div", { staticClass: "card-body" }, [
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      "d-flex flex-column align-items-center text-center"
+                  },
+                  [
+                    _c("img", {
+                      staticClass: "rounded-circle",
+                      attrs: {
+                        src:
+                          "http://127.0.0.1:8000/assets/avatars/" +
+                          _vm.user.avatar,
+                        alt: "Admin",
+                        width: "200",
+                        height: "200"
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "mt-3" }, [
+                      _c("h4", [_vm._v(_vm._s(_vm.user.name))]),
+                      _vm._v(" "),
+                      _vm.user.rate >= 0
+                        ? _c(
+                            "span",
+                            _vm._l(5, function(index) {
+                              return _c(
+                                "span",
+                                {
+                                  key: index,
+                                  staticClass: "text-secondary mb-1",
+                                  staticStyle: { margin: "2px" }
+                                },
+                                [
+                                  index <= _vm.user.rate
+                                    ? _c("span", {
+                                        staticClass: "fa fa-star checked"
+                                      })
+                                    : _c("span", { staticClass: "fa fa-star" })
+                                ]
+                              )
+                            }),
+                            0
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _c("p", { staticClass: "text-muted font-size-sm" }, [
+                        _vm._v(_vm._s(_vm.user.description))
+                      ]),
+                      _vm._v(" "),
+                      _c("button", { staticClass: "btn btn-primary" }, [
+                        _vm._v("Follow")
+                      ]),
+                      _vm._v(" "),
+                      _c("button", { staticClass: "btn btn-outline-primary" }, [
+                        _vm._v("Message")
+                      ])
+                    ])
+                  ]
+                )
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-md-7 mb-3" }, [
+            _c("div", { staticClass: "card mb-3" }, [
+              _c("div", { staticClass: "card-body" }, [
+                _c("div", { staticClass: "row" }, [
+                  _vm._m(0),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-sm-9 text-secondary" }, [
+                    _vm._v(
+                      "\n                  " +
+                        _vm._s(_vm.user.name) +
+                        "\n                "
+                    )
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("hr"),
+                _vm._v(" "),
+                _c("div", { staticClass: "row" }, [
+                  _vm._m(1),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-sm-9 text-secondary" }, [
+                    _vm._v(
+                      "\n                  " +
+                        _vm._s(_vm.user.email) +
+                        "\n                "
+                    )
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("hr"),
+                _vm._v(" "),
+                _c("div", { staticClass: "row" }, [
+                  _vm._m(2),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-sm-9 text-secondary" }, [
+                    _vm._v(
+                      "\n                  +216 " +
+                        _vm._s(_vm.user.mobile) +
+                        "\n                "
+                    )
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("hr"),
+                _vm._v(" "),
+                _vm.user.skills != ""
+                  ? _c("div", { staticClass: "row" }, [
+                      _vm._m(3),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-sm-9 text-secondary" }, [
+                        _vm._v(
+                          "\n                  " +
+                            _vm._s(_vm.user.skills) +
+                            "\n                "
+                        )
+                      ])
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _c("hr"),
+                _vm._v(" "),
+                _c("div", { staticClass: "row" }, [
+                  _vm._m(4),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-sm-9 text-secondary" }, [
+                    _vm._v(
+                      "\n                  " +
+                        _vm._s(_vm.user.address) +
+                        "\n                "
+                    )
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("hr"),
+                _vm._v(" "),
+                _vm._m(5)
+              ])
+            ])
+          ])
+        ])
+      ])
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", { staticClass: "col-md-12" }, [
-          _c("div", { staticClass: "card" }, [
-            _c("div", { staticClass: "card-header" }, [_vm._v("Profile")]),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-body" }, [
-              _vm._v("\n                   User Details\n                ")
-            ])
-          ])
-        ])
+    return _c("div", { staticClass: "col-sm-3" }, [
+      _c("h6", { staticClass: "mb-0" }, [_vm._v("Name")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-sm-3" }, [
+      _c("h6", { staticClass: "mb-0" }, [_vm._v("Email")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-sm-3" }, [
+      _c("h6", { staticClass: "mb-0" }, [_vm._v("Phone")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-sm-3" }, [
+      _c("h6", { staticClass: "mb-0" }, [_vm._v("Skills")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-sm-3" }, [
+      _c("h6", { staticClass: "mb-0" }, [_vm._v("Address")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-sm-12" }, [
+        _c(
+          "a",
+          {
+            staticClass: "btn btn-success",
+            attrs: {
+              target: "__blank",
+              href:
+                "https://www.bootdey.com/snippets/view/profile-edit-data-and-skills"
+            }
+          },
+          [_vm._v("Some Projects")]
+        )
       ])
     ])
   }
