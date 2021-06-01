@@ -22,6 +22,7 @@ Route::get('/searchUser',[HomeController::class,'SearchUser']);
 Route::post('/addWorkerInfo', [WorkerController::class,'AddWorkerInfo']);
 Route::get('/showWorkerSettings', [WorkerController::class,'ShowWorkerSettings']);
 Route::put('/changeWorkerSettings', [WorkerController::class,'ChangeWorkerSettings']);
+Route::post('/savePortFolio', [WorkerController::class,'SavePortFolio']);
 
 //Posts Routes//
 Route::post('/savePost', [PostController::class,'SavePost']);

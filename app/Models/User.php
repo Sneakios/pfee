@@ -27,7 +27,7 @@ class User extends Authenticatable
         'avatar',
         'mobile',
         'date_naiss',
-        'jour','moin','annee','lastname','firstname'
+        
     ];
 
     /**

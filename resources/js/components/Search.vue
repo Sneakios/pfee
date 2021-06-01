@@ -2,10 +2,12 @@
     <div class="container h-100">
       <div class="d-flex justify-content-center h-100">
         <div class="searchbar">
-          <input class="search_input" type="text" placeholder="Search..." v-model="keyword">
+          <input class="search_input" type="text" placeholder="Search..." v-model="k" @keyup="getSearchResult()">
           <a href="#" class="search_icon"><i class="fa fa-search"></i></a>
-           <ul v-if="users.length > 0">
-            <li v-for="user in users" :key="user.id">{{user.name}}</li>
+           
+            <ul class="dropdown-menu"  v-if="users.length > 0">
+         
+            <li v-for="user in users" :key="user.id" class="dropdown-item">{{user.name}}</li>
         </ul>
         </div>
          
@@ -19,7 +21,7 @@
     export default {
      data(){
          return{
-             keyword:null,
+             k:null,
              users:{
                  id:"",
                  name:'',
@@ -31,19 +33,19 @@
       
      },
 
-      watch: {
-        keyword(after, before) {
-            this.getSearchResult();
-        },},
+    
 
     methods:{
         getSearchResult(){
-            axios.get("/searchUser",{keyword:this.keyword}).then(response=>{
+            if(this.k.length >= 3){
+            axios.get("/searchUser",{k:this.k}).then(response=>{
                 this.users=response.data.data;
             })
 
-        }
-    }     
+        }}
+    } ,
+    
+
 
     }
 </script>

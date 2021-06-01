@@ -1,6 +1,8 @@
 <template>
     <section id="portfolio" class="portfolio">
+     
       <div class="container">
+    
 
         <div class="section-title">
           <span>Portfolio</span>
@@ -139,6 +141,47 @@
           </div>
 
         </div>
+          <div class="section-title">
+          <span>Add Projects</span>
+          <h2>Add Projects</h2>
+          <p>Here you add your projects.</p>
+        </div>
+
+
+         <form @submit.prevent="SavePortFolio"
+         >
+            <div class="modal-body" >
+              <div class="form-group">
+                <div class="form-group col-md-12">
+                   <input style="margin:10px;"
+                    id="title"
+                    type="text"
+                    class="form-control"
+                    :class="[
+                      'form-control',
+                      errors.title ? 'is-invalid' : ''
+                    ]"
+                    required
+                   
+                    autofocus
+                    placeholder="title .."
+                    v-model="title"/>
+                  <textarea style="margin:10px;"
+                    :class="['form-control', errors.description ? 'is-invalid' : '']"
+                    v-model="description"
+                    placeholder="description ..."
+                    required
+                  ></textarea>
+                  <input if="picture" type="file" :class="['form-control', errors.picture ? 'is-invalid' : '']" @change="changeImage" style="margin:10px;">
+
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+         
+              <input type="submit" value="SAVE"   class="btn btn-success" name="picture"/>
+            </div>
+          </form>
 
       </div>
     </section>
@@ -146,8 +189,45 @@
 
 <script>
     export default {
-        mounted() {
-            
-        }
+      data() {
+    return {
+      title: "",
+      picture: null,
+      description: "",
+      errors: []
+    };
+  },
+
+  methods: {
+    changeImage(e){
+      this.picture=e.target.files[0];
+      console.log(this.picture)
+    },
+    SavePortFolio() {
+        
+      axios
+        .post("/savePortFolio",{title:this.title,picture:this.picture,description:this.description})
+        .then(response => {
+          if (response.data.status == "error") {
+            this.errors = response.data.errors;
+            Toast.fire({
+              icon: "error",
+              title: "missing information !! try again"
+            });
+          } else if (response.data.status == "success") {
+            Toast.fire({
+              icon: "success",
+              title: "Saved  successfully"
+            });
+            this.errors = [];
+
+            this.title = "";
+            this.description= "";
+           this.picture="";
+
+          }
+        });
+    }
+  }
     }
 </script>

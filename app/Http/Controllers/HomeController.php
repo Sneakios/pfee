@@ -88,7 +88,8 @@ class HomeController extends Controller
     }
 
     public function SearchUser(Request $request){
-        $users = User::where('name','LIKE','%'.$request->keyword.'%')->get('name','avatar','id');
+        $ser=$request->k;
+        $users = User::where('name',$ser)->select('name','avatar','id')->get();
         return response()->json(['data'=>$users]); 
 
     }

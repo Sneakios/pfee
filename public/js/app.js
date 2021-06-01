@@ -2437,8 +2437,90 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  mounted: function mounted() {}
+  data: function data() {
+    return {
+      title: "",
+      picture: null,
+      description: "",
+      errors: []
+    };
+  },
+  methods: {
+    changeImage: function changeImage(e) {
+      this.picture = e.target.files[0];
+      console.log(this.picture);
+    },
+    SavePortFolio: function SavePortFolio() {
+      var _this = this;
+
+      axios.post("/savePortFolio", {
+        title: this.title,
+        picture: this.picture,
+        description: this.description
+      }).then(function (response) {
+        if (response.data.status == "error") {
+          _this.errors = response.data.errors;
+          Toast.fire({
+            icon: "error",
+            title: "missing information !! try again"
+          });
+        } else if (response.data.status == "success") {
+          Toast.fire({
+            icon: "success",
+            title: "Saved  successfully"
+          });
+          _this.errors = [];
+          _this.title = "";
+          _this.description = "";
+          _this.picture = "";
+        }
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -3072,10 +3154,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      keyword: null,
+      k: null,
       users: {
         id: "",
         name: '',
@@ -3083,20 +3167,17 @@ __webpack_require__.r(__webpack_exports__);
       }
     };
   },
-  watch: {
-    keyword: function keyword(after, before) {
-      this.getSearchResult();
-    }
-  },
   methods: {
     getSearchResult: function getSearchResult() {
       var _this = this;
 
-      axios.get("/searchUser", {
-        keyword: this.keyword
-      }).then(function (response) {
-        _this.users = response.data.data;
-      });
+      if (this.k.length >= 3) {
+        axios.get("/searchUser", {
+          k: this.k
+        }).then(function (response) {
+          _this.users = response.data.data;
+        });
+      }
     }
   }
 });
@@ -45264,484 +45345,605 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c(
+    "section",
+    { staticClass: "portfolio", attrs: { id: "portfolio" } },
+    [
+      _c("div", { staticClass: "container" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _vm._m(1),
+        _vm._v(" "),
+        _vm._m(2),
+        _vm._v(" "),
+        _c(
+          "form",
+          {
+            on: {
+              submit: function($event) {
+                $event.preventDefault()
+                return _vm.SavePortFolio($event)
+              }
+            }
+          },
+          [
+            _c("div", { staticClass: "modal-body" }, [
+              _c("div", { staticClass: "form-group" }, [
+                _c("div", { staticClass: "form-group col-md-12" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.title,
+                        expression: "title"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    class: [
+                      "form-control",
+                      _vm.errors.title ? "is-invalid" : ""
+                    ],
+                    staticStyle: { margin: "10px" },
+                    attrs: {
+                      id: "title",
+                      type: "text",
+                      required: "",
+                      autofocus: "",
+                      placeholder: "title .."
+                    },
+                    domProps: { value: _vm.title },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.title = $event.target.value
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("textarea", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.description,
+                        expression: "description"
+                      }
+                    ],
+                    class: [
+                      "form-control",
+                      _vm.errors.description ? "is-invalid" : ""
+                    ],
+                    staticStyle: { margin: "10px" },
+                    attrs: { placeholder: "description ...", required: "" },
+                    domProps: { value: _vm.description },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.description = $event.target.value
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("input", {
+                    class: [
+                      "form-control",
+                      _vm.errors.picture ? "is-invalid" : ""
+                    ],
+                    staticStyle: { margin: "10px" },
+                    attrs: { if: "picture", type: "file" },
+                    on: { change: _vm.changeImage }
+                  })
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _vm._m(3)
+          ]
+        )
+      ])
+    ]
+  )
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "section",
-      { staticClass: "portfolio", attrs: { id: "portfolio" } },
-      [
-        _c("div", { staticClass: "container" }, [
-          _c("div", { staticClass: "section-title" }, [
-            _c("span", [_vm._v("Portfolio")]),
+    return _c("div", { staticClass: "section-title" }, [
+      _c("span", [_vm._v("Portfolio")]),
+      _vm._v(" "),
+      _c("h2", [_vm._v("Portfolio")]),
+      _vm._v(" "),
+      _c("p", [
+        _vm._v(
+          "Here are some of our recent projects from a variety of industries we serve."
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row portfolio-container" }, [
+      _c(
+        "div",
+        { staticClass: "col-lg-4 col-md-6 portfolio-item filter-app" },
+        [
+          _c("div", { staticClass: "portfolio-wrap" }, [
+            _c("img", {
+              staticClass: "img-fluid",
+              attrs: {
+                src:
+                  "http://127.0.0.1:8000/assets/img/portfolio/portfolio-1.jpg",
+                alt: ""
+              }
+            }),
             _vm._v(" "),
-            _c("h2", [_vm._v("Portfolio")]),
-            _vm._v(" "),
-            _c("p", [
-              _vm._v(
-                "Here are some of our recent projects from a variety of industries we serve."
-              )
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "row portfolio-container" }, [
-            _c(
-              "div",
-              { staticClass: "col-lg-4 col-md-6 portfolio-item filter-app" },
-              [
-                _c("div", { staticClass: "portfolio-wrap" }, [
-                  _c("img", {
-                    staticClass: "img-fluid",
+            _c("div", { staticClass: "portfolio-info" }, [
+              _c("h4", [_vm._v("App 1")]),
+              _vm._v(" "),
+              _c("p", [_vm._v("App")]),
+              _vm._v(" "),
+              _c("div", { staticClass: "portfolio-links" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "portfolio-lightbox",
                     attrs: {
-                      src:
+                      href:
                         "http://127.0.0.1:8000/assets/img/portfolio/portfolio-1.jpg",
-                      alt: ""
+                      "data-gallery": "portfolioGallery",
+                      title: "App 1"
                     }
-                  }),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "portfolio-info" }, [
-                    _c("h4", [_vm._v("App 1")]),
-                    _vm._v(" "),
-                    _c("p", [_vm._v("App")]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "portfolio-links" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "portfolio-lightbox",
-                          attrs: {
-                            href:
-                              "http://127.0.0.1:8000/assets/img/portfolio/portfolio-1.jpg",
-                            "data-gallery": "portfolioGallery",
-                            title: "App 1"
-                          }
-                        },
-                        [_c("i", { staticClass: "ri-add-fill" })]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "a",
-                        {
-                          attrs: {
-                            href: "portfolio-details.html",
-                            title: "More Details"
-                          }
-                        },
-                        [_c("i", { staticClass: "ri-links-fill" })]
-                      )
-                    ])
-                  ])
-                ])
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "col-lg-4 col-md-6 portfolio-item filter-web" },
-              [
-                _c("div", { staticClass: "portfolio-wrap" }, [
-                  _c("img", {
-                    staticClass: "img-fluid",
+                  },
+                  [_c("i", { staticClass: "ri-add-fill" })]
+                ),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  {
                     attrs: {
-                      src:
-                        "http://127.0.0.1:8000/assets/img/portfolio/portfolio-2.jpg",
-                      alt: ""
+                      href: "portfolio-details.html",
+                      title: "More Details"
                     }
-                  }),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "portfolio-info" }, [
-                    _c("h4", [_vm._v("Web 3")]),
-                    _vm._v(" "),
-                    _c("p", [_vm._v("Web")]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "portfolio-links" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "portfolio-lightbox",
-                          attrs: {
-                            href:
-                              "http://127.0.0.1:8000/assets/img/portfolio/portfolio-2.jpg",
-                            "data-gallery": "portfolioGallery",
-                            title: "Web 3"
-                          }
-                        },
-                        [_c("i", { staticClass: "ri-add-fill" })]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "a",
-                        {
-                          attrs: {
-                            href: "portfolio-details.html",
-                            title: "More Details"
-                          }
-                        },
-                        [_c("i", { staticClass: "ri-links-fill" })]
-                      )
-                    ])
-                  ])
-                ])
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "col-lg-4 col-md-6 portfolio-item filter-app" },
-              [
-                _c("div", { staticClass: "portfolio-wrap" }, [
-                  _c("img", {
-                    staticClass: "img-fluid",
-                    attrs: {
-                      src:
-                        "http://127.0.0.1:8000/assets/img/portfolio/portfolio-3.jpg",
-                      alt: ""
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "portfolio-info" }, [
-                    _c("h4", [_vm._v("App 2")]),
-                    _vm._v(" "),
-                    _c("p", [_vm._v("App")]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "portfolio-links" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "portfolio-lightbox",
-                          attrs: {
-                            href:
-                              "http://127.0.0.1:8000/assets/img/portfolio/portfolio-3.jpg",
-                            "data-gallery": "portfolioGallery",
-                            title: "App 2"
-                          }
-                        },
-                        [_c("i", { staticClass: "ri-add-fill" })]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "a",
-                        {
-                          attrs: {
-                            href: "portfolio-details.html",
-                            title: "More Details"
-                          }
-                        },
-                        [_c("i", { staticClass: "ri-links-fill" })]
-                      )
-                    ])
-                  ])
-                ])
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "col-lg-4 col-md-6 portfolio-item filter-card" },
-              [
-                _c("div", { staticClass: "portfolio-wrap" }, [
-                  _c("img", {
-                    staticClass: "img-fluid",
-                    attrs: {
-                      src:
-                        "http://127.0.0.1:8000/assets/img/portfolio/portfolio-4.jpg",
-                      alt: ""
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "portfolio-info" }, [
-                    _c("h4", [_vm._v("Card 2")]),
-                    _vm._v(" "),
-                    _c("p", [_vm._v("Card")]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "portfolio-links" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "portfolio-lightbox",
-                          attrs: {
-                            href:
-                              "http://127.0.0.1:8000/assets/img/portfolio/portfolio-4.jpg",
-                            "data-gallery": "portfolioGallery",
-                            title: "Card 2"
-                          }
-                        },
-                        [_c("i", { staticClass: "ri-add-fill" })]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "a",
-                        {
-                          attrs: {
-                            href: "portfolio-details.html",
-                            title: "More Details"
-                          }
-                        },
-                        [_c("i", { staticClass: "ri-links-fill" })]
-                      )
-                    ])
-                  ])
-                ])
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "col-lg-4 col-md-6 portfolio-item filter-web" },
-              [
-                _c("div", { staticClass: "portfolio-wrap" }, [
-                  _c("img", {
-                    staticClass: "img-fluid",
-                    attrs: {
-                      src:
-                        "http://127.0.0.1:8000/assets/img/portfolio/portfolio-5.jpg",
-                      alt: ""
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "portfolio-info" }, [
-                    _c("h4", [_vm._v("Web 2")]),
-                    _vm._v(" "),
-                    _c("p", [_vm._v("Web")]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "portfolio-links" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "portfolio-lightbox",
-                          attrs: {
-                            href:
-                              "http://127.0.0.1:8000/assets/img/portfolio/portfolio-5.jpg",
-                            "data-gallery": "portfolioGallery",
-                            title: "Web 2"
-                          }
-                        },
-                        [_c("i", { staticClass: "ri-add-fill" })]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "a",
-                        {
-                          attrs: {
-                            href: "portfolio-details.html",
-                            title: "More Details"
-                          }
-                        },
-                        [_c("i", { staticClass: "ri-links-fill" })]
-                      )
-                    ])
-                  ])
-                ])
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "col-lg-4 col-md-6 portfolio-item filter-app" },
-              [
-                _c("div", { staticClass: "portfolio-wrap" }, [
-                  _c("img", {
-                    staticClass: "img-fluid",
-                    attrs: {
-                      src:
-                        "http://127.0.0.1:8000/assets/img/portfolio/portfolio-6.jpg",
-                      alt: ""
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "portfolio-info" }, [
-                    _c("h4", [_vm._v("App 3")]),
-                    _vm._v(" "),
-                    _c("p", [_vm._v("App")]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "portfolio-links" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "portfolio-lightbox",
-                          attrs: {
-                            href:
-                              "http://127.0.0.1:8000/assets/img/portfolio/portfolio-6.jpg",
-                            "data-gallery": "portfolioGallery",
-                            title: "App 3"
-                          }
-                        },
-                        [_c("i", { staticClass: "ri-add-fill" })]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "a",
-                        {
-                          attrs: {
-                            href: "portfolio-details.html",
-                            title: "More Details"
-                          }
-                        },
-                        [_c("i", { staticClass: "ri-links-fill" })]
-                      )
-                    ])
-                  ])
-                ])
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "col-lg-4 col-md-6 portfolio-item filter-card" },
-              [
-                _c("div", { staticClass: "portfolio-wrap" }, [
-                  _c("img", {
-                    staticClass: "img-fluid",
-                    attrs: {
-                      src:
-                        "http://127.0.0.1:8000/assets/img/portfolio/portfolio-7.jpg",
-                      alt: ""
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "portfolio-info" }, [
-                    _c("h4", [_vm._v("Card 1")]),
-                    _vm._v(" "),
-                    _c("p", [_vm._v("Card")]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "portfolio-links" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "portfolio-lightbox",
-                          attrs: {
-                            href:
-                              "http://127.0.0.1:8000/assets/img/portfolio/portfolio-7.jpg",
-                            "data-gallery": "portfolioGallery",
-                            title: "Card 1"
-                          }
-                        },
-                        [_c("i", { staticClass: "ri-add-fill" })]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "a",
-                        {
-                          attrs: {
-                            href: "portfolio-details.html",
-                            title: "More Details"
-                          }
-                        },
-                        [_c("i", { staticClass: "ri-links-fill" })]
-                      )
-                    ])
-                  ])
-                ])
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "col-lg-4 col-md-6 portfolio-item filter-card" },
-              [
-                _c("div", { staticClass: "portfolio-wrap" }, [
-                  _c("img", {
-                    staticClass: "img-fluid",
-                    attrs: {
-                      src:
-                        "http://127.0.0.1:8000/assets/img/portfolio/portfolio-8.jpg",
-                      alt: ""
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "portfolio-info" }, [
-                    _c("h4", [_vm._v("Card 3")]),
-                    _vm._v(" "),
-                    _c("p", [_vm._v("Card")]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "portfolio-links" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "portfolio-lightbox",
-                          attrs: {
-                            href:
-                              "http://127.0.0.1:8000/assets/img/portfolio/portfolio-8.jpg",
-                            "data-gallery": "portfolioGallery",
-                            title: "Card 3"
-                          }
-                        },
-                        [_c("i", { staticClass: "ri-add-fill" })]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "a",
-                        {
-                          attrs: {
-                            href: "portfolio-details.html",
-                            title: "More Details"
-                          }
-                        },
-                        [_c("i", { staticClass: "ri-links-fill" })]
-                      )
-                    ])
-                  ])
-                ])
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "col-lg-4 col-md-6 portfolio-item filter-web" },
-              [
-                _c("div", { staticClass: "portfolio-wrap" }, [
-                  _c("img", {
-                    staticClass: "img-fluid",
-                    attrs: {
-                      src:
-                        "http://127.0.0.1:8000/assets/img/portfolio/portfolio-9.jpg",
-                      alt: ""
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "portfolio-info" }, [
-                    _c("h4", [_vm._v("Web 3")]),
-                    _vm._v(" "),
-                    _c("p", [_vm._v("Web")]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "portfolio-links" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "portfolio-lightbox",
-                          attrs: {
-                            href:
-                              "http://127.0.0.1:8000/assets/img/portfolio/portfolio-9.jpg",
-                            "data-gallery": "portfolioGallery",
-                            title: "Web 3"
-                          }
-                        },
-                        [_c("i", { staticClass: "ri-add-fill" })]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "a",
-                        {
-                          attrs: {
-                            href: "portfolio-details.html",
-                            title: "More Details"
-                          }
-                        },
-                        [_c("i", { staticClass: "ri-links-fill" })]
-                      )
-                    ])
-                  ])
-                ])
-              ]
-            )
+                  },
+                  [_c("i", { staticClass: "ri-links-fill" })]
+                )
+              ])
+            ])
           ])
-        ])
-      ]
-    )
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "col-lg-4 col-md-6 portfolio-item filter-web" },
+        [
+          _c("div", { staticClass: "portfolio-wrap" }, [
+            _c("img", {
+              staticClass: "img-fluid",
+              attrs: {
+                src:
+                  "http://127.0.0.1:8000/assets/img/portfolio/portfolio-2.jpg",
+                alt: ""
+              }
+            }),
+            _vm._v(" "),
+            _c("div", { staticClass: "portfolio-info" }, [
+              _c("h4", [_vm._v("Web 3")]),
+              _vm._v(" "),
+              _c("p", [_vm._v("Web")]),
+              _vm._v(" "),
+              _c("div", { staticClass: "portfolio-links" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "portfolio-lightbox",
+                    attrs: {
+                      href:
+                        "http://127.0.0.1:8000/assets/img/portfolio/portfolio-2.jpg",
+                      "data-gallery": "portfolioGallery",
+                      title: "Web 3"
+                    }
+                  },
+                  [_c("i", { staticClass: "ri-add-fill" })]
+                ),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  {
+                    attrs: {
+                      href: "portfolio-details.html",
+                      title: "More Details"
+                    }
+                  },
+                  [_c("i", { staticClass: "ri-links-fill" })]
+                )
+              ])
+            ])
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "col-lg-4 col-md-6 portfolio-item filter-app" },
+        [
+          _c("div", { staticClass: "portfolio-wrap" }, [
+            _c("img", {
+              staticClass: "img-fluid",
+              attrs: {
+                src:
+                  "http://127.0.0.1:8000/assets/img/portfolio/portfolio-3.jpg",
+                alt: ""
+              }
+            }),
+            _vm._v(" "),
+            _c("div", { staticClass: "portfolio-info" }, [
+              _c("h4", [_vm._v("App 2")]),
+              _vm._v(" "),
+              _c("p", [_vm._v("App")]),
+              _vm._v(" "),
+              _c("div", { staticClass: "portfolio-links" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "portfolio-lightbox",
+                    attrs: {
+                      href:
+                        "http://127.0.0.1:8000/assets/img/portfolio/portfolio-3.jpg",
+                      "data-gallery": "portfolioGallery",
+                      title: "App 2"
+                    }
+                  },
+                  [_c("i", { staticClass: "ri-add-fill" })]
+                ),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  {
+                    attrs: {
+                      href: "portfolio-details.html",
+                      title: "More Details"
+                    }
+                  },
+                  [_c("i", { staticClass: "ri-links-fill" })]
+                )
+              ])
+            ])
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "col-lg-4 col-md-6 portfolio-item filter-card" },
+        [
+          _c("div", { staticClass: "portfolio-wrap" }, [
+            _c("img", {
+              staticClass: "img-fluid",
+              attrs: {
+                src:
+                  "http://127.0.0.1:8000/assets/img/portfolio/portfolio-4.jpg",
+                alt: ""
+              }
+            }),
+            _vm._v(" "),
+            _c("div", { staticClass: "portfolio-info" }, [
+              _c("h4", [_vm._v("Card 2")]),
+              _vm._v(" "),
+              _c("p", [_vm._v("Card")]),
+              _vm._v(" "),
+              _c("div", { staticClass: "portfolio-links" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "portfolio-lightbox",
+                    attrs: {
+                      href:
+                        "http://127.0.0.1:8000/assets/img/portfolio/portfolio-4.jpg",
+                      "data-gallery": "portfolioGallery",
+                      title: "Card 2"
+                    }
+                  },
+                  [_c("i", { staticClass: "ri-add-fill" })]
+                ),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  {
+                    attrs: {
+                      href: "portfolio-details.html",
+                      title: "More Details"
+                    }
+                  },
+                  [_c("i", { staticClass: "ri-links-fill" })]
+                )
+              ])
+            ])
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "col-lg-4 col-md-6 portfolio-item filter-web" },
+        [
+          _c("div", { staticClass: "portfolio-wrap" }, [
+            _c("img", {
+              staticClass: "img-fluid",
+              attrs: {
+                src:
+                  "http://127.0.0.1:8000/assets/img/portfolio/portfolio-5.jpg",
+                alt: ""
+              }
+            }),
+            _vm._v(" "),
+            _c("div", { staticClass: "portfolio-info" }, [
+              _c("h4", [_vm._v("Web 2")]),
+              _vm._v(" "),
+              _c("p", [_vm._v("Web")]),
+              _vm._v(" "),
+              _c("div", { staticClass: "portfolio-links" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "portfolio-lightbox",
+                    attrs: {
+                      href:
+                        "http://127.0.0.1:8000/assets/img/portfolio/portfolio-5.jpg",
+                      "data-gallery": "portfolioGallery",
+                      title: "Web 2"
+                    }
+                  },
+                  [_c("i", { staticClass: "ri-add-fill" })]
+                ),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  {
+                    attrs: {
+                      href: "portfolio-details.html",
+                      title: "More Details"
+                    }
+                  },
+                  [_c("i", { staticClass: "ri-links-fill" })]
+                )
+              ])
+            ])
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "col-lg-4 col-md-6 portfolio-item filter-app" },
+        [
+          _c("div", { staticClass: "portfolio-wrap" }, [
+            _c("img", {
+              staticClass: "img-fluid",
+              attrs: {
+                src:
+                  "http://127.0.0.1:8000/assets/img/portfolio/portfolio-6.jpg",
+                alt: ""
+              }
+            }),
+            _vm._v(" "),
+            _c("div", { staticClass: "portfolio-info" }, [
+              _c("h4", [_vm._v("App 3")]),
+              _vm._v(" "),
+              _c("p", [_vm._v("App")]),
+              _vm._v(" "),
+              _c("div", { staticClass: "portfolio-links" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "portfolio-lightbox",
+                    attrs: {
+                      href:
+                        "http://127.0.0.1:8000/assets/img/portfolio/portfolio-6.jpg",
+                      "data-gallery": "portfolioGallery",
+                      title: "App 3"
+                    }
+                  },
+                  [_c("i", { staticClass: "ri-add-fill" })]
+                ),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  {
+                    attrs: {
+                      href: "portfolio-details.html",
+                      title: "More Details"
+                    }
+                  },
+                  [_c("i", { staticClass: "ri-links-fill" })]
+                )
+              ])
+            ])
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "col-lg-4 col-md-6 portfolio-item filter-card" },
+        [
+          _c("div", { staticClass: "portfolio-wrap" }, [
+            _c("img", {
+              staticClass: "img-fluid",
+              attrs: {
+                src:
+                  "http://127.0.0.1:8000/assets/img/portfolio/portfolio-7.jpg",
+                alt: ""
+              }
+            }),
+            _vm._v(" "),
+            _c("div", { staticClass: "portfolio-info" }, [
+              _c("h4", [_vm._v("Card 1")]),
+              _vm._v(" "),
+              _c("p", [_vm._v("Card")]),
+              _vm._v(" "),
+              _c("div", { staticClass: "portfolio-links" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "portfolio-lightbox",
+                    attrs: {
+                      href:
+                        "http://127.0.0.1:8000/assets/img/portfolio/portfolio-7.jpg",
+                      "data-gallery": "portfolioGallery",
+                      title: "Card 1"
+                    }
+                  },
+                  [_c("i", { staticClass: "ri-add-fill" })]
+                ),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  {
+                    attrs: {
+                      href: "portfolio-details.html",
+                      title: "More Details"
+                    }
+                  },
+                  [_c("i", { staticClass: "ri-links-fill" })]
+                )
+              ])
+            ])
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "col-lg-4 col-md-6 portfolio-item filter-card" },
+        [
+          _c("div", { staticClass: "portfolio-wrap" }, [
+            _c("img", {
+              staticClass: "img-fluid",
+              attrs: {
+                src:
+                  "http://127.0.0.1:8000/assets/img/portfolio/portfolio-8.jpg",
+                alt: ""
+              }
+            }),
+            _vm._v(" "),
+            _c("div", { staticClass: "portfolio-info" }, [
+              _c("h4", [_vm._v("Card 3")]),
+              _vm._v(" "),
+              _c("p", [_vm._v("Card")]),
+              _vm._v(" "),
+              _c("div", { staticClass: "portfolio-links" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "portfolio-lightbox",
+                    attrs: {
+                      href:
+                        "http://127.0.0.1:8000/assets/img/portfolio/portfolio-8.jpg",
+                      "data-gallery": "portfolioGallery",
+                      title: "Card 3"
+                    }
+                  },
+                  [_c("i", { staticClass: "ri-add-fill" })]
+                ),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  {
+                    attrs: {
+                      href: "portfolio-details.html",
+                      title: "More Details"
+                    }
+                  },
+                  [_c("i", { staticClass: "ri-links-fill" })]
+                )
+              ])
+            ])
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "col-lg-4 col-md-6 portfolio-item filter-web" },
+        [
+          _c("div", { staticClass: "portfolio-wrap" }, [
+            _c("img", {
+              staticClass: "img-fluid",
+              attrs: {
+                src:
+                  "http://127.0.0.1:8000/assets/img/portfolio/portfolio-9.jpg",
+                alt: ""
+              }
+            }),
+            _vm._v(" "),
+            _c("div", { staticClass: "portfolio-info" }, [
+              _c("h4", [_vm._v("Web 3")]),
+              _vm._v(" "),
+              _c("p", [_vm._v("Web")]),
+              _vm._v(" "),
+              _c("div", { staticClass: "portfolio-links" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "portfolio-lightbox",
+                    attrs: {
+                      href:
+                        "http://127.0.0.1:8000/assets/img/portfolio/portfolio-9.jpg",
+                      "data-gallery": "portfolioGallery",
+                      title: "Web 3"
+                    }
+                  },
+                  [_c("i", { staticClass: "ri-add-fill" })]
+                ),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  {
+                    attrs: {
+                      href: "portfolio-details.html",
+                      title: "More Details"
+                    }
+                  },
+                  [_c("i", { staticClass: "ri-links-fill" })]
+                )
+              ])
+            ])
+          ])
+        ]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "section-title" }, [
+      _c("span", [_vm._v("Add Projects")]),
+      _vm._v(" "),
+      _c("h2", [_vm._v("Add Projects")]),
+      _vm._v(" "),
+      _c("p", [_vm._v("Here you add your projects.")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-footer" }, [
+      _c("input", {
+        staticClass: "btn btn-success",
+        attrs: { type: "submit", value: "SAVE", name: "picture" }
+      })
+    ])
   }
 ]
 render._withStripped = true
@@ -46636,22 +46838,20 @@ var render = function() {
       _c("div", { staticClass: "searchbar" }, [
         _c("input", {
           directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.keyword,
-              expression: "keyword"
-            }
+            { name: "model", rawName: "v-model", value: _vm.k, expression: "k" }
           ],
           staticClass: "search_input",
           attrs: { type: "text", placeholder: "Search..." },
-          domProps: { value: _vm.keyword },
+          domProps: { value: _vm.k },
           on: {
+            keyup: function($event) {
+              return _vm.getSearchResult()
+            },
             input: function($event) {
               if ($event.target.composing) {
                 return
               }
-              _vm.keyword = $event.target.value
+              _vm.k = $event.target.value
             }
           }
         }),
@@ -46661,8 +46861,13 @@ var render = function() {
         _vm.users.length > 0
           ? _c(
               "ul",
+              { staticClass: "dropdown-menu" },
               _vm._l(_vm.users, function(user) {
-                return _c("li", { key: user.id }, [_vm._v(_vm._s(user.name))])
+                return _c(
+                  "li",
+                  { key: user.id, staticClass: "dropdown-item" },
+                  [_vm._v(_vm._s(user.name))]
+                )
               }),
               0
             )
