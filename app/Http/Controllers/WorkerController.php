@@ -80,26 +80,21 @@ class WorkerController extends Controller
 
 public function SavePortFolio(Request $request){
 
-  $validator = Validator::make($request->all(),[
-      
+  $validator = Validator::make($request->all(),[     
     'description'=>'required|min:10',
     'title'=>'required|min:3',
-   
- 
-    
-    
   ]);
   if($validator->fails()){
-    return response()->json(['status'=>'error','errors'=>$validator->errors(),'picture'=>$request->picture]);
+    return response()->json(['status'=>'error','errors'=>$validator->errors()]);
 }
   $portfolio=new Portfolio;
 
  
- 
-    $avatar=$request->file('picture');
-    $filename=time().'.'.$avatar->getClientOriginalExtension();
-    $avatar->move(public_path('assets/avatars'), $filename); 
-    
+   if($request->file()){
+    $file=$request->file('picture');
+    $filename=time().'.'.$file->getClientOriginalExtension();
+    $file->move(public_path('assets/avatars'), $filename); 
+  }
     
     $portfolio->worker_id=Auth::user()->getAuthIdentifier();
     $portfolio->picture=$filename;

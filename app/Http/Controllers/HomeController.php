@@ -25,32 +25,32 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()
-    
-    {    
+
+    {
         $rate=0;
         $countWorker=-1;
         if(Auth::user()->type=='worker'){
         $countWorker = Worker::where('id_worker','=',Auth::user()->getAuthIdentifier())->count();
         $rate=Worker::where('id_worker','=',Auth::user()->getAuthIdentifier())->value('rate');
     }
-    $settings=Setting::find(1);   
-        return view('home',['count'=>$countWorker,'settings'=>$settings,'rate'=>$rate]);        
+    $settings=Setting::find(1);
+        return view('home',['count'=>$countWorker,'settings'=>$settings,'rate'=>$rate]);
     }
 
     public function indexx()
-    
-    {    
+
+    {
         $rate=0;
         $countWorker=-1;
         if(Auth::user()->type=='worker'){
         $countWorker = Worker::where('id_worker','=',Auth::user()->getAuthIdentifier())->count();
         $rate=Worker::where('id_worker','=',Auth::user()->getAuthIdentifier())->value('rate');
     }
-    $settings=Setting::find(1);   
-        return view('home',['count'=>$countWorker,'settings'=>$settings,'rate'=>$rate]);        
+    $settings=Setting::find(1);
+        return view('home',['count'=>$countWorker,'settings'=>$settings,'rate'=>$rate]);
     }
 
-    
+
 
 
     public function change_avatar(Request $request)
@@ -68,7 +68,7 @@ class HomeController extends Controller
 
 
     public function GetUserDetails($id){
-      
+
       $u=User::find($id);
       $type=User::where('id',$id)->value('type');
       $followers=-1;
@@ -82,15 +82,15 @@ class HomeController extends Controller
           $description=Worker::where('id_worker',$id)->value('description');
 
       }
-    
+
         $user=["name"=>$u->name,"email"=>$u->email,"mobile"=>$u->mobile,"address"=>$u->adresse,"followers"=>$followers,"skills"=>$skills,"rate"=>$rate,"description"=>$description,"avatar"=>$u->avatar];
         return response()->json(['data'=>$user]);
     }
 
     public function SearchUser(Request $request){
         $ser=$request->k;
-        $users = User::where('name',$ser)->select('name','avatar','id')->get();
-        return response()->json(['data'=>$users]); 
+        $users = User::where('name','=','%'.$ser.'%')->select('name','avatar','id')->get();
+        return response()->json(['data'=>$users]);
 
     }
 

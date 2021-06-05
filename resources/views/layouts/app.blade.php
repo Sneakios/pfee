@@ -95,8 +95,7 @@
             <li><a class="nav-link scrollto " href="#contact">Contact Us</a></li>
             <li><a class="nav-link scrollto " >    </a></li>
             @endif
-            @if ((('' !=  request()->path()) && ('login' !=  request()->path())) && (Auth::user()->type=='worker'))
-            
+            @if ((('login' !=  request()->path()) && ('/' !=  request()->path()) && (Auth::user()->type=='worker')))           
             <router-link to="/home/Port-Folio/">Port-Folio</router-link>
             <router-link to="/home/Profile-Worker">Profile</router-link>
             <router-link to="/home/"><div class="dropdown">
@@ -111,8 +110,7 @@
             </div></router-link>
             <li><a class="nav-link scrollto " >    </a></li>
             @endif
-            @if ((('' !=  request()->path()) && ('login' !=  request()->path())) && (Auth::user()->type=='customer'))
-           
+            @if ((('login' !=  request()->path()) && ('/' !=  request()->path()) && (Auth::user()->type=='customer')))            
             <router-link to="/home/Profile-Customer">Profile</router-link>
             <router-link to="#"><div class="dropdown">
               <div class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
