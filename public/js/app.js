@@ -2370,42 +2370,71 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
       title: "",
-      file: '',
+      file: "",
       description: "",
       errors: []
     };
   },
   methods: {
-    changeImage: function changeImage(e) {
+    handleOnchange: function handleOnchange(e) {
       this.file = e.target.files[0];
     },
     SavePortFolio: function SavePortFolio() {
       var _this = this;
 
-      axios.post("/savePortFolio", {
-        title: this.title,
-        picture: this.picture,
-        description: this.description
-      }).then(function (response) {
-        if (response.data.status == "error") {
-          _this.errors = response.data.errors;
-          Toast.fire({
-            icon: "error",
-            title: "missing information !! try again"
+      Alert.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        confirmButtonText: "Yes, added it!"
+      }).then(function (result) {
+        if (result.isConfirmed) {
+          var formData = new FormData();
+          formData.set("picture", _this.file);
+          formData.set("description", _this.description);
+          formData.set("title", _this.title);
+          axios.post("/savePortFolio", formData).then(function (response) {
+            if (response.data.status == "success") {
+              Swal.fire("Succes!", "Your project has been added.", "success");
+              _this.errors = [];
+              _this.title = "";
+              _this.description = "";
+              _this.picture = "";
+            } else if (response.data.status == "error") {
+              _this.errors = response.data.errors;
+              Swal.fire("error!", "missong information.", "error");
+              _this.errors = [];
+              _this.title = "";
+              _this.description = "";
+              _this.picture = "";
+            }
           });
-        } else if (response.data.status == "success") {
-          Toast.fire({
-            icon: "success",
-            title: "Saved  successfully"
-          });
-          _this.errors = [];
-          _this.title = "";
-          _this.description = "";
-          _this.picture = "";
+        } else {
+          Swal.fire("Cancelled!", "Your project has been not added :)", "error");
         }
       });
     }
@@ -45345,7 +45374,7 @@ var render = function() {
                       id: "picture",
                       name: "picture"
                     },
-                    on: { change: _vm.changeImage }
+                    on: { change: _vm.handleOnchange }
                   })
                 ])
               ])
@@ -45370,7 +45399,7 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("p", [
         _vm._v(
-          "Here are some of our recent projects from a variety of industries we serve."
+          "\n        Here are some of our recent projects from a variety of industries we\n        serve.\n      "
         )
       ])
     ])

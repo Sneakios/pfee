@@ -70,8 +70,7 @@
         <h1><a href="{{route('welcome')}}">Help<span>Me</span></a></h1>
         
 
-        <!-- Uncomment below if you prefer to use an image logo -->
-        <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+     
       </div>
       <nav id="navbar" class="navbar">
         <ul>
@@ -141,7 +140,7 @@
             @endguest
        </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
-      </nav><!-- .navbar -->
+      </nav>
 
     </div>
   </header>

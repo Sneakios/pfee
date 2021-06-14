@@ -83,31 +83,23 @@ public function SavePortFolio(Request $request){
   $validator = Validator::make($request->all(),[     
     'description'=>'required|min:10',
     'title'=>'required|min:3',
+    'picture'=>'required',
   ]);
   if($validator->fails()){
     return response()->json(['status'=>'error','errors'=>$validator->errors()]);
 }
   $portfolio=new Portfolio;
-
- 
    if($request->file()){
     $file=$request->file('picture');
     $filename=time().'.'.$file->getClientOriginalExtension();
     $file->move(public_path('assets/avatars'), $filename); 
-  }
-    
+  }   
     $portfolio->worker_id=Auth::user()->getAuthIdentifier();
     $portfolio->picture=$filename;
       $portfolio->title=$request->title;
       $portfolio->description=$request->description;
        $portfolio->save();
       return response()->json(['status'=>'success']);
-
-  
-  
-
-
-
 
 }
 
