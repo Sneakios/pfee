@@ -14,6 +14,7 @@ Auth::routes();
 //User Routes//
 Route::get('/', [Controller::class,'welcome'])->name('welcome');
 Route::get('/home', [HomeController::class,'index'])->name('home');
+Route::get('/dashboardAdmin', [HomeController::class,'indexAdmin'])->name('admindash');
 Route::post('/change_avatar', [HomeController::class,'Change_avatar'])->name('change_avatar');
 Route::get('/userDetails/{id}', [HomeController::class,'GetUserDetails']);
 Route::get('/searchUser',[HomeController::class,'SearchUser']);

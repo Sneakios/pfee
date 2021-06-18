@@ -24,6 +24,12 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+
+     public function indexAdmin(){
+         return view('homeadmin');
+     }
+
+
     public function index()
 
     {
@@ -37,6 +43,9 @@ class HomeController extends Controller
         return view('home',['count'=>$countWorker,'settings'=>$settings,'rate'=>$rate]);
     }
 
+
+
+    //use vue js router//
     public function indexx()
 
     {

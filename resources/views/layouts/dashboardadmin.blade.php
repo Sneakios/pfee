@@ -41,7 +41,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="{{'products' ==  request()->path() ? 'nav-link active' : 'nav-link'}}" href="{{route('productsIndex')}}">
+                        <a class="{{'products' ==  request()->path() ? 'nav-link active' : 'nav-link'}}" href="">
                             <i class="fa fa-project-diagram text-red"></i>
                             <span class="nav-link-text">Products</span>
                         </a>
@@ -303,7 +303,7 @@
                         <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <div class="media align-items-center">
                   <span class="avatar avatar-sm rounded-circle">
-                    <img alt="Image placeholder" src="{{asset('assetsAdmin/img/theme/'.Auth::user()->avatar)}}">
+                    <img alt="Image placeholder" src="{{asset('assets/avatars/'.Auth::user()->avatar)}}">
                   </span>
                                 <div class="media-body  ml-2  d-none d-lg-block">
                                     <span class="mb-0 text-sm  font-weight-bold">{{Auth::user()->name}}</span>
