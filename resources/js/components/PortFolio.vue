@@ -27,7 +27,7 @@
               
               <div class="portfolio-links">
                 <a
-                  href="http://127.0.0.1:8000/assets/img/portfolio/portfolio-1.jpg"
+                  :href="'http://127.0.0.1:8000/assets/avatars/' + portfolio.picture"
                   data-gallery="portfolioGallery"
                   class="portfolio-lightbox"
                   title="App 1"

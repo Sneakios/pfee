@@ -45427,7 +45427,20 @@ var render = function() {
                       "div",
                       { staticClass: "portfolio-links" },
                       [
-                        _vm._m(1, true),
+                        _c(
+                          "a",
+                          {
+                            staticClass: "portfolio-lightbox",
+                            attrs: {
+                              href:
+                                "http://127.0.0.1:8000/assets/avatars/" +
+                                portfolio.picture,
+                              "data-gallery": "portfolioGallery",
+                              title: "App 1"
+                            }
+                          },
+                          [_c("i", { staticClass: "ri-add-fill" })]
+                        ),
                         _vm._v(" "),
                         _c(
                           "router-link",
@@ -45449,7 +45462,7 @@ var render = function() {
           0
         ),
         _vm._v(" "),
-        _vm._m(2),
+        _vm._m(1),
         _vm._v(" "),
         _c(
           "form",
@@ -45543,7 +45556,7 @@ var render = function() {
               ])
             ]),
             _vm._v(" "),
-            _vm._m(3)
+            _vm._m(2)
           ]
         )
       ])
@@ -45566,23 +45579,6 @@ var staticRenderFns = [
         )
       ])
     ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "a",
-      {
-        staticClass: "portfolio-lightbox",
-        attrs: {
-          href: "http://127.0.0.1:8000/assets/img/portfolio/portfolio-1.jpg",
-          "data-gallery": "portfolioGallery",
-          title: "App 1"
-        }
-      },
-      [_c("i", { staticClass: "ri-add-fill" })]
-    )
   },
   function() {
     var _vm = this
