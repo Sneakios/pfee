@@ -2391,6 +2391,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -2450,6 +2453,32 @@ __webpack_require__.r(__webpack_exports__);
       axios.get("/getPortfolios/").then(function (response) {
         _this2.portfolios = response.data.portfolios;
       });
+    },
+    DeleteProject: function DeleteProject(id) {
+      var _this3 = this;
+
+      Alert.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        confirmButtonText: 'Yes, delete it!'
+      }).then(function (result) {
+        if (result.isConfirmed) {
+          axios["delete"]('/deleteProject/' + id).then(function (response) {
+            if (response.data.status == "success") {
+              Swal.fire('Deleted!', 'Your project has been deleted.', 'success');
+
+              for (var i = 0; i < _this3.portfolios.length; i++) {
+                if (_this3.portfolios[i].id == id) {
+                  _this3.portfolios.splice(i, 1);
+                }
+              }
+            }
+          });
+        } else {
+          Swal.fire('Cancelled!', 'Your project has been not deleted :)', 'error');
+        }
+      });
     }
   },
   created: function created() {
@@ -2478,6 +2507,53 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -2486,9 +2562,21 @@ __webpack_require__.r(__webpack_exports__);
         title: '',
         picture: '',
         description: '',
-        crated_at: ''
+        added_at: ''
       }
     };
+  },
+  methods: {
+    getProjectDetails: function getProjectDetails() {
+      var _this = this;
+
+      axios.get('/getPortfolioDetails/' + this.$route.params.id).then(function (response) {
+        _this.project = response.data.data;
+      });
+    }
+  },
+  created: function created() {
+    this.getProjectDetails();
   }
 });
 
@@ -45406,12 +45494,14 @@ var render = function() {
               "div",
               {
                 key: portfolio.id,
-                staticClass: "col-lg-4 col-md-6 portfolio-item filter-app"
+                staticClass: "col-lg-4 col-md-6 portfolio-item filter-app",
+                staticStyle: { "box-shadow": "10px 5px 5px grey" }
               },
               [
                 _c("div", { staticClass: "portfolio-wrap" }, [
                   _c("img", {
                     staticClass: "img-fluid",
+                    staticStyle: { height: "200px" },
                     attrs: {
                       src:
                         "http://127.0.0.1:8000/assets/avatars/" +
@@ -45421,6 +45511,23 @@ var render = function() {
                   }),
                   _vm._v(" "),
                   _c("div", { staticClass: "portfolio-info" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-danger",
+                        staticStyle: {
+                          "font-size": "15px",
+                          "border-radius": "50%"
+                        },
+                        on: {
+                          click: function($event) {
+                            return _vm.DeleteProject(portfolio.id)
+                          }
+                        }
+                      },
+                      [_c("i", { staticClass: "fa fa-trash" })]
+                    ),
+                    _vm._v(" "),
                     _c("h4", [_vm._v(_vm._s(portfolio.title))]),
                     _vm._v(" "),
                     _c(
@@ -45462,11 +45569,14 @@ var render = function() {
           0
         ),
         _vm._v(" "),
-        _vm._m(1),
-        _vm._v(" "),
         _c(
           "form",
           {
+            staticStyle: {
+              border: "dashed 1px blue",
+              "border-radius": "20px",
+              padding: "30px"
+            },
             attrs: { enctype: "multipart/form-data" },
             on: {
               submit: function($event) {
@@ -45476,6 +45586,8 @@ var render = function() {
             }
           },
           [
+            _vm._m(1),
+            _vm._v(" "),
             _c("div", { staticClass: "modal-body" }, [
               _c("div", { staticClass: "form-group" }, [
                 _c("div", { staticClass: "form-group col-md-12" }, [
@@ -45587,9 +45699,7 @@ var staticRenderFns = [
     return _c("div", { staticClass: "section-title" }, [
       _c("span", [_vm._v("Add Projects")]),
       _vm._v(" "),
-      _c("h2", [_vm._v("Add Projects")]),
-      _vm._v(" "),
-      _c("p", [_vm._v("Here you add your projects.")])
+      _c("h2", { staticStyle: { color: "skyblue" } }, [_vm._v("Add Projects")])
     ])
   },
   function() {
@@ -45598,7 +45708,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "modal-footer" }, [
       _c("input", {
-        staticClass: "btn btn-success",
+        staticClass: "btn btn-primary",
         attrs: { type: "submit", value: "SAVE", name: "picture" }
       })
     ])
@@ -45626,20 +45736,42 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row justify-content-center" }, [
-        _vm._v("\n    Portfolio Details  \n    ")
+  return _c("div", [
+    _c("div", { staticClass: "container" }, [
+      _c("h1", { staticClass: "mt-4" }, [_vm._v(_vm._s(_vm.project.title))]),
+      _vm._v(" "),
+      _c("p", [
+        _vm._v("Posted on "),
+        _c("strong", { staticClass: "badge badge-primary p-1" }, [
+          _vm._v(_vm._s(_vm.project.added_at))
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-row" }, [
+        _c("div", { staticClass: "form-group col-md-6" }, [
+          _c("img", {
+            staticClass: "img-fluid rounded",
+            staticStyle: { width: "300px", "max-height": "300px" },
+            attrs: {
+              src:
+                "http://127.0.0.1:8000/assets/avatars/" + _vm.project.picture,
+              alt: ""
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "form-group col-md-6" }, [
+          _vm._v(
+            "\r\n                       " +
+              _vm._s(_vm.project.description) +
+              "\r\n\r\n                "
+          )
+        ])
       ])
     ])
-  }
-]
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 

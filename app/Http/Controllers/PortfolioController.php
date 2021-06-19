@@ -47,4 +47,19 @@ class PortfolioController extends Controller
         $portfolios=Portfolio::where('worker_id','=',Auth::user()->getAuthIdentifier())->select('id','title','picture')->get();
         return response()->json(['portfolios'=>$portfolios]);
       }
+
+
+      public function GetPortFolioDetails($id){
+         $project=Portfolio::find($id);
+      
+         $project->setAttribute('added_at',$project->created_at->diffForHumans());
+         return response()->json(['data'=>$project]);
+
+      }
+
+      public function DeleteProject($id){
+        $project=Portfolio::find($id);
+        $project->delete();
+        return response()->json(['status'=>'success']);
+      }
 }

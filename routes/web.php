@@ -27,6 +27,9 @@ Route::put('/changeWorkerSettings', [WorkerController::class,'ChangeWorkerSettin
 //Portfolios Routes//
 Route::post('/savePortFolio', [PortfolioController::class,'SavePortFolio']);
 Route::get('/getPortfolios', [PortfolioController::class,'GetPortFolio']);
+Route::get('/getPortfolioDetails/{id}', [PortfolioController::class,'GetPortFolioDetails']);
+Route::delete('/deleteProject/{id}', [PortfolioController::class,'DeleteProject']);
+
 
 //Posts Routes//
 Route::post('/savePost', [PostController::class,'SavePost']);

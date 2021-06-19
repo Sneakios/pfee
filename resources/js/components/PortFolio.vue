@@ -15,14 +15,17 @@
           class="col-lg-4 col-md-6 portfolio-item filter-app"
           v-for="portfolio in portfolios"
           :key="portfolio.id"
+          style="box-shadow: 10px 5px 5px grey;"
         >
           <div class="portfolio-wrap">
             <img
              :src="'http://127.0.0.1:8000/assets/avatars/' + portfolio.picture"
               class="img-fluid"
+              style="height:200px;"
               alt=""
             />
             <div class="portfolio-info">
+            <button class="btn btn-danger" style="font-size:15px;border-radius:50%" @click="DeleteProject(portfolio.id)"><i class="fa fa-trash"></i></button>
               <h4>{{portfolio.title}}</h4>
               
               <div class="portfolio-links">
@@ -33,22 +36,22 @@
                   title="App 1"
                   ><i class="ri-add-fill"></i
                 ></a>
-                                  <router-link :to="'/home/PortfolioDetails/' + portfolio.id">
-
-               <i class="ri-links-fill"></i
-                ></router-link>
+              <router-link :to="'/home/PortfolioDetails/' + portfolio.id"><i class="ri-links-fill"></i
+                ></router-link>               
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="section-title">
-        <span>Add Projects</span>
-        <h2>Add Projects</h2>
-        <p>Here you add your projects.</p>
-      </div>
+    
 
-      <form @submit.prevent="SavePortFolio" enctype="multipart/form-data">
+      <form @submit.prevent="SavePortFolio" enctype="multipart/form-data" style="border:dashed 1px blue;border-radius:20px;padding:30px;">
+          <div class="section-title">
+        <span >Add Projects</span>
+        <h2 style="color:skyblue">Add Projects</h2>
+      
+      </div>
+        
         <div class="modal-body">
           <div class="form-group">
             <div class="form-group col-md-12">
@@ -89,7 +92,7 @@
           <input
             type="submit"
             value="SAVE"
-            class="btn btn-success"
+            class="btn btn-primary"
             name="picture"
           />
         </div>
@@ -164,6 +167,38 @@ export default {
         this.portfolios = response.data.portfolios;
       });
     },
+
+    DeleteProject(id){
+      Alert.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning', 
+            confirmButtonText: 'Yes, delete it!'    
+                 
+          }).then((result) => {
+            if (result.isConfirmed) {
+                axios.delete('/deleteProject/'+id).then(response=>{
+                  if(response.data.status=="success"){
+         Swal.fire(
+                'Deleted!',
+                'Your project has been deleted.',
+                'success'
+              )             
+                  for(var i=0; i < this.portfolios.length; i++) {
+                    if(this.portfolios[i].id == id)
+                    {
+                        this.portfolios.splice(i,1);
+                    } }
+                  }
+                })
+          
+            }else{Swal.fire(
+                'Cancelled!',
+                'Your project has been not deleted :)',
+                'error'
+              )       }
+          })          
+    },
   },
 
    created() {
@@ -173,3 +208,10 @@ export default {
   
 };
 </script>
+
+<style>
+
+
+
+
+</style>
