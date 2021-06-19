@@ -7,14 +7,14 @@ use App\Http\Controllers\WorkerController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\CommentController;
-
+use App\Http\Controllers\PortfolioController;
 
 
 Auth::routes();
 //User Routes//
 Route::get('/', [Controller::class,'welcome'])->name('welcome');
 Route::get('/home', [HomeController::class,'index'])->name('home');
-Route::get('/dashboardAdmin', [HomeController::class,'indexAdmin'])->name('admindash');
+Route::get('/dashboardAdmin', [HomeController::class,'indexAdmin'])->name('admindash')->middleware('is_admin');
 Route::post('/change_avatar', [HomeController::class,'Change_avatar'])->name('change_avatar');
 Route::get('/userDetails/{id}', [HomeController::class,'GetUserDetails']);
 Route::get('/searchUser',[HomeController::class,'SearchUser']);
@@ -23,7 +23,10 @@ Route::get('/searchUser',[HomeController::class,'SearchUser']);
 Route::post('/addWorkerInfo', [WorkerController::class,'AddWorkerInfo']);
 Route::get('/showWorkerSettings', [WorkerController::class,'ShowWorkerSettings']);
 Route::put('/changeWorkerSettings', [WorkerController::class,'ChangeWorkerSettings']);
-Route::post('/savePortFolio', [WorkerController::class,'SavePortFolio']);
+
+//Portfolios Routes//
+Route::post('/savePortFolio', [PortfolioController::class,'SavePortFolio']);
+Route::get('/getPortfolios', [PortfolioController::class,'GetPortFolio']);
 
 //Posts Routes//
 Route::post('/savePost', [PostController::class,'SavePost']);

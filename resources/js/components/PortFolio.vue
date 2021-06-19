@@ -13,18 +13,18 @@
       <div class="row portfolio-container">
         <div
           class="col-lg-4 col-md-6 portfolio-item filter-app"
-          v-for="index in 9"
-          :key="index"
+          v-for="portfolio in portfolios"
+          :key="portfolio.id"
         >
           <div class="portfolio-wrap">
             <img
-              src="http://127.0.0.1:8000/assets/img/portfolio/portfolio-1.jpg"
+             :src="'http://127.0.0.1:8000/assets/avatars/' + portfolio.picture"
               class="img-fluid"
               alt=""
             />
             <div class="portfolio-info">
-              <h4>App 1</h4>
-              <p>App</p>
+              <h4>{{portfolio.title}}</h4>
+              
               <div class="portfolio-links">
                 <a
                   href="http://127.0.0.1:8000/assets/img/portfolio/portfolio-1.jpg"
@@ -33,9 +33,10 @@
                   title="App 1"
                   ><i class="ri-add-fill"></i
                 ></a>
-                <a href="portfolio-details.html" title="More Details"
-                  ><i class="ri-links-fill"></i
-                ></a>
+                                  <router-link :to="'/home/PortfolioDetails/' + portfolio.id">
+
+               <i class="ri-links-fill"></i
+                ></router-link>
               </div>
             </div>
           </div>
@@ -104,7 +105,14 @@ export default {
       title: "",
       file: "",
       description: "",
-      errors: []
+      errors: [],
+           
+           portfolios:{
+             id:"",
+             title:"",
+             picture:"",
+           }
+
     };
   },
 
@@ -150,7 +158,18 @@ export default {
           );
         }
       });
-    }
+    },
+      getPortfolios() {
+      axios.get("/getPortfolios/" ).then(response => {
+        this.portfolios = response.data.portfolios;
+      });
+    },
+  },
+
+   created() {
+    this. getPortfolios()
   }
+
+  
 };
 </script>

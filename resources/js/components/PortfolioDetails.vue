@@ -8,8 +8,15 @@
 
 <script>
     export default {
-        mounted() {
-            console.log('Component mounted.')
+      data() {
+    return {
+        project:{
+            id:'',
+            title:'',
+            picture:'',
+            description:'',
+            crated_at:'',
         }
+    }}
     }
 </script>

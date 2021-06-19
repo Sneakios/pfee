@@ -16,6 +16,7 @@ import MyPosts from './components/MyPosts.vue';
 import UserDetails from './components/UserDetails.vue';
 import PostInteressent from './components/PostInteressent.vue';
 import PortFolio from './components/PortFolio.vue';
+import PortfolioDetails from './components/PortfolioDetails';
 import Swal from 'sweetalert2';
 window.Swal=Swal;
 
@@ -55,7 +56,8 @@ const routes =[
     {path:'/home/MyPosts/',component:MyPosts},
     {path:'/home/PostsInteressent/',component:PostInteressent},
     {path:'/home/UserDetails/:id',component:UserDetails},
-    {path:'/home/Port-Folio/',component:PortFolio}
+    {path:'/home/Port-Folio/',component:PortFolio},
+    {path:'/home/PortfolioDetails/:id',component:PortfolioDetails},
 
 ];
 
