@@ -2433,6 +2433,8 @@ __webpack_require__.r(__webpack_exports__);
               _this.title = "";
               _this.description = "";
               _this.picture = "";
+
+              _this.portfolios.push(response.data.data);
             } else if (response.data.status == "error") {
               _this.errors = response.data.errors;
               Swal.fire("error!", "missong information.", "error");

@@ -139,10 +139,11 @@ export default {
             if (response.data.status == "success") {
               Swal.fire("Succes!", "Your project has been added.", "success");
               this.errors = [];
-
               this.title = "";
               this.description = "";
               this.picture = "";
+              this.portfolios.push(response.data.data);
+
             } else if (response.data.status == "error") {
               this.errors = response.data.errors;
               Swal.fire("error!", "missong information.", "error");

@@ -38,7 +38,10 @@ class PortfolioController extends Controller
             $portfolio->title=$request->title;
             $portfolio->description=$request->description;
              $portfolio->save();
-            return response()->json(['status'=>'success']);
+             $prj=['id'=>10,'title'=>$request->title,'picture'=>$filename];
+
+           
+            return response()->json(['status'=>'success','data'=>$prj]);
       
       }
 
