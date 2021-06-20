@@ -21,13 +21,8 @@
     export default {
      data(){
          return{
-             k:null,
-             users:{
-                 id:"",
-                 name:'',
-                 avatar:"",
-
-             }
+             k:'',
+             users:[]
          }
 
       
@@ -39,7 +34,7 @@
         getSearchResult(){
             if(this.k.length >= 3){
             axios.get("/searchUser",{k:this.k}).then(response=>{
-                this.users=response.data.data;
+                this.users=response.data.data
             })
 
         }}
