@@ -18,11 +18,12 @@
                       <h4>{{user.name}}</h4>
                      <span  v-if="user.rate >= 0">
                         <div>
-                            <star-rating v-model="user.rate" :rating="user.rate" :itemSize="40" :showRating="false" :readOnly="user.rated" @rating-selected="setRate" ></star-rating>
+                            <star-rating v-if="!user.rated" v-model="user.rate" :rating="user.rate" :itemSize="50" :showRating="false"  @rating-selected="setRate" ></star-rating>
                             
-                            <div><a href="#" @click.prevent="resetRate">Reset Rating</a></div> 
+                            <div v-if="user.rated"><button class="btn btn-primary" style="border-radius: 5px;font-size:15px;background-color:#FFD700;border: 2px #FFD700 solid;color:white;font-size:13px;font-weight:600;width:135px;" @click.prevent="resetRate"><i class="fa fa-star" aria-hidden="true"  style="font-size:15px;weight:600"></i> Reset Rating ?</button></div> 
                           </div>
                     </span>
+                    <br>
                      <p class="text-muted font-size-sm">{{user.description}}</p>
                       <button class="btn btn-primary" @click.prevent="Follow" v-if="!user.followed"><i class="fa fa-plus"  style="font-size:15px;weight:600"></i> Follow</button>
                       <button class="btn btn-success" v-if="user.followed" @click.prevent="Unfollow"><i class="fa fa-check" style="font-size:15px;weight:600"></i> Unfollow</button>
@@ -38,7 +39,7 @@
                 <div class="card-body">
                   <div class="row">
                     <div class="col-sm-3">
-                      <h6 class="mb-0">Name</h6>
+                      <i class="fa fa-user" aria-hidden="true"></i>
                     </div>
                     <div class="col-sm-9 text-secondary">
                       {{user.name}}
@@ -47,7 +48,7 @@
                   <hr>
                   <div class="row">
                     <div class="col-sm-3">
-                      <h6 class="mb-0">Email</h6>
+                      <i class="fa fa-envelope" aria-hidden="true" ></i>
                     </div>
                     <div class="col-sm-9 text-secondary">
                       {{user.email}}
@@ -56,7 +57,7 @@
                   <hr>
                   <div class="row">
                     <div class="col-sm-3">
-                      <h6 class="mb-0">Phone</h6>
+                      <i class="fa fa-phone" aria-hidden="true"></i>
                     </div>
                     <div class="col-sm-9 text-secondary">
                       +216 {{user.mobile}}
@@ -65,7 +66,7 @@
                   <hr>
                   <div class="row" v-if="user.skills != ''">
                     <div class="col-sm-3">
-                      <h6 class="mb-0">Skills</h6>
+                      <i class="fa fa-tasks" aria-hidden="true"></i>
                     </div>
                     <div class="col-sm-9 text-secondary">
                       {{user.skills}}
@@ -74,12 +75,30 @@
                   <hr>
                   <div class="row">
                     <div class="col-sm-3">
-                      <h6 class="mb-0">Address</h6>
+                     <i class="fa fa-address-card" aria-hidden="true"></i>
                     </div>
                     <div class="col-sm-9 text-secondary">
                       {{user.address}}
                     </div>
-                  </div>
+                  </div>                  
+                  <hr>
+                    <div class="row" v-if="user.followed!=null">
+                    <div class="col-sm-3">
+                      <i class="fa fa-users" aria-hidden="true"></i>
+                    </div>
+                    <div class="col-sm-9 text-secondary" >
+                      {{user.followers}} Followers
+                    </div>
+                  </div> 
+                  <hr>
+                   <div class="row">
+                    <div class="col-sm-3">
+                      <i class="fa fa-percent" aria-hidden="true"></i>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      {{user.rate}} average based on {{user.nbrRates}} reviews.
+                    </div>
+                  </div> 
                   <hr>
                   <div class="row">
                     <div class="col-sm-12">
@@ -105,6 +124,7 @@ import {StarRating} from 'vue-rate-it';
   },
         data(){
           return{
+  
             user:{
               name:"",
               email:"",
@@ -117,6 +137,7 @@ import {StarRating} from 'vue-rate-it';
               avatar:"",
               rated:'',
               followed:'',
+              nbrRates:'',
               
 
             }
@@ -147,6 +168,7 @@ import {StarRating} from 'vue-rate-it';
                 'success'
               )             
                  this.user.rated=true;
+                  this.user.nbrRates++;
                   }
                 })
           
@@ -176,6 +198,8 @@ import {StarRating} from 'vue-rate-it';
                 'success'
               )             
                  this.user.followed=false;
+                 this.user.followers--;
+                 this.user.nbrRates--;
                   }
                 })
           
@@ -204,6 +228,8 @@ import {StarRating} from 'vue-rate-it';
                 'success'
               )             
                  this.user.followed=true;
+                 this.user.followers++;
+                
                   }
                 })
           
@@ -231,6 +257,7 @@ import {StarRating} from 'vue-rate-it';
                   
                  this.user.rated=false;
                  this.user.rate=0;
+                  this.user.nbrRates--;
                   }
                 })
           

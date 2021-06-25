@@ -76,8 +76,19 @@ class CustomerController extends Controller
      
    
         $rate=Rate::where('worker_id','=',$id)->where('customer_id','=',Auth::user()->getAuthIdentifier());   
-        $rate->delete();  
+        $rateValue=Rate::where('worker_id','=',$id)->where('customer_id','=',Auth::user()->getAuthIdentifier())->value('rate');
 
+        $count=Rate::where('worker_id','=',$id)->count();
+        $sum=Rate::where('worker_id','=',$id)->sum('rate');
+        $rate->delete();  
+       
+
+        Worker::where('id_worker','=',$id)->update(
+         ['rate'=>(($sum-$rateValue) / $count) ],  
+       );
+   
+   
+   
         return response()->json(['status'=>'success']);
         
 

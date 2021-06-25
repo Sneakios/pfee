@@ -3769,6 +3769,25 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -3787,7 +3806,8 @@ __webpack_require__.r(__webpack_exports__);
         description: "",
         avatar: "",
         rated: '',
-        followed: ''
+        followed: '',
+        nbrRates: ''
       }
     };
   },
@@ -3815,6 +3835,7 @@ __webpack_require__.r(__webpack_exports__);
             if (response.data.status == "success") {
               Swal.fire('Rate it!', 'Your rate has been sent.', 'success');
               _this2.user.rated = true;
+              _this2.user.nbrRates++;
             }
           });
         } else {
@@ -3836,6 +3857,8 @@ __webpack_require__.r(__webpack_exports__);
             if (response.data.status == "success") {
               Swal.fire('UnFollow it!', '', 'success');
               _this3.user.followed = false;
+              _this3.user.followers--;
+              _this3.user.nbrRates--;
             }
           });
         } else {
@@ -3857,6 +3880,7 @@ __webpack_require__.r(__webpack_exports__);
             if (response.data.status == "success") {
               Swal.fire('Follow it', '', 'success');
               _this4.user.followed = true;
+              _this4.user.followers++;
             }
           });
         } else {
@@ -3878,6 +3902,7 @@ __webpack_require__.r(__webpack_exports__);
             if (response.data.status == "success") {
               _this5.user.rated = false;
               _this5.user.rate = 0;
+              _this5.user.nbrRates--;
             }
           });
         } else {
@@ -47661,43 +47686,67 @@ var render = function() {
                           _c(
                             "div",
                             [
-                              _c("star-rating", {
-                                attrs: {
-                                  rating: _vm.user.rate,
-                                  itemSize: 40,
-                                  showRating: false,
-                                  readOnly: _vm.user.rated
-                                },
-                                on: { "rating-selected": _vm.setRate },
-                                model: {
-                                  value: _vm.user.rate,
-                                  callback: function($$v) {
-                                    _vm.$set(_vm.user, "rate", $$v)
-                                  },
-                                  expression: "user.rate"
-                                }
-                              }),
-                              _vm._v(" "),
-                              _c("div", [
-                                _c(
-                                  "a",
-                                  {
-                                    attrs: { href: "#" },
-                                    on: {
-                                      click: function($event) {
-                                        $event.preventDefault()
-                                        return _vm.resetRate($event)
-                                      }
+                              !_vm.user.rated
+                                ? _c("star-rating", {
+                                    attrs: {
+                                      rating: _vm.user.rate,
+                                      itemSize: 50,
+                                      showRating: false
+                                    },
+                                    on: { "rating-selected": _vm.setRate },
+                                    model: {
+                                      value: _vm.user.rate,
+                                      callback: function($$v) {
+                                        _vm.$set(_vm.user, "rate", $$v)
+                                      },
+                                      expression: "user.rate"
                                     }
-                                  },
-                                  [_vm._v("Reset Rating")]
-                                )
-                              ])
+                                  })
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _vm.user.rated
+                                ? _c("div", [
+                                    _c(
+                                      "button",
+                                      {
+                                        staticClass: "btn btn-primary",
+                                        staticStyle: {
+                                          "border-radius": "5px",
+                                          "font-size": "13px",
+                                          "background-color": "#FFD700",
+                                          border: "2px #FFD700 solid",
+                                          color: "white",
+                                          "font-weight": "600",
+                                          width: "135px"
+                                        },
+                                        on: {
+                                          click: function($event) {
+                                            $event.preventDefault()
+                                            return _vm.resetRate($event)
+                                          }
+                                        }
+                                      },
+                                      [
+                                        _c("i", {
+                                          staticClass: "fa fa-star",
+                                          staticStyle: {
+                                            "font-size": "15px",
+                                            weight: "600"
+                                          },
+                                          attrs: { "aria-hidden": "true" }
+                                        }),
+                                        _vm._v(" Reset Rating ?")
+                                      ]
+                                    )
+                                  ])
+                                : _vm._e()
                             ],
                             1
                           )
                         ])
                       : _vm._e(),
+                    _vm._v(" "),
+                    _c("br"),
                     _vm._v(" "),
                     _c("p", { staticClass: "text-muted font-size-sm" }, [
                       _vm._v(_vm._s(_vm.user.description))
@@ -47838,7 +47887,39 @@ var render = function() {
               _vm._v(" "),
               _c("hr"),
               _vm._v(" "),
-              _vm._m(5)
+              _vm.user.followed != null
+                ? _c("div", { staticClass: "row" }, [
+                    _vm._m(5),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-sm-9 text-secondary" }, [
+                      _vm._v(
+                        "\n                      " +
+                          _vm._s(_vm.user.followers) +
+                          " Followers\n                    "
+                      )
+                    ])
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              _c("hr"),
+              _vm._v(" "),
+              _c("div", { staticClass: "row" }, [
+                _vm._m(6),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-sm-9 text-secondary" }, [
+                  _vm._v(
+                    "\n                      " +
+                      _vm._s(_vm.user.rate) +
+                      " average based on " +
+                      _vm._s(_vm.user.nbrRates) +
+                      " reviews.\n                    "
+                  )
+                ])
+              ]),
+              _vm._v(" "),
+              _c("hr"),
+              _vm._v(" "),
+              _vm._m(7)
             ])
           ])
         ])
@@ -47852,7 +47933,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-sm-3" }, [
-      _c("h6", { staticClass: "mb-0" }, [_vm._v("Name")])
+      _c("i", { staticClass: "fa fa-user", attrs: { "aria-hidden": "true" } })
     ])
   },
   function() {
@@ -47860,7 +47941,10 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-sm-3" }, [
-      _c("h6", { staticClass: "mb-0" }, [_vm._v("Email")])
+      _c("i", {
+        staticClass: "fa fa-envelope",
+        attrs: { "aria-hidden": "true" }
+      })
     ])
   },
   function() {
@@ -47868,7 +47952,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-sm-3" }, [
-      _c("h6", { staticClass: "mb-0" }, [_vm._v("Phone")])
+      _c("i", { staticClass: "fa fa-phone", attrs: { "aria-hidden": "true" } })
     ])
   },
   function() {
@@ -47876,7 +47960,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-sm-3" }, [
-      _c("h6", { staticClass: "mb-0" }, [_vm._v("Skills")])
+      _c("i", { staticClass: "fa fa-tasks", attrs: { "aria-hidden": "true" } })
     ])
   },
   function() {
@@ -47884,7 +47968,29 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-sm-3" }, [
-      _c("h6", { staticClass: "mb-0" }, [_vm._v("Address")])
+      _c("i", {
+        staticClass: "fa fa-address-card",
+        attrs: { "aria-hidden": "true" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-sm-3" }, [
+      _c("i", { staticClass: "fa fa-users", attrs: { "aria-hidden": "true" } })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-sm-3" }, [
+      _c("i", {
+        staticClass: "fa fa-percent",
+        attrs: { "aria-hidden": "true" }
+      })
     ])
   },
   function() {

@@ -88,18 +88,22 @@ class HomeController extends Controller
       $description="";
       $rated=null;
       $followed=null;
+      $nbrRates=-1;
+
       if($type=="worker"){
           $followers=Worker::where('id_worker',$id)->value('followers');
           $skills=Worker::where('id_worker',$id)->value('specialty');
           $rate=Worker::where('id_worker',$id)->value('rate');
           $description=Worker::where('id_worker',$id)->value('description');
           $rated=Rate::where('customer_id','=',Auth::user()->getAuthIdentifier())->where('worker_id',$id) ->count(); 
-          $followed=Follower::where('customer_id','=',Auth::user()->getAuthIdentifier())->where('worker_id',$id) ->count(); 
-          if($followed == 0){$followed=false;}else{$followed=true;} 
+         $nbrRates=$rated;
+          $followers=Follower::where('customer_id','=',Auth::user()->getAuthIdentifier())->where('worker_id',$id) ->count(); 
+          if($followers == 0){$followed=false;}else{$followed=true;} 
           if($rated == 0){$rated=false;}else{$rated=true;} 
+         
       }
 
-        $user=["name"=>$u->name,"email"=>$u->email,"mobile"=>$u->mobile,"address"=>$u->adresse,"followers"=>$followers,"skills"=>$skills,"rate"=>$rate,"description"=>$description,"avatar"=>$u->avatar,'rated'=>$rated,'followed'=>$followed];
+        $user=["name"=>$u->name,"email"=>$u->email,"mobile"=>$u->mobile,"address"=>$u->adresse,"followers"=>$followers,"skills"=>$skills,"rate"=>$rate,"description"=>$description,"avatar"=>$u->avatar,'rated'=>$rated,'followed'=>$followed,'followers'=>$followers,'nbrRates'=>$nbrRates];
         return response()->json(['data'=>$user]);
     }
 
