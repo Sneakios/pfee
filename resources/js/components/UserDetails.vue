@@ -25,8 +25,10 @@
                     </span>
                     <br>
                      <p class="text-muted font-size-sm">{{user.description}}</p>
+                     <span  v-if="user.followers>=0">
                       <button class="btn btn-primary" @click.prevent="Follow" v-if="!user.followed"><i class="fa fa-plus"  style="font-size:15px;weight:600"></i> Follow</button>
                       <button class="btn btn-success" v-if="user.followed" @click.prevent="Unfollow"><i class="fa fa-check" style="font-size:15px;weight:600"></i> Unfollow</button>
+                     </span>
                       <button class="btn btn-outline-primary">Message</button>
                     </div>
                   </div>
@@ -72,7 +74,7 @@
                       {{user.skills}}
                     </div>
                   </div>
-                  <hr>
+                  <hr  v-if="user.followers>=0">
                   <div class="row">
                     <div class="col-sm-3">
                      <i class="fa fa-address-card" aria-hidden="true"></i>
@@ -81,8 +83,8 @@
                       {{user.address}}
                     </div>
                   </div>                  
-                  <hr>
-                    <div class="row" v-if="user.followed!=null">
+                  <hr  v-if="user.followers>=0">
+                    <div class="row" v-if="user.followers>=0">
                     <div class="col-sm-3">
                       <i class="fa fa-users" aria-hidden="true"></i>
                     </div>
@@ -90,8 +92,8 @@
                       {{user.followers}} Followers
                     </div>
                   </div> 
-                  <hr>
-                   <div class="row">
+                  <hr v-if="user.nbrRates>=0">
+                   <div class="row" v-if="user.nbrRates>=0">
                     <div class="col-sm-3">
                       <i class="fa fa-percent" aria-hidden="true"></i>
                     </div>
@@ -99,9 +101,9 @@
                       {{user.rate}} average based on {{user.nbrRates}} reviews.
                     </div>
                   </div> 
-                  <hr>
+                  <hr  v-if="user.followers>=0">
                   <div class="row">
-                    <div class="col-sm-12">
+                    <div class="col-sm-12"  v-if="user.followers>=0">
                       <a class="btn btn-success" target="__blank" href="https://www.bootdey.com/snippets/view/profile-edit-data-and-skills">Some Projects</a>
                     </div>
                   </div>
