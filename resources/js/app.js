@@ -18,7 +18,15 @@ import PostInteressent from './components/PostInteressent.vue';
 import PortFolio from './components/PortFolio.vue';
 import PortfolioDetails from './components/PortfolioDetails';
 import Swal from 'sweetalert2';
+import Raters from 'vue-rate-it';
+
+
+
+Vue.component('star-rating',Raters);
+
+
 window.Swal=Swal;
+
 
 const Toast = Swal.mixin({
     toast: true,
@@ -39,6 +47,7 @@ const Toast = Swal.mixin({
 
   window.Toast=Toast;
   window.Alert=Alert;
+  
 
 Vue.component('add-post', require('./components/AddPost.vue').default);
 Vue.component('complete-profile-worker', require('./components/CompleteProfileWorker.vue').default);

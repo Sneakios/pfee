@@ -10,6 +10,13 @@
         "bmewburn.vscode-intelephense-client",
         "felixfbecker.php-intellisense",
         "bearliu1991.vuet",
-        "vuetifyjs.vuetify-vscode"
+        "vuetifyjs.vuetify-vscode",
+        "redhat.vscode-xml",
+        "dotjoshjohnson.xml",
+        "fabianlauer.vs-code-xml-format",
+        "mikeburgh.xml-format",
+        "compulim.compulim-vscode-closetag",
+        "rogalmic.vscode-xml-complete",
+        "buianhthang.xml2json"
     ]
 }

@@ -45,6 +45,13 @@ Route::get('/getInteressentPosts', [PostController::class,'GetInteressentPosts']
 
 Route::get('/showCustomerSettings', [CustomerController::class,'ShowCustomerSettings']);
 Route::put('/changeCustomerSettings', [CustomerController::class,'ChangeCustomerSettings']);
+Route::post('/setRate/{id}', [CustomerController::class,'SetRate']);
+Route::delete('/resetRate/{id}', [CustomerController::class,'ResetRate']);
+Route::post('/follow/{id}', [CustomerController::class,'Follow']);
+Route::post('/unfollow/{id}', [CustomerController::class,'UnFollow']);
+
+
+
 //Comments Routes//
 
 Route::post('/addComment/{id}', [CommentController::class,'AddComment']);

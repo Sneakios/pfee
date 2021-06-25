@@ -1,12 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\Rate;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Worker;
 use App\Models\Setting;
-
+use App\Models\Follower;
 class HomeController extends Controller
 {
     /**
@@ -84,15 +86,20 @@ class HomeController extends Controller
       $skills="";
       $rate=-1;
       $description="";
+      $rated=null;
+      $followed=null;
       if($type=="worker"){
           $followers=Worker::where('id_worker',$id)->value('followers');
           $skills=Worker::where('id_worker',$id)->value('specialty');
           $rate=Worker::where('id_worker',$id)->value('rate');
           $description=Worker::where('id_worker',$id)->value('description');
-
+          $rated=Rate::where('customer_id','=',Auth::user()->getAuthIdentifier())->where('worker_id',$id) ->count(); 
+          $followed=Follower::where('customer_id','=',Auth::user()->getAuthIdentifier())->where('worker_id',$id) ->count(); 
+          if($followed == 0){$followed=false;}else{$followed=true;} 
+          if($rated == 0){$rated=false;}else{$rated=true;} 
       }
 
-        $user=["name"=>$u->name,"email"=>$u->email,"mobile"=>$u->mobile,"address"=>$u->adresse,"followers"=>$followers,"skills"=>$skills,"rate"=>$rate,"description"=>$description,"avatar"=>$u->avatar];
+        $user=["name"=>$u->name,"email"=>$u->email,"mobile"=>$u->mobile,"address"=>$u->adresse,"followers"=>$followers,"skills"=>$skills,"rate"=>$rate,"description"=>$description,"avatar"=>$u->avatar,'rated'=>$rated,'followed'=>$followed];
         return response()->json(['data'=>$user]);
     }
 
