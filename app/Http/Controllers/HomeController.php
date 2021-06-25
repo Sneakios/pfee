@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Worker;
 use App\Models\Setting;
 use App\Models\Follower;
+
 class HomeController extends Controller
 {
     /**
@@ -107,10 +108,10 @@ class HomeController extends Controller
         return response()->json(['data'=>$user]);
     }
 
-    public function getAllUsers(Request $request){
-        $ser=$request->k;
-        $users=User::where('name','like','%'.$ser.'%')->select('id','name','picture')->get();
-        return response()->json(['data'=>$users]);
+    public function SearchUsers(Request $request){
+        
+        $data = User::where('name', 'LIKE','%'.$request->keyword.'%')->get();
+        return response()->json(['data'=>$data]);
 
 
     }
