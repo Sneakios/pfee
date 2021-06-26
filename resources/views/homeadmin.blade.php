@@ -1,6 +1,5 @@
 @extends('layouts.dashboardadmin')
 
 @section('content')
-
-Welcome dashboard admin
+<router-view></router-view>
 @endsection

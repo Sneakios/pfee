@@ -17,11 +17,14 @@ import UserDetails from './components/UserDetails.vue';
 import PostInteressent from './components/PostInteressent.vue';
 import PortFolio from './components/PortFolio.vue';
 import PortfolioDetails from './components/PortfolioDetails';
+import GestionUsers from './components/adminComponents/GestionUsers';
+import DashboardAdmin from './components/adminComponents/Dashboard';
 import Swal from 'sweetalert2';
 import Raters from 'vue-rate-it';
+import 'vuejs-datatable/dist/themes/bootstrap-4.esm';
+import { VuejsDatatableFactory } from 'vuejs-datatable';
 
-
-
+Vue.use( VuejsDatatableFactory );
 Vue.component('star-rating',Raters);
 
 
@@ -53,6 +56,8 @@ Vue.component('add-post', require('./components/AddPost.vue').default);
 Vue.component('complete-profile-worker', require('./components/CompleteProfileWorker.vue').default);
 Vue.component('search-user', require('./components/Search.vue').default);
 
+
+
 Vue.use(VueRouter);
 
 const routes =[
@@ -67,6 +72,9 @@ const routes =[
     {path:'/home/UserDetails/:id',component:UserDetails},
     {path:'/home/Port-Folio/',component:PortFolio},
     {path:'/home/PortfolioDetails/:id',component:PortfolioDetails},
+
+    {path:'/DashboardAdmin/gestion-users/',component:GestionUsers},
+    {path:'/DashboardAdmin/',component:DashboardAdmin},
 
 ];
 

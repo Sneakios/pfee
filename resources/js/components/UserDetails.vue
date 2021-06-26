@@ -20,7 +20,7 @@
                         <div>
                             <star-rating v-if="!user.rated" v-model="user.rate" :rating="user.rate" :itemSize="50" :showRating="false"  @rating-selected="setRate" ></star-rating>
                             
-                            <div v-if="user.rated"><button class="btn btn-primary" style="border-radius: 5px;font-size:15px;background-color:#FFD700;border: 2px #FFD700 solid;color:white;font-size:13px;font-weight:600;width:135px;" @click.prevent="resetRate"><i class="fa fa-star" aria-hidden="true"  style="font-size:15px;weight:600"></i> Reset Rating ?</button></div> 
+                            <div v-if="user.rated"><button class="btn btn-success" style="border-radius: 5px;font-size:15px;color:white;font-size:13px;font-weight:600;width:135px;" @click.prevent="resetRate"><i class="fa fa-star" aria-hidden="true"  style="font-size:15px;weight:600"></i> Reset Rating ?</button></div> 
                           </div>
                     </span>
                     <br>

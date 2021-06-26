@@ -8,13 +8,17 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\PortfolioController;
-
+use App\Http\Controllers\AdminController;
 
 Auth::routes();
+//Admins Routes//
+Route::get('/dashboardAdmin', [AdminController::class,'indexAdmin'])->name('admindash');
+Route::get('/AllUsers', [AdminController::class,'getUsers']);
+
 //User Routes//
+
 Route::get('/', [Controller::class,'welcome'])->name('welcome');
 Route::get('/home', [HomeController::class,'index'])->name('home');
-Route::get('/dashboardAdmin', [HomeController::class,'indexAdmin'])->name('admindash')->middleware('is_admin');
 Route::post('/change_avatar', [HomeController::class,'Change_avatar'])->name('change_avatar');
 Route::get('/userDetails/{id}', [HomeController::class,'GetUserDetails']);
 Route::get('/searchUser',[HomeController::class,'SearchUsers']);

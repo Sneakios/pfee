@@ -28,9 +28,7 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
 
-     public function indexAdmin(){
-         return view('homeadmin');
-     }
+    
 
 
     public function index()
@@ -52,6 +50,7 @@ class HomeController extends Controller
     public function indexx()
 
     {
+        if(Auth::user()->type!='admin'){
         $rate=0;
         $countWorker=-1;
         if(Auth::user()->type=='worker'){
@@ -59,7 +58,8 @@ class HomeController extends Controller
         $rate=Worker::where('id_worker','=',Auth::user()->getAuthIdentifier())->value('rate');
     }
     $settings=Setting::find(1);
-        return view('home',['count'=>$countWorker,'settings'=>$settings,'rate'=>$rate]);
+        return view('home',['count'=>$countWorker,'settings'=>$settings,'rate'=>$rate]);}
+        else{return view('homeadmin');}
     }
 
 
