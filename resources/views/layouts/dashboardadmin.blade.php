@@ -47,20 +47,20 @@
 
 					<li class="sidebar-item">
 						<router-link to="/DashboardAdmin/gestion-users/" class="sidebar-link">
-                            <i class="align-middle" data-feather="user"></i> <span class="align-middle">Users</span>
+                            <i class="align-middle" data-feather="users"></i> <span class="align-middle">Users</span>
                         </router-link>
 					</li>
 
 					<li class="sidebar-item">
-						<a class="sidebar-link" href="pages-sign-in.html">
-                          <i class="align-middle" data-feather="log-in"></i> <span class="align-middle">Sign In</span>
-                       </a>
+						<router-link to="/DashboardAdmin/settings/" class="sidebar-link">
+							<i class="fa fa-settings" data-feather="settings"></i> <span class="align-middle">Settings</span>
+						</router-link>
 					</li>
 
 					<li class="sidebar-item">
-						<a class="sidebar-link" href="pages-sign-up.html">
-                        <i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">Sign Up</span>
-                        </a>
+						<router-link to="/DashboardAdmin/profilesettings/" class="sidebar-link">
+                        <i class="align-middle" data-feather="user"></i> <span class="align-middle">Profile</span>
+						</router-link>
 					</li>
 
 					<li class="sidebar-item">

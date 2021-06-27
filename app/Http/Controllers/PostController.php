@@ -49,7 +49,7 @@ class PostController extends Controller
                  if($interessent>0){$interessent=true;}else{$interessent=false;}
             $post=['id'=>$p->id,'body'=>$p->body,'user'=>User::where('id',$p->id_user)->value('name'),'cmntsNbr'=>Comment::where('post_id',$p->id)->count(),'date'=>$p->created_at->diffForHumans(),'avatar'=>User::where('id',$p->id_user)->value('avatar'),'interessent'=>$interessent,"user_id"=>$p->id_user];        
             array_push($posts,$post);}}
-           
+ 
             if(Auth::user()->type=="customer"){
                 if($user=="worker"){
                     $interessent=Interessent::where("user_id","=",Auth::user()->getAuthIdentifier())->where('post_id',$p->id)->count();
@@ -125,13 +125,5 @@ class PostController extends Controller
            }          
          return response()->json(['data'=>$posts]);
      }
-
-
-   
-
-
-
-    
-
 
 }

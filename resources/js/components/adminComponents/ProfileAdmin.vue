@@ -126,8 +126,8 @@
 </template>
 
 <script>
-export default {
-  data() {
+    export default {
+      data() {
     return {
       name: [],
       adresse: "",
@@ -138,7 +138,8 @@ export default {
       errors: []
     };
   },
-  methods: {
+
+   methods: {
     ShowSettings() {
       axios.get("/showCustomerSettings").then(response => {
         this.name = response.data.customer.name.split(" ");
@@ -149,8 +150,9 @@ export default {
         this.lastname = this.name[1];
       });
     },
+
     changeCustomerSettings() {
-      Alert.fire({
+       Alert.fire({
             title: 'Are you sure?',
             text: "",
             icon: 'warning',     
@@ -191,13 +193,15 @@ export default {
                 'error'
               ) }
             })
+
     }
-  },
-  created() {
-    this.ShowSettings();
-  }
-};
+    },
+
+    created(){
+        this.ShowSettings();
+    }
+
+    
+    }
 </script>
 
-<style>
-</style>

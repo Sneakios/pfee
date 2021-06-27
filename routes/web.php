@@ -14,9 +14,11 @@ Auth::routes();
 //Admins Routes//
 Route::get('/dashboardAdmin', [AdminController::class,'indexAdmin'])->name('admindash');
 Route::get('/AllUsers', [AdminController::class,'getUsers']);
+Route::get('/getSettings', [AdminController::class,'getSettings']);
+Route::put('/SaveSettingsChanges', [AdminController::class,'SaveSettings']);
+
 
 //User Routes//
-
 Route::get('/', [Controller::class,'welcome'])->name('welcome');
 Route::get('/home', [HomeController::class,'index'])->name('home');
 Route::post('/change_avatar', [HomeController::class,'Change_avatar'])->name('change_avatar');
@@ -45,8 +47,8 @@ Route::put('/editMyPost/{id}', [PostController::class,'EditMyPost']);
 Route::post('/interessentPost/{id}', [PostController::class,'InteressentPost']);
 Route::delete('/unInteressentPost/{id}', [PostController::class,'UnInteressentPost']);
 Route::get('/getInteressentPosts', [PostController::class,'GetInteressentPosts']);
-//Customer Routes//
 
+//Customer Routes//
 Route::get('/showCustomerSettings', [CustomerController::class,'ShowCustomerSettings']);
 Route::put('/changeCustomerSettings', [CustomerController::class,'ChangeCustomerSettings']);
 Route::post('/setRate/{id}', [CustomerController::class,'SetRate']);
@@ -57,7 +59,6 @@ Route::post('/unfollow/{id}', [CustomerController::class,'UnFollow']);
 
 
 //Comments Routes//
-
 Route::post('/addComment/{id}', [CommentController::class,'AddComment']);
 Route::get('/getComments/{id}', [CommentController::class,'GetComments']);
 Route::delete('/deleteMyComment/{id}', [CommentController::class,'DeleteMyComment']);

@@ -19,6 +19,8 @@ import PortFolio from './components/PortFolio.vue';
 import PortfolioDetails from './components/PortfolioDetails';
 import GestionUsers from './components/adminComponents/GestionUsers';
 import DashboardAdmin from './components/adminComponents/Dashboard';
+import Settings from './components/adminComponents/Settings';
+import ProfileAdmin from './components/adminComponents/ProfileAdmin';
 import Swal from 'sweetalert2';
 import Raters from 'vue-rate-it';
 import 'vuejs-datatable/dist/themes/bootstrap-4.esm';
@@ -75,6 +77,10 @@ const routes =[
 
     {path:'/DashboardAdmin/gestion-users/',component:GestionUsers},
     {path:'/DashboardAdmin/',component:DashboardAdmin},
+    {path:'/DashboardAdmin/Settings',component:Settings},
+    {path:'/DashboardAdmin/profilesettings',component:ProfileAdmin},
+
+    
 
 ];
 
