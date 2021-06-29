@@ -64,44 +64,18 @@
 					</li>
 
 					<li class="sidebar-item">
-						<a class="sidebar-link" href="pages-blank.html">
-                        <i class="align-middle" data-feather="book"></i> <span class="align-middle">Blank</span>
+						<a class="sidebar-link" href="{{ route('logout') }}" onclick="event.preventDefault();
+						document.getElementById('logout-form').submit();">
+                        <i class="align-middle" data-feather="log-out"></i> <span class="align-middle">Log Out</span>
                         </a>
 					</li>
 
-					<li class="sidebar-header">
-						Tools & Components
-					</li>
+				
+					
 
-					<li class="sidebar-item">
-						<a class="sidebar-link" href="ui-buttons.html">
-                        <i class="align-middle" data-feather="square"></i> <span class="align-middle">Buttons</span>
-                        </a>
-					</li>
+					
 
-					<li class="sidebar-item">
-						<a class="sidebar-link" href="ui-forms.html">
-                        <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Forms</span>
-                        </a>
-					</li>
-
-					<li class="sidebar-item">
-						<a class="sidebar-link" href="ui-cards.html">
-                        <i class="align-middle" data-feather="grid"></i> <span class="align-middle">Cards</span>
-                        </a>
-					</li>
-
-					<li class="sidebar-item">
-						<a class="sidebar-link" href="ui-typography.html">
-                        <i class="align-middle" data-feather="align-left"></i> <span class="align-middle">Typography</span>
-                        </a>
-					</li>
-
-					<li class="sidebar-item">
-						<a class="sidebar-link" href="icons-feather.html">
-                        <i class="align-middle" data-feather="coffee"></i> <span class="align-middle">Icons</span>
-                        </a>
-					</li>
+					
 
 				
 				</ul>
@@ -185,67 +159,41 @@
 								</div>
 							</div>
 						</li>
+						
+
+
+						
 						<li class="nav-item dropdown">
 							<a class="nav-icon dropdown-toggle" href="#" id="messagesDropdown" data-bs-toggle="dropdown">
 								<div class="position-relative">
 									<i class="align-middle" data-feather="message-square"></i>
+									<span class="indicator">{{$nbrMsg}}</span>
 								</div>
 							</a>
 							<div class="dropdown-menu dropdown-menu-lg dropdown-menu-end py-0" aria-labelledby="messagesDropdown">
 								<div class="dropdown-menu-header">
 									<div class="position-relative">
-										4 New Messages
+										{{$nbrMsg}} New Messages
 									</div>
 								</div>
 								<div class="list-group">
-									<a href="#" class="list-group-item">
+									@foreach ($contacts as $contact)
+										
+									
+									<router-link to="/DashboardAdmin/contactUsDetails" class="list-group-item">
 										<div class="row g-0 align-items-center">
-											<div class="col-2">
-												<img src="img/avatars/avatar-5.jpg" class="avatar img-fluid rounded-circle" alt="Vanessa Tucker">
-											</div>
+											
 											<div class="col-10 ps-2">
-												<div class="text-dark">Vanessa Tucker</div>
-												<div class="text-muted small mt-1">Nam pretium turpis et arcu. Duis arcu tortor.</div>
-												<div class="text-muted small mt-1">15m ago</div>
+												<div class="text-dark">{{$contact->name}}</div>
+												<div class="text-muted small mt-1">{{$contact->message}}</div>
+												<div class="text-muted small mt-1">{{$contact->added_at}}</div>
 											</div>
 										</div>
-									</a>
-									<a href="#" class="list-group-item">
-										<div class="row g-0 align-items-center">
-											<div class="col-2">
-												<img src="img/avatars/avatar-2.jpg" class="avatar img-fluid rounded-circle" alt="William Harris">
-											</div>
-											<div class="col-10 ps-2">
-												<div class="text-dark">William Harris</div>
-												<div class="text-muted small mt-1">Curabitur ligula sapien euismod vitae.</div>
-												<div class="text-muted small mt-1">2h ago</div>
-											</div>
-										</div>
-									</a>
-									<a href="#" class="list-group-item">
-										<div class="row g-0 align-items-center">
-											<div class="col-2">
-												<img src="img/avatars/avatar-4.jpg" class="avatar img-fluid rounded-circle" alt="Christina Mason">
-											</div>
-											<div class="col-10 ps-2">
-												<div class="text-dark">Christina Mason</div>
-												<div class="text-muted small mt-1">Pellentesque auctor neque nec urna.</div>
-												<div class="text-muted small mt-1">4h ago</div>
-											</div>
-										</div>
-									</a>
-									<a href="#" class="list-group-item">
-										<div class="row g-0 align-items-center">
-											<div class="col-2">
-												<img src="img/avatars/avatar-3.jpg" class="avatar img-fluid rounded-circle" alt="Sharon Lessman">
-											</div>
-											<div class="col-10 ps-2">
-												<div class="text-dark">Sharon Lessman</div>
-												<div class="text-muted small mt-1">Aenean tellus metus, bibendum sed, posuere ac, mattis non.</div>
-												<div class="text-muted small mt-1">5h ago</div>
-											</div>
-										</div>
-									</a>
+									</router-link>
+									@endforeach
+								
+								
+								
 								</div>
 								<div class="dropdown-menu-footer">
 									<a href="#" class="text-muted">Show all messages</a>
@@ -268,7 +216,7 @@
 								<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="help-circle"></i> Help Center</a>
 								<div class="dropdown-divider"></div>
 								<a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-								document.getElementById('logout-form').submit();">Log out</a>
+								document.getElementById('logout-form').submit();"><i class="align-middle me-1" data-feather="log-out"></i>Log out</a>
 
 								<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
 									@csrf

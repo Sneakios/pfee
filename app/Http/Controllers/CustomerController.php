@@ -116,4 +116,14 @@ class CustomerController extends Controller
         
 
       }
+
+      public function GetWorkers(){
+        $workers=User::where('type','=','worker')->select('id','name','avatar','ville')->get();
+        foreach($workers as $worker){
+          $worker->setAttribute('skills',Worker::where('id_worker','=',$worker->id)->value('specialty'));
+      }
+
+
+        return response()->json(['workers'=>$workers]);
+      }
 }

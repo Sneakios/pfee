@@ -200,8 +200,13 @@
             </div>
           </div>
         </div>
-
-        <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+        @if(session()->get('success'))
+        <div class="alert alert-success">
+            {{ session()->get('success') }}
+        </div>
+    @endif
+        <form action="{{route('ContactUs')}}" method="post" role="form" class="php-email-form">
+        @csrf
           <div class="row">
             <div class="col-md-6 form-group">
               <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
@@ -221,12 +226,11 @@
             <div class="error-message"></div>
             <div class="sent-message">Your message has been sent. Thank you!</div>
           </div>
-          @guest
-          <div class="text-center"><button type="submit" disabled>Send Message</button></div>
+       
 
-@else
+          
           <div class="text-center"><button type="submit">Send Message</button></div>
-          @endguest
+       
         </form>
 
       </div>

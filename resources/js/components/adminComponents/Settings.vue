@@ -11,7 +11,7 @@
 
               <div class="form-row">
                 <div class="form-group col-md-6">
-                <label>First Email:</label>
+                <label class="lab">First Email:</label>
                   <input
                    
                     type="text"
@@ -26,7 +26,7 @@
                 </div>
 
                 <div class="form-group col-md-6">
-                <label >Second Email:</label>
+                <label class="lab">Second Email:</label>
                   <input
                    
                     type="text"
@@ -44,7 +44,7 @@
 
               <div class="form-row">
                 <div class="form-group col-md-6">
-                <label>First Phone:</label>
+                <label class="lab">First Phone:</label>
                   <input
                     type="text"
                    :class="['form-control', errors.mobile1 ? 'is-invalid' : '']"
@@ -57,7 +57,7 @@
                   />
                 </div>
                 <div class="form-group col-md-6">
-                <label>Second Phone:</label>
+                <label class="lab">Second Phone:</label>
                   <input
                     type="text"
                    :class="['form-control', errors.mobile2 ? 'is-invalid' : '']"
@@ -73,7 +73,7 @@
 
               <div class="form-row">
                 <div class="form-group col-md-12">
-                  <label>Location:</label>
+                  <label class="lab">Location:</label>
              <textarea :class="['form-control', errors.location ? 'is-invalid' : '']" v-model="location" placeholder="location ..."></textarea>
 
                 </div>
@@ -176,7 +176,7 @@ errors:[],
 </script>
 
 <style>
-label{
+.lab{
  color:skyblue;
   font-family: SFProText-Medium, Helvetica, Arial, sans-serif;
   font-size: 15px;

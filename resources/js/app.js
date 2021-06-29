@@ -9,7 +9,7 @@ import VueRouter from 'vue-router';
 import SettingProfileWorker from './components/SettingProfileWorker.vue';
 import SettingProfileCustomer from './components/SettingProfileCustomer.vue';
 import ProfileWorker from './components/ProfileWorker.vue';
-import ProfileCustomer from './components/ProfileCustomer.vue';
+import SearchWorker from './components/SearchWorker.vue';
 import PostDetails from './components/PostDetails.vue';
 import Posts from './components/Posts.vue';
 import MyPosts from './components/MyPosts.vue';
@@ -21,6 +21,7 @@ import GestionUsers from './components/adminComponents/GestionUsers';
 import DashboardAdmin from './components/adminComponents/Dashboard';
 import Settings from './components/adminComponents/Settings';
 import ProfileAdmin from './components/adminComponents/ProfileAdmin';
+import ContactUsDetails from './components/adminComponents/ContactUsDetails';
 import Swal from 'sweetalert2';
 import Raters from 'vue-rate-it';
 import 'vuejs-datatable/dist/themes/bootstrap-4.esm';
@@ -67,7 +68,7 @@ const routes =[
     {path:'/home/Edit-Profile-Customer',component:SettingProfileCustomer},
     {path:'/home/Edit-Profile-Provider',component:SettingProfileWorker},
     {path:'/home/Profile-Worker',component:ProfileWorker},
-    {path:'/home/Profile-Customer',component:ProfileCustomer},
+    {path:'/home/SearchWorker',component:SearchWorker},
     {path:'/home/PostDetails/:id',component:PostDetails},
     {path:'/home/MyPosts/',component:MyPosts},
     {path:'/home/PostsInteressent/',component:PostInteressent},
@@ -79,7 +80,7 @@ const routes =[
     {path:'/DashboardAdmin/',component:DashboardAdmin},
     {path:'/DashboardAdmin/Settings',component:Settings},
     {path:'/DashboardAdmin/profilesettings',component:ProfileAdmin},
-
+    {path:'/DashboardAdmin/contactUsDetails',component:ContactUsDetails},
     
 
 ];

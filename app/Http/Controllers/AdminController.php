@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Contact;
 use App\Models\Setting;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -21,7 +22,13 @@ class AdminController extends Controller
 
 
     public function indexAdmin(){
-        return view('homeadmin');
+        $contacts=Contact::where('readed','=','no')->get();
+        $nbrMsg=Contact::where('readed','=','no')->count();
+
+        foreach($contacts as $contact){
+            $contact->setAttribute('added_at',$contact->created_at->diffForHumans());
+        }
+        return view('homeadmin',compact('contacts','nbrMsg'));
     }
 
 

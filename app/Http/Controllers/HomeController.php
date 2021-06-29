@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Contact;
 use App\Models\Rate;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -59,7 +60,13 @@ class HomeController extends Controller
     }
     $settings=Setting::find(1);
         return view('home',['count'=>$countWorker,'settings'=>$settings,'rate'=>$rate]);}
-        else{return view('homeadmin');}
+        else{  $contacts=Contact::where('readed','=','no')->get();
+            $nbrMsg=Contact::where('readed','=','no')->count();
+    
+            foreach($contacts as $contact){
+                $contact->setAttribute('added_at',$contact->created_at->diffForHumans());
+            }
+            return view('homeadmin',compact('contacts','nbrMsg'));}
     }
 
 
@@ -115,6 +122,9 @@ class HomeController extends Controller
 
 
     }
+
+
+ 
 
 
 }

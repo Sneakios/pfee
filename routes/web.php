@@ -24,6 +24,7 @@ Route::get('/home', [HomeController::class,'index'])->name('home');
 Route::post('/change_avatar', [HomeController::class,'Change_avatar'])->name('change_avatar');
 Route::get('/userDetails/{id}', [HomeController::class,'GetUserDetails']);
 Route::get('/searchUser',[HomeController::class,'SearchUsers']);
+Route::post('/contactUs',[Controller::class,'ContactUs'])->name('ContactUs');
 
 //Worker Routes//
 Route::post('/addWorkerInfo', [WorkerController::class,'AddWorkerInfo']);
@@ -55,6 +56,7 @@ Route::post('/setRate/{id}', [CustomerController::class,'SetRate']);
 Route::delete('/resetRate/{id}', [CustomerController::class,'ResetRate']);
 Route::post('/follow/{id}', [CustomerController::class,'Follow']);
 Route::post('/unfollow/{id}', [CustomerController::class,'UnFollow']);
+Route::get('/getWorkers', [CustomerController::class,'GetWorkers']);
 
 
 
