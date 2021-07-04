@@ -9,6 +9,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\MessageController;
 
 Auth::routes();
 //Admins Routes//
@@ -66,6 +67,9 @@ Route::post('/addComment/{id}', [CommentController::class,'AddComment']);
 Route::get('/getComments/{id}', [CommentController::class,'GetComments']);
 Route::delete('/deleteMyComment/{id}', [CommentController::class,'DeleteMyComment']);
 Route::put('/editMyComment/{id}', [CommentController::class,'EditMyComment']);
+
+//Contacts Routes//
+Route::get('/contacts', [MessageController::class,'GetContacts']);
 
 
 //use vue router//

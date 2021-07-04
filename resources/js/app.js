@@ -8,7 +8,7 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import SettingProfileWorker from './components/SettingProfileWorker.vue';
 import SettingProfileCustomer from './components/SettingProfileCustomer.vue';
-import ProfileWorker from './components/ProfileWorker.vue';
+import Contacts from './components/Contact.vue';
 import SearchWorker from './components/SearchWorker.vue';
 import PostDetails from './components/PostDetails.vue';
 import Posts from './components/Posts.vue';
@@ -69,7 +69,7 @@ const routes =[
     {path:'/home/',component:Posts},
     {path:'/home/Edit-Profile-Customer',component:SettingProfileCustomer},
     {path:'/home/Edit-Profile-Provider',component:SettingProfileWorker},
-    {path:'/home/Profile-Worker',component:ProfileWorker},
+    {path:'/home/Profile-Worker',component:Contacts},
     {path:'/home/SearchWorker',component:SearchWorker},
     {path:'/home/PostDetails/:id',component:PostDetails},
     {path:'/home/MyPosts/',component:MyPosts},

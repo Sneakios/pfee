@@ -94,8 +94,8 @@
             <li><a class="nav-link scrollto " >    </a></li>
             @endif
             @if ((('login' !=  request()->path()) && ('/' !=  request()->path()) && (Auth::user()->type=='worker')))           
-            <router-link to="/home/Port-Folio/">Port-Folio</router-link>
-            <router-link to="/home/Profile-Worker">Profile</router-link>
+            <router-link to="/home/Profile-Worker"><i class="fa fa-envelope"  style="font-size:25px"></i></router-link>
+            <router-link to="/home/Port-Folio/">Port-Folio</router-link>           
             <router-link to="/home/"><div class="dropdown">
               <div class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                 Posts
@@ -109,8 +109,8 @@
             <li><a class="nav-link scrollto " >    </a></li>
             @endif
             @if ((('login' !=  request()->path()) && ('/' !=  request()->path()) && (Auth::user()->type=='customer')))            
+            <router-link to="/home/Profile-Worker" ><i class="fa fa-envelope" style="font-size:25px"></i></router-link>
             <router-link to="/home/SearchWorker">Workers</router-link>
-            <router-link to="/home/Profile-Customer">Profile</router-link>
             <router-link to="#"><div class="dropdown">
               <div class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                 Posts
