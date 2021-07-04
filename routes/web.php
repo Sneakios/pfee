@@ -36,6 +36,7 @@ Route::post('/savePortFolio', [PortfolioController::class,'SavePortFolio']);
 Route::get('/getPortfolios', [PortfolioController::class,'GetPortFolio']);
 Route::get('/getPortfolioDetails/{id}', [PortfolioController::class,'GetPortFolioDetails']);
 Route::delete('/deleteProject/{id}', [PortfolioController::class,'DeleteProject']);
+Route::get('/Get-Portfolios/{id}', [PortfolioController::class,'GetPortFolios']);
 
 
 //Posts Routes//

@@ -16,8 +16,8 @@
             <div class="carousel-container">
               <div class="carousel-content">
                 <h2 class="animate__animated animate__fadeInDown">Welcome to <span>{{$settings->name}}</span></h2>
-                <p class="animate__animated animate__fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
-                <a href="#about" class="btn-get-started scrollto animate__animated animate__fadeInUp">Read More</a>
+                <p class="animate__animated animate__fadeInUp">HelpMe is the first Tunisian platform to directly link local demand to self-employed workers, allowing users to find immediate help and assistance for their projects & daily tasks.
+                </p>
               </div>
             </div>
           </div>

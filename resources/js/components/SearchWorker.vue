@@ -17,7 +17,7 @@
 
                 <div class="form-group col-md-4">
                   <label>Skills</label>
-                     <select id="ville" class="form-select birth">
+                     <select v-model="skills" class="form-select birth">
                     <option value="Baby sitting">Baby Sitting</option>
                     <option value="Builder">Building</option>
                     <option value="Beauty and well being">Beauty and well being</option>

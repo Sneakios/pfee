@@ -65,4 +65,10 @@ class PortfolioController extends Controller
         $project->delete();
         return response()->json(['status'=>'success']);
       }
+
+
+      public function GetPortFolios($id){
+        $portfolios=Portfolio::where('worker_id','=',$id)->select('id','title','picture')->get();
+        return response()->json(['portfolios'=>$portfolios]);
+      }
 }

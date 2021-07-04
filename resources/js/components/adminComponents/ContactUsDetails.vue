@@ -1,5 +1,5 @@
 <template>
-<main class="message">
+<div class="message main">
       
       <div class="details">
         <div class="header">
@@ -26,7 +26,7 @@
         </div>
      
       </div>
-    </main>
+    </div>
 </template>
 
 <script>
@@ -66,7 +66,7 @@
 
 
 
-main {
+.main {
     min-width: 0;
     flex: 1;
     padding: 1rem;

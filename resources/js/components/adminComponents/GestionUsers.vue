@@ -33,7 +33,9 @@
                         
                     </div>								</div>
 								<div class="card-body">
-                                 <bootstrap-4-datatable :columns="columns" :data="rows" :filter="filter" :per-page="perPage"></bootstrap-4-datatable>
+                                 <bootstrap-4-datatable :columns="columns" :data="rows" :filter="filter" :per-page="perPage">
+          
+                                 </bootstrap-4-datatable>
                                  <bootstrap-4-datatable-pager v-model="page" type="abbreviated"></bootstrap-4-datatable-pager>
 								</div>
 							</div>
@@ -80,8 +82,9 @@
                     },
                      {
                         label: 'action',
-                        data: '<button>aa</button>'
-                    }
+                        
+                    },
+                    
                 ],
                        rows: [],
                 page: 1,

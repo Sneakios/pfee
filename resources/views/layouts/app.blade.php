@@ -57,7 +57,6 @@
       </div>
      
       <div>
-        <search-user></search-user>
       </div>
     </div>
   </section>

@@ -104,7 +104,7 @@
                   <hr  v-if="user.followers>=0">
                   <div class="row">
                     <div class="col-sm-12"  v-if="user.followers>=0">
-                      <a class="btn btn-success" target="__blank" href="https://www.bootdey.com/snippets/view/profile-edit-data-and-skills">Some Projects</a>
+                     <router-link :to="'/home/Port-Folios/' + this.$route.params.id"><span class="btn btn-success">Some Projects</span></router-link>
                     </div>
                   </div>
                 </div>
